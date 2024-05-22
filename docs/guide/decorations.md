@@ -1,6 +1,6 @@
-# Decorations
+# 代码装饰
 
-We provide a decorations API allowing you to wrap custom classes and attributes around ranges of your code.
+我们提供了一个装饰代码的 API，用来将渲染后指定位置的代码元素包裹在自定义类或前缀中。
 
 ```ts twoslash
 import { codeToHtml } from 'shiki'
@@ -15,7 +15,7 @@ const html = await codeToHtml(code, {
   lang: 'ts',
   decorations: [ // [!code hl:8]
     {
-      // line and character are 0-indexed
+      // line 和 character 都是从 0 开始索引的
       start: { line: 1, character: 0 },
       end: { line: 1, character: 11 },
       properties: { class: 'highlighted-word' }
@@ -24,7 +24,7 @@ const html = await codeToHtml(code, {
 })
 ```
 
-The result will be (styled with CSS in this example):
+渲染的结果是 (已使用 CSS 样式化)：
 
 ```ts
 // @decorations:[{"start":{"line":1,"character":0},"end":{"line":1,"character":11},"properties":{"class":"highlighted-word"}}]
@@ -32,7 +32,7 @@ const x = 10
 console.log(x)
 ```
 
-The positions can also be 0-indexed offsets relative to the code:
+你也可以用代码相对偏移位置 (以 0 作为索引) 来指定位置：
 
 ```ts twoslash
 import { codeToHtml } from 'shiki'
@@ -55,7 +55,7 @@ const html = await codeToHtml(code, {
 })
 ```
 
-It renders:
+这会渲染出：
 
 ```ts
 // @decorations:[{"start":21,"end":24,"properties":{"class":"highlighted-word"}}]
@@ -63,11 +63,11 @@ const x = 10
 console.log(x)
 ```
 
-## Use Decorations in Transformers
+## 在转换器中使用代码装饰
 
-For advanced use cases, you can use the [Transformers API](./transformers.md) to have full access to the tokens and the HAST tree.
+对于一些高级的用例，你可以使用[转换器 API](./transformers.md) 来完全控制标签和 HAST 树。
 
-Meanwhile, if you want to append decorations within a transformer, you can do that with:
+如果你想在转换器中添加代码装饰，你可以使用以下的方法：
 
 ```ts twoslash
 /* eslint-disable import/no-duplicates */
@@ -83,12 +83,12 @@ import { ShikiTransformer, codeToHtml } from 'shiki'
 const myTransformer: ShikiTransformer = {
   name: 'my-transformer',
   preprocess(code, options) {
-    // Generate the decorations somehow
+    // 用某种方式生成代码装饰
     const decorations = doSomethingWithCode(code)
 
-    // Make sure the decorations array exists
+    // 确保装饰数组存在
     options.decorations ||= []
-    // Append the decorations
+    // 添加代码装饰
     options.decorations.push(...decorations)
   }
 }
@@ -102,4 +102,4 @@ const html = await codeToHtml(code, {
 })
 ```
 
-Note that you can only provide decorations in or before the `preprocess` hook. In later hooks, changes to the decorations arrary will be ignored.
+注意，你只能在 `preprocess` 钩子添加代码装饰，在往后的钩子中，装饰数组的修改会被忽略。
