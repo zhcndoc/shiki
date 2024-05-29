@@ -20,3 +20,7 @@ A beautiful syntax highlighter based on TextMate grammar, accurate and powerful.
 ## License
 
 [MIT](./LICENSE)
+
+## Deploy
+
+[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com?referralCode=ikxin&utm_source=ikxin)
