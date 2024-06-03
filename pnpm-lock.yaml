@@ -5,17 +5,17 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@shikijs/compat': workspace:*
-  '@shikijs/core': workspace:*
-  '@shikijs/markdown-it': workspace:*
-  '@shikijs/rehype': workspace:*
-  '@shikijs/transformers': workspace:*
-  '@shikijs/twoslash': workspace:*
-  '@shikijs/vitepress-twoslash': workspace:*
+  '@shikijs/compat': ^1.6.0
+  '@shikijs/core': ^1.6.0
+  '@shikijs/markdown-it': ^1.6.0
+  '@shikijs/rehype': ^1.6.0
+  '@shikijs/transformers': ^1.6.0
+  '@shikijs/twoslash': ^1.6.0
+  '@shikijs/vitepress-twoslash': ^1.6.0
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/unist': ^3.0.2
-  shiki: workspace:*
+  shiki: ^1.6.0
   unified: ^11.0.4
   vscode-oniguruma: ^1.7.0
 
@@ -51,20 +51,20 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.17.2)
       '@shikijs/markdown-it':
-        specifier: workspace:*
-        version: link:packages/markdown-it
+        specifier: ^1.6.0
+        version: 1.6.1
       '@shikijs/monaco':
-        specifier: workspace:*
-        version: link:packages/monaco
+        specifier: ^1.6.0
+        version: 1.6.1
       '@shikijs/rehype':
-        specifier: workspace:*
-        version: link:packages/rehype
+        specifier: ^1.6.0
+        version: 1.6.1
       '@shikijs/transformers':
-        specifier: workspace:*
-        version: link:packages/transformers
+        specifier: ^1.6.0
+        version: 1.6.2
       '@shikijs/vitepress-twoslash':
-        specifier: workspace:*
-        version: link:packages/vitepress-twoslash
+        specifier: ^1.6.0
+        version: 1.6.1(typescript@5.4.5)
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -144,8 +144,8 @@ importers:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.17.2)(typescript@5.4.5)
       shiki:
-        specifier: workspace:*
-        version: link:packages/shiki
+        specifier: ^1.6.0
+        version: 1.6.2
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
@@ -190,11 +190,11 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@shikijs/transformers':
-        specifier: workspace:*
-        version: link:../packages/transformers
+        specifier: ^1.6.0
+        version: 1.6.2
       '@shikijs/twoslash':
-        specifier: workspace:*
-        version: link:../packages/twoslash
+        specifier: ^1.6.0
+        version: 1.6.2(typescript@5.4.5)
       '@unocss/reset':
         specifier: ^0.60.2
         version: 0.60.2
@@ -208,8 +208,8 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
       shiki:
-        specifier: workspace:*
-        version: link:../packages/shiki
+        specifier: ^1.6.0
+        version: 1.6.2
       unocss:
         specifier: ^0.60.2
         version: 0.60.2(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@20.12.12)(terser@5.27.0))
@@ -235,8 +235,8 @@ importers:
         specifier: ^1.2.8
         version: 1.2.8
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
     devDependencies:
       '@types/minimist':
         specifier: ^1.2.5
@@ -245,14 +245,14 @@ importers:
   packages/compat:
     dependencies:
       '@shikijs/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^1.6.0
+        version: 1.6.2
       '@shikijs/transformers':
-        specifier: workspace:*
-        version: link:../transformers
+        specifier: ^1.6.0
+        version: 1.6.2
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
     devDependencies:
       shiki-legacy:
         specifier: npm:shiki@^0.14.7
@@ -270,14 +270,14 @@ importers:
   packages/markdown-it:
     dependencies:
       '@shikijs/transformers':
-        specifier: workspace:*
-        version: link:../transformers
+        specifier: ^1.6.0
+        version: 1.6.2
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
     devDependencies:
       '@types/markdown-it':
         specifier: ^14.1.1
@@ -286,8 +286,8 @@ importers:
   packages/monaco:
     dependencies:
       '@shikijs/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^1.6.0
+        version: 1.6.2
     devDependencies:
       monaco-editor-core:
         specifier: ^0.48.0
@@ -305,8 +305,8 @@ importers:
   packages/rehype:
     dependencies:
       '@shikijs/transformers':
-        specifier: workspace:*
-        version: link:../transformers
+        specifier: ^1.6.0
+        version: 1.6.2
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -314,8 +314,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
       unified:
         specifier: ^11.0.4
         version: 11.0.4
@@ -339,8 +339,8 @@ importers:
   packages/shiki:
     dependencies:
       '@shikijs/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^1.6.0
+        version: 1.6.2
     devDependencies:
       tm-grammars:
         specifier: ^1.12.1
@@ -355,14 +355,14 @@ importers:
   packages/transformers:
     dependencies:
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
 
   packages/twoslash:
     dependencies:
       '@shikijs/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^1.6.0
+        version: 1.6.2
       twoslash:
         specifier: ^0.2.6
         version: 0.2.6(typescript@5.4.5)
@@ -374,8 +374,8 @@ importers:
         specifier: ^1.1.49
         version: 1.1.49
       '@shikijs/twoslash':
-        specifier: workspace:*
-        version: 'link:'
+        specifier: ^1.6.0
+        version: 1.6.2(typescript@5.4.5)
       hast-util-from-html:
         specifier: ^2.0.1
         version: 2.0.1
@@ -386,8 +386,8 @@ importers:
   packages/vitepress-twoslash:
     dependencies:
       '@shikijs/twoslash':
-        specifier: workspace:*
-        version: link:../twoslash
+        specifier: ^1.6.0
+        version: 1.6.2(typescript@5.4.5)
       floating-vue:
         specifier: ^5.2.2
         version: 5.2.2(vue@3.4.27(typescript@5.4.5))
@@ -401,8 +401,8 @@ importers:
         specifier: ^13.1.0
         version: 13.1.0
       shiki:
-        specifier: workspace:*
-        version: link:../shiki
+        specifier: ^1.6.0
+        version: 1.6.2
       twoslash:
         specifier: ^0.2.6
         version: 0.2.6(typescript@5.4.5)
@@ -1488,6 +1488,27 @@ packages:
     resolution: {integrity: sha512-TGGO7v7qOq4CYmSBVEYpI1Y5xDuCEnbVC5Vth8mOsW0gDSzxNrVERPc790IGHsrT2dQSimgMr9Ub3Y1Jci5/8w==}
     cpu: [x64]
     os: [win32]
+
+  '@shikijs/core@1.6.2':
+    resolution: {integrity: sha512-guW5JeDzZ7uwOjTfCOFZ2VtVXk5tmkMzBYbKGfXsmAH1qYOej49L5jQDcGmwd6/OgvpmWhzO2GNJkQIFnbwLPQ==}
+
+  '@shikijs/markdown-it@1.6.1':
+    resolution: {integrity: sha512-l6yCxrL18vNGtChXonuq2SxFeqYna6qwIXDncb/fH1RASFZjLroEblV/lsONvuDudRyhKJu8MC3ErLIpcT9BLw==}
+
+  '@shikijs/monaco@1.6.1':
+    resolution: {integrity: sha512-F7eOOMjCOh8xoaaB+Q7ux2pf3Gf2DP3t7wS7RtWCx8l+GCG5tlC9l3YlfQvnzPmUCApWuSpQlXpbZW9zWUPGRQ==}
+
+  '@shikijs/rehype@1.6.1':
+    resolution: {integrity: sha512-qBmZ93ASVX0tfuHvXB9EzgsAEcPmpk1R3I600JgaIBTljF+GsNxhJ+QL7dIVP8QvH6YslQ4jMx/2YC9DSDuCaw==}
+
+  '@shikijs/transformers@1.6.2':
+    resolution: {integrity: sha512-ndqTWyHnxmsLkowhKWTam26opw8hg5a34y6FAUG/Xf6E49n3MM//nenKxXiWpPYkNPl1KZnYXB1k+Ia46wjOZg==}
+
+  '@shikijs/twoslash@1.6.2':
+    resolution: {integrity: sha512-s2dtnY0WY9RagnS3z2tkS4hNhz2mW2DXlfo3XmfT2yExkFQ4kg3W/gquB07hl4ebIuwI87u2sppVYBUZQQ53RA==}
+
+  '@shikijs/vitepress-twoslash@1.6.1':
+    resolution: {integrity: sha512-yJ+CV57qu+UK42nJsqSwvK+hFpDJYB9WXCXFMS/BUdYZ8tZrbcCdxHOrxHZ5gE3JANbrNRf9I0Azq61PZpGl0Q==}
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -3426,6 +3447,9 @@ packages:
   mdast-util-from-markdown@2.0.0:
     resolution: {integrity: sha512-n7MTOr/z+8NAX/wmhhDji8O3bRvPTV/U0oTCaZJkjhPSKTPhS3xufVhKGF8s1pJ7Ox4QgoIU7KHseh09S+9rTA==}
 
+  mdast-util-from-markdown@2.0.1:
+    resolution: {integrity: sha512-aJEUyzZ6TzlsX2s5B4Of7lN7EQtAxvtradMMglCQDyaTFgse6CmtmdJ15ElnVRlCg1vpNyVtbem0PWzlNieZsA==}
+
   mdast-util-frontmatter@1.0.1:
     resolution: {integrity: sha512-JjA2OjxRqAa8wEG8hloD0uTU0kdn8kbtOWpPP94NBkfAlbxn4S8gCGf/9DwFtEeGPXrDcNXdiDjVaRdUFqYokw==}
 
@@ -4405,6 +4429,9 @@ packages:
 
   shiki@0.14.7:
     resolution: {integrity: sha512-dNPAPrxSc87ua2sKJ3H5dQ/6ZaY8RNnaAqK+t0eG7p0Soi2ydiqbGOTaZCqaYvA/uZYfS1LJnemt3Q+mSfcPCg==}
+
+  shiki@1.6.2:
+    resolution: {integrity: sha512-X3hSm5GzzBd/BmPmGfkueOUADLyBoZo1ojYQXhd+NU2VJn458yt4duaS0rVzC+WtqftSV7mTVvDw+OB9AHi3Eg==}
 
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
@@ -6062,6 +6089,55 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
+
+  '@shikijs/core@1.6.2': {}
+
+  '@shikijs/markdown-it@1.6.1':
+    dependencies:
+      '@shikijs/transformers': 1.6.2
+      markdown-it: 14.1.0
+      shiki: 1.6.2
+
+  '@shikijs/monaco@1.6.1':
+    dependencies:
+      '@shikijs/core': 1.6.2
+
+  '@shikijs/rehype@1.6.1':
+    dependencies:
+      '@shikijs/transformers': 1.6.2
+      '@types/hast': 3.0.4
+      hast-util-to-string: 3.0.0
+      shiki: 1.6.2
+      unified: 11.0.4
+      unist-util-visit: 5.0.0
+
+  '@shikijs/transformers@1.6.2':
+    dependencies:
+      shiki: 1.6.2
+
+  '@shikijs/twoslash@1.6.2(typescript@5.4.5)':
+    dependencies:
+      '@shikijs/core': 1.6.2
+      twoslash: 0.2.6(typescript@5.4.5)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  '@shikijs/vitepress-twoslash@1.6.1(typescript@5.4.5)':
+    dependencies:
+      '@shikijs/twoslash': 1.6.2(typescript@5.4.5)
+      floating-vue: 5.2.2(vue@3.4.27(typescript@5.4.5))
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-gfm: 3.0.0
+      mdast-util-to-hast: 13.1.0
+      shiki: 1.6.2
+      twoslash: 0.2.6(typescript@5.4.5)
+      twoslash-vue: 0.2.6(typescript@5.4.5)
+      vue: 3.4.27(typescript@5.4.5)
+    transitivePeerDependencies:
+      - '@nuxt/kit'
+      - supports-color
+      - typescript
 
   '@sinclair/typebox@0.27.8': {}
 
@@ -8444,6 +8520,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  mdast-util-from-markdown@2.0.1:
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/unist': 3.0.2
+      decode-named-character-reference: 1.0.2
+      devlop: 1.1.0
+      mdast-util-to-string: 4.0.0
+      micromark: 4.0.0
+      micromark-util-decode-numeric-character-reference: 2.0.1
+      micromark-util-decode-string: 2.0.0
+      micromark-util-normalize-identifier: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+      unist-util-stringify-position: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
+
   mdast-util-frontmatter@1.0.1:
     dependencies:
       '@types/mdast': 4.0.4
@@ -9737,6 +9830,10 @@ snapshots:
       vscode-oniguruma: 1.7.0
       vscode-textmate: 8.0.0
 
+  shiki@1.6.2:
+    dependencies:
+      '@shikijs/core': 1.6.2
+
   siginfo@2.0.0: {}
 
   signal-exit@3.0.7: {}
@@ -10287,8 +10384,8 @@ snapshots:
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0)
-      '@shikijs/core': link:packages/core
-      '@shikijs/transformers': link:packages/transformers
+      '@shikijs/core': 1.6.2
+      '@shikijs/transformers': 1.6.2
       '@types/markdown-it': 14.1.1
       '@vitejs/plugin-vue': 5.0.4(vite@5.2.11(@types/node@20.12.12)(terser@5.27.0))(vue@3.4.27(typescript@5.4.5))
       '@vue/devtools-api': 7.2.0(vue@3.4.27(typescript@5.4.5))
@@ -10298,7 +10395,7 @@ snapshots:
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0
-      shiki: link:packages/shiki
+      shiki: 1.6.2
       vite: 5.2.11(@types/node@20.12.12)(terser@5.27.0)
       vue: 3.4.27(typescript@5.4.5)
     optionalDependencies:

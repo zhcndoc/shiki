@@ -130,7 +130,7 @@ export default withMermaid(defineConfig({
     ],
   },
 
-  cleanUrls: true,
+  cleanUrls: false,
   vite,
   themeConfig: {
     logo: '/logo.svg',
@@ -182,9 +182,30 @@ export default withMermaid(defineConfig({
     ),
 
     editLink: {
-      pattern: 'https://github.com/zhcndoc/shiki/edit/main/docs/:path',
-      text: '在 GitHub 上编辑本页',
+      text: '在 GitHub 上查看此页面',
+      pattern: 'https://github.com/zhcndoc/shiki/tree/main/docs/:path',
     },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    outline: {
+      label: '页面导航',
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+
     search: {
       provider: 'local',
     },
@@ -194,8 +215,11 @@ export default withMermaid(defineConfig({
     ],
 
     footer: {
-      message: '<a style="display: block; width: fit-content; margin: 10px auto;" href="https://zeabur.com?referralCode=ikxin&utm_source=ikxin"><img src=https://zeabur.com/deployed-on-zeabur-light.svg alt="Deployed on Zeabur"/></a>',
-      copyright: 'Copyright © 2021 Pine Wu, 2023-PRESENT Anthony Fu.',
+      message: `
+        <a style="text-decoration: none;" rel="nofollow" target="__blank" href="https://zeabur.com?referralCode=ikxin&amp;utm_source=ikxin">Deployed on Zeabur</a>
+        <a style="text-decoration: none; margin-left: 8px;" rel="nofollow" target="__blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>
+      `,
+      copyright: 'Copyright © 2021 Pine Wu | 2023-2024 Anthony Fu',
     },
   },
 
@@ -210,6 +234,15 @@ export default withMermaid(defineConfig({
   },
 
   head: [
+    ['meta', { name: 'baidu-site-verification', content: 'codeva-MwZywAJCYJ' }],
+    [
+      'script',
+      {
+        'defer': '',
+        'src': 'https://analytics.ikxin.com/script.js',
+        'data-website-id': 'f0e90b0d-e086-4fdc-b173-de4857b71900',
+      },
+    ],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Pine Wu, Anthony Fu' }],

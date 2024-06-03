@@ -2,10 +2,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "zhlint-fix": "zhlint './**/*.md' --fix",
+    "zhlint": "zhlint './**/*.md' --fix",
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:build": "vitepress build"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.1.13",
@@ -13,13 +12,13 @@
   },
   "devDependencies": {
     "@iconify-json/svg-spinners": "^1.1.2",
-    "@shikijs/transformers": "^1.6.0",
-    "@shikijs/twoslash": "^1.6.0",
+    "@shikijs/transformers": "^1.6.2",
+    "@shikijs/twoslash": "^1.6.2",
     "@unocss/reset": "^0.60.2",
     "@vueuse/core": "^10.9.0",
     "floating-vue": "^5.2.2",
     "pinia": "^2.1.7",
-    "shiki": "^1.6.0",
+    "shiki": "^1.6.2",
     "unocss": "^0.60.2",
     "unplugin-vue-components": "^0.27.0",
     "vitepress": "^1.2.0",
