@@ -132,6 +132,11 @@ export default withMermaid(defineConfig({
 
   cleanUrls: false,
   vite,
+
+  sitemap: {
+    hostname: 'https://shiki.zhcndoc.com',
+  },
+
   themeConfig: {
     logo: '/logo.svg',
     nav: [
