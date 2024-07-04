@@ -1,4 +1,5 @@
 {
-  "build_command": "pnpm run docs:build",
-  "output_dir": "docs/.vitepress/dist"
+  "app_dir": "docs",
+  "build_command": "pnpm -w run docs:build",
+  "output_dir": ".vitepress/dist"
 }
