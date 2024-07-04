@@ -34,10 +34,9 @@ md.use(await Shiki({
 // @noErrors: true
 import MarkdownIt from 'markdown-it'
 import { fromHighlighter } from '@shikijs/markdown-it/core'
-import { getHighlighterCore } from 'shiki/core'
-import getWasm from 'shiki/wasm'
+import { createHighlighterCore } from 'shiki/core'
 
-const highlighter = await getHighlighterCore({
+const highlighter = await createHighlighterCore({
   themes: [
     import('shiki/themes/vitesse-light.mjs')
   ],

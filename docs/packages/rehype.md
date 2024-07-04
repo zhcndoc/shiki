@@ -38,6 +38,8 @@ const file = await unified()
   .process(await fs.readFile('./input.md'))
 ```
 
+`@shikijs/rehype` 的默认导出使用 `getSingletonHighlighter` 中的 `shiki` 共享实例，该实例将在进程之间保持不变。如果您想要完全控制高亮器的生命周期，请改用[细粒度捆绑包 `@shikijs/rehype/core`](#fine-grained-bundle)。
+
 ## 细粒度捆绑
 
 默认情况下会导入完整的 `shiki` 捆绑包。如果你使用了[细粒度捆绑](/guide/install#细粒度捆绑)，你可以从 `@shikijs/rehype/core` 中导入 `rehypeShikiFromHighlighter` 并传入你自己的高亮器：
@@ -50,10 +52,9 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import rehypeShikiFromHighlighter from '@shikijs/rehype/core'
 
-import { getHighlighterCore } from 'shiki/core'
-import getWasm from 'shiki/wasm'
+import { createHighlighterCore } from 'shiki/core'
 
-const highlighter = await getHighlighterCore({
+const highlighter = await createHighlighterCore({
   themes: [
     import('shiki/themes/vitesse-light.mjs')
   ],
