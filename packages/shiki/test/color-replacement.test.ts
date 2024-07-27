@@ -55,11 +55,11 @@ it('flat colorReplacements', async () => {
       log</span>
       <span style="color:#999999;--shiki-dark:#BABED8">
       (</span>
-      <span style="color:#B5695999;--shiki-dark:#89DDFF">
+      <span style="color:#B5695977;--shiki-dark:#89DDFF">
       "</span>
       <span style="color:#B56959;--shiki-dark:#C3E88D">
       hi</span>
-      <span style="color:#B5695999;--shiki-dark:#89DDFF">
+      <span style="color:#B5695977;--shiki-dark:#89DDFF">
       "</span>
       <span style="color:#999999;--shiki-dark:#BABED8">
       )</span>
@@ -68,6 +68,20 @@ it('flat colorReplacements', async () => {
       </pre>
       "
     `)
+})
+
+it('single theme colorReplacements', async () => {
+  const result = await codeToHtml('console.log("hi")', {
+    lang: 'js',
+    theme: 'vitesse-light',
+    colorReplacements: {
+      '#393a34': 'var(---replaced-1)',
+      '#b07d48': 'var(---replaced-2)',
+    },
+  })
+
+  expect(result).toContain('var(---replaced-1)')
+  expect(result).toContain('var(---replaced-2)')
 })
 
 it('scoped colorReplacements', async () => {

@@ -18,12 +18,12 @@
     "@unocss/reset": "^0.61.5",
     "@vueuse/core": "^10.11.0",
     "floating-vue": "^5.2.2",
-    "pinia": "^2.1.7",
+    "pinia": "^2.2.0",
     "shiki": "latest",
     "unocss": "^0.61.5",
     "unplugin-vue-components": "^0.27.3",
     "vitepress": "^1.3.1",
-    "vue": "^3.4.33",
+    "vue": "^3.4.34",
     "zhlint": "^0.8.1"
   }
 }
