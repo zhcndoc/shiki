@@ -1,7 +1,0 @@
-packages:
-  - packages/*
-  - packages/*/playground
-  - playground
-  - examples/*
-  - docs
-  - packages/@shikijs/core/vendor/*
