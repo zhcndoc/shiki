@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import { h } from 'vue'
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 
-import '../../../packages/twoslash/style-rich.css'
+import '@shikijs/twoslash/style-rich.css'
 import 'floating-vue/dist/style.css'
 import '@shikijs/vitepress-twoslash/style.css'
 import 'uno.css'
