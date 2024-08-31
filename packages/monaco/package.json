@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/monaco",
   "type": "module",
-  "version": "1.14.1",
+  "version": "1.15.1",
   "description": "Use Shiki for Monaco Editor",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -49,6 +49,6 @@
     "@shikijs/core": "workspace:*"
   },
   "devDependencies": {
-    "monaco-editor-core": "^0.50.0"
+    "monaco-editor-core": "catalog:"
   }
 }
