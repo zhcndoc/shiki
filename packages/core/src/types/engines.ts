@@ -1,4 +1,17 @@
-type Awaitable<T> = T | Promise<T>
+import type { OnigScanner, OnigString } from '@shikijs/vscode-textmate'
+import type { Awaitable } from './utils'
+
+export interface PatternScanner extends OnigScanner {}
+
+export interface RegexEngineString extends OnigString {}
+
+/**
+ * Engine for RegExp matching and scanning.
+ */
+export interface RegexEngine {
+  createScanner: (patterns: string[]) => PatternScanner
+  createString: (s: string) => RegexEngineString
+}
 
 export interface WebAssemblyInstantiator {
   (importObject: Record<string, Record<string, WebAssembly.ImportValue>> | undefined): Promise<WebAssemblyInstance>

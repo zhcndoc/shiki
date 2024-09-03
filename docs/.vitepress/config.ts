@@ -11,21 +11,24 @@ import vite from './vite.config'
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '快速开始', link: '/guide/' },
-  { text: '安装', link: '/guide/install' },
+  { text: '安装和使用', link: '/guide/install' },
   { text: '捆绑包', link: '/guide/bundles' },
-  { text: '深浅色模式', link: '/guide/dual-themes' },
-  { text: '代码装饰', link: '/guide/decorations' },
+  { text: '双重主题', link: '/guide/dual-themes' },
+  { text: '装饰器', link: '/guide/decorations' },
   { text: '转换器', link: '/guide/transformers' },
   { text: '主题颜色控制', link: '/guide/theme-colors' },
-  { text: '迁移', link: '/guide/migrate' },
-  { text: '兼容性构建', link: '/guide/compat' },
+  { text: 'RegExp 引擎', link: '/guide/regex-engines' },
+  { text: '同步使用', link: '/guide/sync-usage' },
   { text: '自定义主题', link: '/guide/load-theme' },
   { text: '自定义语言', link: '/guide/load-lang' },
+  { text: '迁移', link: '/guide/migrate' },
+  { text: '兼容性构建', link: '/guide/compat' },
 ]
 
 const REFERENCES: DefaultTheme.NavItemWithLink[] = [
   { text: '主题', link: '/themes' },
   { text: '语言', link: '/languages' },
+  { text: 'JavaScript 引擎兼容性', link: '/references/engine-js-compat' },
 ]
 
 const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [

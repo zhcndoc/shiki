@@ -13,7 +13,7 @@ describe('should', () => {
   it('works', async () => {
     const shiki = await createHighlighterCore({
       themes: [nord],
-      langs: [js as any],
+      langs: [js],
       loadWasm: {
         instantiator: obj => WebAssembly.instantiate(wasmBinary, obj),
       },
@@ -69,17 +69,17 @@ describe('should', () => {
       ],
     })
 
-    expect(shiki.getLoadedLanguages())
+    expect(shiki.getLoadedLanguages().sort())
       .toMatchInlineSnapshot(`
         [
+          "c",
+          "c++",
+          "cpp",
+          "cpp-macro",
+          "glsl",
+          "regex",
           "regexp",
           "sql",
-          "c",
-          "glsl",
-          "cpp-macro",
-          "cpp",
-          "regex",
-          "c++",
         ]
       `)
   })
