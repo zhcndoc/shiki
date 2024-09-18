@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 // @ts-expect-error missing types
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
-import { version } from '../../package.json'
+import { version } from '../package.json'
 import { transformerMetaWordHighlight, transformerNotationWordHighlight, transformerRemoveNotationEscape } from '@shikijs/transformers'
 import { defaultHoverInfoProcessor, transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import vite from './vite.config'
@@ -212,18 +212,35 @@ export default withMermaid(defineConfig({
 
     search: {
       provider: 'local',
+      options: {
+        locales: {
+          root: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档',
+              },
+              modal: {
+                noResultsText: '无法找到相关结果',
+                resetButtonTitle: '清除查询条件',
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                },
+              },
+            },
+          },
+        },
+      },
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/shikijs/shiki' },
+      { icon: 'github', link: 'https://github.com/zhcndoc/shiki' },
     ],
 
     footer: {
-      message: `
-        <a style="text-decoration: none;" rel="nofollow" target="__blank" href="https://zeabur.com?referralCode=ikxin&amp;utm_source=ikxin">Deployed on Zeabur</a>
-        <a style="text-decoration: none; margin-left: 8px;" rel="nofollow" target="__blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>
-      `,
-      copyright: 'Copyright © 2021 Pine Wu | 2023-2024 Anthony Fu',
+      message: `<a target="_blank" href="https://www.zhcndoc.com?ref=shiki">简中文档</a>`,
+      copyright: '<a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
     },
   },
 
@@ -247,14 +264,29 @@ export default withMermaid(defineConfig({
         'data-website-id': 'f0e90b0d-e086-4fdc-b173-de4857b71900',
       },
     ],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-HYH4TH7PWM',
+      },
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HYH4TH7PWM');`,
+    ],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Pine Wu, Anthony Fu' }],
     ['meta', { property: 'og:title', content: 'Shiki' }],
-    ['meta', { property: 'og:image', content: 'https://shiki.style/og.png' }],
+    ['meta', { property: 'og:image', content: 'https://shiki.zhcndoc.com/og.png' }],
     ['meta', { property: 'og:description', content: '一个美丽而强大的语法高亮显示器' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: 'https://shiki.style/og.png' }],
+    ['meta', { name: 'twitter:image', content: 'https://shiki.zhcndoc.com/og.png' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
   ],
 }))
