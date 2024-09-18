@@ -1,12 +1,13 @@
 import type { ShikiTransformer } from 'shiki'
 
-export function parseMetaHighlightString(meta: string) {
+export function parseMetaHighlightString(meta: string): number[] | null {
   if (!meta)
     return null
   const match = meta.match(/\{([\d,-]+)\}/)
   if (!match)
     return null
-  const lines = match[1].split(',')
+  const lines = match[1]
+    .split(',')
     .flatMap((v) => {
       const num = v.split('-').map(v => Number.parseInt(v, 10))
       if (num.length === 1)

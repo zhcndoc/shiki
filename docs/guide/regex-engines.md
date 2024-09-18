@@ -27,7 +27,8 @@ Shiki come with two built-in engines:
 This is the default engine that uses the compiled Oniguruma WebAssembly. The most accurate and robust engine.
 
 ```ts
-import { createHighlighter, createWasmOnigEngine } from 'shiki'
+import { createHighlighter } from 'shiki'
+import { createWasmOnigEngine } from 'shiki/engine/oniguruma'
 
 const shiki = await createShiki({
   themes: ['nord'],
@@ -38,12 +39,15 @@ const shiki = await createShiki({
 
 ## JavaScript RegExp Engine (Experimental)
 
+::: warning Experimental
+This feature is experimental and may change without following semver.
+:::
+
 This experimental engine uses JavaScript's native RegExp. As TextMate grammars' regular expressions are in Oniguruma flavor that might contains syntaxes that are not supported by JavaScript's RegExp, we use [`oniguruma-to-js`](https://github.com/antfu/oniguruma-to-js) to lowering the syntaxes and try to make them compatible with JavaScript's RegExp.
 
-Please check the [compatibility table](/references/engine-js-compat) to check the support status of the languages you are using.
-
-```ts {3,8}
-import { createHighlighter, createJavaScriptRegexEngine } from 'shiki'
+```ts {2,4,9}
+import { createHighlighter } from 'shiki'
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
 const jsEngine = createJavaScriptRegexEngine()
 
@@ -55,3 +59,18 @@ const shiki = await createHighlighter({
 
 const html = shiki.codeToHtml('const a = 1', { lang: 'javascript', theme: 'nord' })
 ```
+
+Please check the [compatibility table](/references/engine-js-compat) to check the support status of the languages you are using.
+
+If mismatches are acceptable and you want it to get results whatever it can, you can enable the `forgiving` option to suppress any errors happened during the conversion:
+
+```ts
+const jsEngine = createJavaScriptRegexEngine({ forgiving: true })
+// ...use the engine
+```
+
+::: info
+If you runs Shiki on Node.js (or at build time), we still recommend using the Oniguruma engine for the best result, as most of the time bundle size or WebAssembly support is not a concern.
+
+The JavaScript engine is more suitable for running in the browser in some cases that you want to control the bundle size.
+:::

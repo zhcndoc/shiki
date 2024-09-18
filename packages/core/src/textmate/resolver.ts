@@ -1,5 +1,5 @@
+import type { LanguageRegistration, RegexEngine } from '@shikijs/types'
 import type { IOnigLib, RegistryOptions } from '@shikijs/vscode-textmate'
-import type { LanguageRegistration, RegexEngine } from '../types'
 
 export class Resolver implements RegistryOptions {
   private readonly _langs = new Map<string, LanguageRegistration>()
@@ -28,7 +28,7 @@ export class Resolver implements RegistryOptions {
     return this._scopeToLang.get(scopeName)!
   }
 
-  public addLanguage(l: LanguageRegistration) {
+  public addLanguage(l: LanguageRegistration): void {
     this._langs.set(l.name, l)
     if (l.aliases) {
       l.aliases.forEach((a) => {

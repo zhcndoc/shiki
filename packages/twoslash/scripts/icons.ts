@@ -1,10 +1,10 @@
-import fs from 'node:fs/promises'
-import { icons as codicon } from '@iconify-json/codicon'
-import { icons as carbon } from '@iconify-json/carbon'
-import { fromHtml } from 'hast-util-from-html'
 import type { CompletionEntry } from 'typescript'
+import fs from 'node:fs/promises'
+import { icons as carbon } from '@iconify-json/carbon'
+import { icons as codicon } from '@iconify-json/codicon'
+import { fromHtml } from 'hast-util-from-html'
 
-async function buildIcons(filepath: string, map: Record<string, string>) {
+async function buildIcons(filepath: string, map: Record<string, string>): Promise<void> {
   const result = Object.fromEntries(
     Object.entries(map).map(([key, value]) => {
       const iconset = value.startsWith('codicon:') ? codicon : carbon

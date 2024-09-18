@@ -1,9 +1,14 @@
-import { Registry as TextMateRegistry, Theme as TextMateTheme } from '@shikijs/vscode-textmate'
+import type {
+  Grammar,
+  LanguageRegistration,
+  ThemeRegistrationAny,
+  ThemeRegistrationResolved,
+} from '@shikijs/types'
 import type { IGrammarConfiguration, IRawTheme } from '@shikijs/vscode-textmate'
-import type { Grammar, LanguageRegistration, ThemeRegistrationAny, ThemeRegistrationResolved } from '../types'
-import { ShikiError } from '../error'
-import { normalizeTheme } from './normalize-theme'
 import type { Resolver } from './resolver'
+import { Registry as TextMateRegistry, Theme as TextMateTheme } from '@shikijs/vscode-textmate'
+import { ShikiError } from '../../../types/src/error'
+import { normalizeTheme } from './normalize-theme'
 
 export class Registry extends TextMateRegistry {
   private _resolvedThemes: Map<string, ThemeRegistrationResolved> = new Map()
@@ -27,7 +32,7 @@ export class Registry extends TextMateRegistry {
     this.loadLanguages(this._langs)
   }
 
-  public getTheme(theme: ThemeRegistrationAny | string) {
+  public getTheme(theme: ThemeRegistrationAny | string): ThemeRegistrationResolved | undefined {
     if (typeof theme === 'string')
       return this._resolvedThemes.get(theme)
     else
@@ -44,7 +49,7 @@ export class Registry extends TextMateRegistry {
     return _theme
   }
 
-  public getLoadedThemes() {
+  public getLoadedThemes(): string[] {
     if (!this._loadedThemesCache)
       this._loadedThemesCache = [...this._resolvedThemes.keys()]
     return this._loadedThemesCache
@@ -66,7 +71,7 @@ export class Registry extends TextMateRegistry {
     this._syncRegistry.setTheme(textmateTheme)
   }
 
-  public getGrammar(name: string) {
+  public getGrammar(name: string): Grammar | undefined {
     if (this._alias[name]) {
       const resolved = new Set<string>([name])
       while (this._alias[name]) {
@@ -132,7 +137,7 @@ export class Registry extends TextMateRegistry {
     this._loadedThemesCache = null
   }
 
-  public loadLanguages(langs: LanguageRegistration[]) {
+  public loadLanguages(langs: LanguageRegistration[]): void {
     for (const lang of langs)
       this.resolveEmbeddedLanguages(lang)
 
@@ -153,7 +158,7 @@ export class Registry extends TextMateRegistry {
       this.loadLanguage(lang)
   }
 
-  public getLoadedLanguages() {
+  public getLoadedLanguages(): string[] {
     if (!this._loadedLanguagesCache) {
       this._loadedLanguagesCache = [
         ...new Set([...this._resolvedGrammars.keys(), ...Object.keys(this._alias)]),
@@ -162,7 +167,7 @@ export class Registry extends TextMateRegistry {
     return this._loadedLanguagesCache
   }
 
-  private resolveEmbeddedLanguages(lang: LanguageRegistration) {
+  private resolveEmbeddedLanguages(lang: LanguageRegistration): void {
     this._langMap.set(lang.name, lang)
     this._langGraph.set(lang.name, lang)
     if (lang.embeddedLangs) {

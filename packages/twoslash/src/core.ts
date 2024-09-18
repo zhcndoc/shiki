@@ -2,20 +2,20 @@
  * This file is the core of the @shikijs/twoslash package,
  * Decoupled from twoslash's implementation and allowing to introduce custom implementation or cache system.
  */
-import type { TwoslashExecuteOptions, TwoslashGenericFunction } from 'twoslash'
-import type { ShikiTransformer, ShikiTransformerContextMeta } from '@shikijs/core'
+import type { ShikiTransformer, ShikiTransformerContextMeta } from '@shikijs/types'
 import type { Element, ElementContent, Text } from 'hast'
+import type { TwoslashExecuteOptions, TwoslashGenericFunction } from 'twoslash'
 
-import { splitTokens } from '@shikijs/core'
 import type { TransformerTwoslashOptions, TwoslashRenderer, TwoslashShikiFunction, TwoslashShikiReturn } from './types'
+import { splitTokens } from '@shikijs/core'
 import { ShikiTwoslashError } from './error'
-import { TwoslashIncludesManager, parseIncludeMeta } from './includes'
+import { parseIncludeMeta, TwoslashIncludesManager } from './includes'
 
-export * from './types'
-export * from './renderer-rich'
-export * from './renderer-classic'
-export * from './icons'
 export * from './error'
+export * from './icons'
+export * from './renderer-classic'
+export * from './renderer-rich'
+export * from './types'
 
 export function defaultTwoslashOptions(): TwoslashExecuteOptions {
   return {
@@ -125,7 +125,7 @@ export function createTransformerFactory(
         if (!twoslash)
           return
 
-        const insertAfterLine = (line: number, nodes: ElementContent[]) => {
+        const insertAfterLine = (line: number, nodes: ElementContent[]): void => {
           if (!nodes.length)
             return
           let index: number
@@ -165,7 +165,7 @@ export function createTransformerFactory(
           line: number,
           character: number,
           length: number,
-        ) => {
+        ): (Element | Text)[] => {
           const start = character
           const end = character + length
           // When the length is 0 (completion), we find the token that contains it
@@ -200,7 +200,7 @@ export function createTransformerFactory(
           }
 
           // Wrap tokens with new elements, all tokens has to be in the same line
-          const wrapTokens = (fn: (children: ElementContent[]) => ElementContent[]) => {
+          const wrapTokens = (fn: (children: ElementContent[]) => ElementContent[]): void => {
             const line = this.lines[node.line]
             let charIndex = 0
             let itemStart = line.children.length

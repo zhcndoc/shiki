@@ -1,5 +1,3 @@
-import type { Element } from 'hast'
-import { FontStyle } from './types'
 import type {
   MaybeArray,
   MaybeGetter,
@@ -7,12 +5,15 @@ import type {
   Position,
   SpecialLanguage,
   SpecialTheme,
+  ThemedToken,
   ThemeInput,
   ThemeRegistrationAny,
-  ThemedToken,
-  TokenStyles,
   TokenizeWithThemeOptions,
-} from './types'
+  TokenStyles,
+} from '@shikijs/types'
+
+import type { Element } from 'hast'
+import { FontStyle } from '@shikijs/vscode-textmate'
 
 export function toArray<T>(x: MaybeArray<T>): T[] {
   return Array.isArray(x) ? x : [x]
@@ -77,7 +78,7 @@ export function isSpecialTheme(theme: string | ThemeInput | null | undefined): t
  *
  * If the `property.class` is a string, it will be splitted by space and converted to an array.
  */
-export function addClassToHast(node: Element, className: string | string[]) {
+export function addClassToHast(node: Element, className: string | string[]): Element {
   if (!className)
     return node
   node.properties ||= {}
@@ -136,8 +137,12 @@ export function splitToken<
  */
 export function splitTokens<
   T extends Pick<ThemedToken, 'content' | 'offset'>,
->(tokens: T[][], breakpoints: number[] | Set<number>) {
-  const sorted = Array.from(breakpoints instanceof Set ? breakpoints : new Set(breakpoints))
+>(
+  tokens: T[][],
+  breakpoints: number[] | Set<number>,
+): T[][] {
+  const sorted = Array
+    .from(breakpoints instanceof Set ? breakpoints : new Set(breakpoints))
     .sort((a, b) => a - b)
 
   if (!sorted.length)
@@ -168,7 +173,7 @@ export async function normalizeGetter<T>(p: MaybeGetter<T>): Promise<T> {
 export function resolveColorReplacements(
   theme: ThemeRegistrationAny | string,
   options?: TokenizeWithThemeOptions,
-) {
+): Record<string, string | undefined> {
   const replacements = typeof theme === 'string' ? {} : { ...theme.colorReplacements }
   const themeName = typeof theme === 'string' ? theme : theme.name
   for (const [key, value] of Object.entries(options?.colorReplacements || {})) {
@@ -180,15 +185,15 @@ export function resolveColorReplacements(
   return replacements
 }
 
-export function applyColorReplacements(color: string, replacements?: Record<string, string>): string
-export function applyColorReplacements(color?: string | undefined, replacements?: Record<string, string>): string | undefined
-export function applyColorReplacements(color?: string, replacements?: Record<string, string>): string | undefined {
+export function applyColorReplacements(color: string, replacements?: Record<string, string | undefined>): string
+export function applyColorReplacements(color?: string | undefined, replacements?: Record<string, string | undefined>): string | undefined
+export function applyColorReplacements(color?: string, replacements?: Record<string, string | undefined>): string | undefined {
   if (!color)
     return color
   return replacements?.[color?.toLowerCase()] || color
 }
 
-export function getTokenStyleObject(token: TokenStyles) {
+export function getTokenStyleObject(token: TokenStyles): Record<string, string> {
   const styles: Record<string, string> = {}
   if (token.color)
     styles.color = token.color
@@ -205,7 +210,7 @@ export function getTokenStyleObject(token: TokenStyles) {
   return styles
 }
 
-export function stringifyTokenStyle(token: Record<string, string>) {
+export function stringifyTokenStyle(token: Record<string, string>): string {
   return Object.entries(token).map(([key, value]) => `${key}:${value}`).join(';')
 }
 
@@ -214,7 +219,11 @@ export function stringifyTokenStyle(token: Record<string, string>) {
  *
  * Overflow/underflow are unchecked.
  */
-export function createPositionConverter(code: string) {
+export function createPositionConverter(code: string): {
+  lines: string[]
+  indexToPos: (index: number) => Position
+  posToIndex: (line: number, character: number) => number
+} {
   const lines = splitLines(code, true).map(([line]) => line)
 
   function indexToPos(index: number): Position {
@@ -236,7 +245,7 @@ export function createPositionConverter(code: string) {
     return { line, character }
   }
 
-  function posToIndex(line: number, character: number) {
+  function posToIndex(line: number, character: number): number {
     let index = 0
     for (let i = 0; i < line; i++)
       index += lines[i].length

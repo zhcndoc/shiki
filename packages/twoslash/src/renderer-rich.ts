@@ -1,9 +1,9 @@
+import type { ShikiTransformerContextCommon } from '@shikijs/types'
 import type { Element, ElementContent, Text } from 'hast'
-import type { ShikiTransformerContextCommon } from '@shikijs/core'
 import type { NodeError, NodeHover, NodeQuery } from 'twoslash'
 import type { TwoslashRenderer } from './types'
-import { defaultCompletionIcons, defaultCustomTagIcons } from './icons'
 import { ShikiTwoslashError } from './error'
+import { defaultCompletionIcons, defaultCustomTagIcons } from './icons'
 
 export interface RendererRichOptions {
   /**
@@ -223,7 +223,7 @@ export function rendererRich(options: RendererRichOptions = {}): TwoslashRendere
   function highlightPopupContent(
     this: ShikiTransformerContextCommon,
     info: NodeHover | NodeQuery,
-  ) {
+  ): ElementContent[] {
     if (!info.text)
       return []
     const content = processHoverInfo(info.text)
@@ -419,7 +419,8 @@ export function rendererRich(options: RendererRichOptions = {}): TwoslashRendere
       if (node.type !== 'text')
         throw new ShikiTwoslashError(`Renderer hook nodeCompletion only works on text nodes, got ${node.type}`)
 
-      const items: Element[] = query.completions
+      const items: Element[] = query
+        .completions
         .map((i) => {
           const kind = i.kind || 'default'
           const isDeprecated = 'kindModifiers' in i && typeof i.kindModifiers === 'string' && i.kindModifiers?.split(',').includes('deprecated')
@@ -704,7 +705,7 @@ const regexFunction = /^\w*\(/
 /**
  * The default hover info processor, which will do some basic cleanup
  */
-export function defaultHoverInfoProcessor(type: string) {
+export function defaultHoverInfoProcessor(type: string): string {
   let content = type
     // remove leading `(property)` or `(method)` on each line
     .replace(/^\(([\w-]+)\)\s+/gm, '')
@@ -723,7 +724,7 @@ export function defaultHoverInfoProcessor(type: string) {
   return content
 }
 
-function getErrorLevelClass(error: NodeError) {
+function getErrorLevelClass(error: NodeError): string {
   switch (error.level) {
     case 'warning':
       return 'twoslash-error-level-warning'

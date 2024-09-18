@@ -1,6 +1,12 @@
+import type {
+  ThemedToken,
+  ThemeRegistrationResolved,
+  TokenizeWithThemeOptions,
+} from '@shikijs/types'
+
+import { FontStyle } from '@shikijs/vscode-textmate'
 import { createAnsiSequenceParser, createColorPalette, namedColors } from 'ansi-sequence-parser'
-import type { ThemeRegistrationResolved, ThemedToken, TokenizeWithThemeOptions } from '../types'
-import { FontStyle } from '../types'
+
 import { applyColorReplacements, resolveColorReplacements, splitLines } from '../utils'
 
 export function tokenizeAnsiWithTheme(
@@ -65,12 +71,13 @@ export function tokenizeAnsiWithTheme(
 /**
  * Adds 50% alpha to a hex color string or the "-dim" postfix to a CSS variable
  */
-function dimColor(color: string) {
+function dimColor(color: string): string {
   const hexMatch = color.match(/#([0-9a-f]{3})([0-9a-f]{3})?([0-9a-f]{2})?/)
   if (hexMatch) {
     if (hexMatch[3]) {
       // convert from #rrggbbaa to #rrggbb(aa/2)
-      const alpha = Math.round(Number.parseInt(hexMatch[3], 16) / 2)
+      const alpha = Math
+        .round(Number.parseInt(hexMatch[3], 16) / 2)
         .toString(16)
         .padStart(2, '0')
       return `#${hexMatch[1]}${hexMatch[2]}${alpha}`
@@ -81,7 +88,8 @@ function dimColor(color: string) {
     }
     else {
       // convert from #rgb to #rrggbb80
-      return `#${Array.from(hexMatch[1])
+      return `#${Array
+        .from(hexMatch[1])
         .map(x => `${x}${x}`)
         .join('')}80`
     }

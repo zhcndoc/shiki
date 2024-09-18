@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/rehype",
   "type": "module",
-  "version": "1.16.1",
+  "version": "1.17.7",
   "description": "rehype integration for shiki",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -50,7 +50,7 @@
     "prepublishOnly": "nr build"
   },
   "dependencies": {
-    "@shikijs/transformers": "workspace:*",
+    "@shikijs/types": "workspace:*",
     "@types/hast": "catalog:",
     "hast-util-to-string": "catalog:",
     "shiki": "workspace:*",
@@ -58,6 +58,7 @@
     "unist-util-visit": "catalog:"
   },
   "devDependencies": {
+    "@shikijs/transformers": "workspace:*",
     "rehype-raw": "catalog:",
     "rehype-stringify": "catalog:",
     "remark-parse": "catalog:",

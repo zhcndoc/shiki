@@ -246,8 +246,8 @@ Cloudflare Workers [不支持从二进制数据初始化 WebAssembly](https://co
 ```ts twoslash theme:nord
 // @noErrors
 import { createHighlighterCore, loadWasm } from 'shiki/core'
-import nord from 'shiki/themes/nord.mjs'
 import js from 'shiki/langs/javascript.mjs'
+import nord from 'shiki/themes/nord.mjs'
 
 // 将 WASM 作为资产导入
 await loadWasm(import('shiki/onig.wasm'))

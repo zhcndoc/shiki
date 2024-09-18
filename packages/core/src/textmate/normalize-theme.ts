@@ -1,4 +1,4 @@
-import type { ThemeRegistrationAny, ThemeRegistrationResolved } from '../types'
+import type { ThemeRegistrationAny, ThemeRegistrationResolved } from '@shikijs/types'
 
 /**
  * https://github.com/microsoft/vscode/blob/f7f05dee53fb33fe023db2e06e30a89d3094488f/src/vs/platform/theme/common/colorRegistry.ts#L258-L268
@@ -84,7 +84,7 @@ export function normalizeTheme(rawTheme: ThemeRegistrationAny): ThemeRegistratio
   // Push non-hex colors to color replacements, as `vscode-textmate` doesn't support them
   let replacementCount = 0
   const replacementMap = new Map<string, string>()
-  function getReplacementColor(value: string) {
+  function getReplacementColor(value: string): string {
     if (replacementMap.has(value))
       return replacementMap.get(value)!
     replacementCount += 1

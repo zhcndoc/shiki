@@ -1,12 +1,26 @@
 /* ---------------------------------------------------------
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *-------------------------------------------------------- */
+import type {
+  CodeToTokensBaseOptions,
+  ShikiInternal,
+  ThemedToken,
+  ThemedTokenScopeExplanation,
+  ThemeRegistrationResolved,
+  TokenizeWithThemeOptions,
+} from '@shikijs/types'
+import type {
+  FontStyle,
+  IGrammar,
+  IRawThemeSetting,
+  StateStack,
+} from '@shikijs/vscode-textmate'
+
+import { ShikiError } from '@shikijs/types'
 import { EncodedTokenMetadata, INITIAL } from '@shikijs/vscode-textmate'
-import type { IGrammar, IRawThemeSetting, StateStack } from '@shikijs/vscode-textmate'
-import type { CodeToTokensBaseOptions, FontStyle, ShikiInternal, ThemeRegistrationResolved, ThemedToken, ThemedTokenScopeExplanation, TokenizeWithThemeOptions } from '../types'
+
+import { getGrammarStack, GrammarState } from '../textmate/grammar-state'
 import { applyColorReplacements, isNoneTheme, isPlainLang, resolveColorReplacements, splitLines } from '../utils'
-import { ShikiError } from '../error'
-import { GrammarState, getGrammarStack } from '../textmate/grammar-state'
 import { tokenizeAnsiWithTheme } from './code-to-tokens-ansi'
 
 /**

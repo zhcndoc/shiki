@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/markdown-it",
   "type": "module",
-  "version": "1.16.1",
+  "version": "1.17.7",
   "description": "markdown-it integration for shiki",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -50,11 +50,11 @@
     "prepublishOnly": "nr build"
   },
   "dependencies": {
-    "@shikijs/transformers": "workspace:*",
     "markdown-it": "catalog:",
     "shiki": "workspace:*"
   },
   "devDependencies": {
+    "@shikijs/transformers": "workspace:*",
     "@types/markdown-it": "catalog:"
   }
 }

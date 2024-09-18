@@ -3,7 +3,7 @@ import type {
   ShikiInternal,
   ThemedToken,
   ThemedTokenWithVariants,
-} from '../types'
+} from '@shikijs/types'
 import { codeToTokensBase } from './code-to-tokens-base'
 
 /**
@@ -14,7 +14,8 @@ export function codeToTokensWithThemes(
   code: string,
   options: CodeToTokensWithThemesOptions,
 ): ThemedTokenWithVariants[][] {
-  const themes = Object.entries(options.themes)
+  const themes = Object
+    .entries(options.themes)
     .filter(i => i[1])
     .map(i => ({ color: i[0], theme: i[1]! }))
 
@@ -69,7 +70,7 @@ export function codeToTokensWithThemes(
  * - `console . log ( " hello " )` (8 tokens)
  * - `console . log ( " hello " )` (8 tokens)
  */
-export function syncThemesTokenization(...themes: ThemedToken[][][]) {
+export function syncThemesTokenization(...themes: ThemedToken[][][]): ThemedToken[][][] {
   const outThemes = themes.map<ThemedToken[][]>(() => [])
   const count = themes.length
 

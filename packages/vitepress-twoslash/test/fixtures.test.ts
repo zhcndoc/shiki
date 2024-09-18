@@ -1,6 +1,6 @@
 import { basename } from 'node:path'
-import { codeToHast, getSingletonHighlighter } from 'shiki'
 import { transformerTwoslash } from '@shikijs/twoslash'
+import { codeToHast, getSingletonHighlighter } from 'shiki'
 import { describe, expect, it } from 'vitest'
 import { rendererFloatingVue } from '../src'
 
@@ -32,8 +32,7 @@ describe('fixtures', async () => {
         ],
       })
 
-      expect.soft(JSON.stringify(hast, null, 2))
-        .toMatchFileSnapshot(`./out/${name}.json`)
+      expect.soft(JSON.stringify(hast, null, 2)).toMatchFileSnapshot(`./out/${name}.json`)
     })
   }
 })

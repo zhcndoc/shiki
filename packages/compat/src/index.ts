@@ -1,22 +1,40 @@
+import type { BuiltinLanguage, BuiltinTheme, CodeToTokensBaseOptions, MaybeGetter, StringLiteralUnion, ThemedToken, ThemeInput, ThemeRegistrationAny, ThemeRegistrationResolved } from 'shiki'
+import type { AnsiToHtmlOptions, CodeToHtmlOptions, CodeToHtmlOptionsExtra, HighlighterOptions } from './types'
+
 import fs from 'node:fs'
 import fsp from 'node:fs/promises'
-import type { BuiltinLanguage, BuiltinTheme, CodeToTokensBaseOptions, MaybeGetter, StringLiteralUnion, ThemeInput, ThemeRegistrationAny, ThemeRegistrationResolved, ThemedToken } from 'shiki'
-import { bundledLanguages, bundledThemes, createHighlighter as getShiki, normalizeTheme, tokenizeAnsiWithTheme } from 'shiki'
 import { transformerCompactLineOptions } from '@shikijs/transformers'
-import type { AnsiToHtmlOptions, CodeToHtmlOptions, CodeToHtmlOptionsExtra, HighlighterOptions } from './types'
+import { bundledLanguages, bundledThemes, createHighlighter as getShiki, normalizeTheme, tokenizeAnsiWithTheme } from 'shiki'
 import { ShikiCompatError } from './error'
 
 export const BUNDLED_LANGUAGES = bundledLanguages
 export const BUNDLED_THEMES = bundledThemes
+
+export { ShikiCompatError } from './error'
 
 export * from './stub'
 export * from './types'
 
 export { normalizeTheme } from 'shiki'
 export { normalizeTheme as toShikiTheme } from 'shiki'
-export { ShikiCompatError } from './error'
 
-export async function getHighlighter(options: Partial<HighlighterOptions> = {}) {
+export interface ShikiCompatHighlighter {
+  ansiToHtml: (code: string, options?: AnsiToHtmlOptions) => string
+
+  codeToHtml: ((code: string, options: CodeToHtmlOptions) => string)
+    & ((code: string, lang: StringLiteralUnion<BuiltinLanguage>, theme?: StringLiteralUnion<BuiltinTheme>, options?: CodeToHtmlOptionsExtra) => string)
+
+  codeToThemedTokens: (code: string, lang: BuiltinLanguage, theme?: BuiltinTheme, options?: CodeToTokensBaseOptions<BuiltinLanguage, BuiltinTheme>) => ThemedToken[][]
+  codeToTokensBase: (code: string, lang: BuiltinLanguage, theme?: BuiltinTheme, options?: CodeToTokensBaseOptions<BuiltinLanguage, BuiltinTheme>) => ThemedToken[][]
+  getBackgroundColor: (theme: BuiltinTheme | ThemeRegistrationAny | string) => string
+  getForegroundColor: (theme: BuiltinTheme | ThemeRegistrationAny | string) => string
+  ansiToThemedTokens: (ansi: string, options?: CodeToTokensBaseOptions) => ThemedToken[][]
+  setColorReplacements: (...args: any[]) => void
+  getLoadedThemes: () => string[]
+  getLoadedLanguages: () => string[]
+}
+
+export async function getHighlighter(options: Partial<HighlighterOptions> = {}): Promise<ShikiCompatHighlighter> {
   const themes = options.themes || []
   const langs = options.langs || []
 
@@ -87,7 +105,7 @@ export async function getHighlighter(options: Partial<HighlighterOptions> = {}) 
   function ansiToThemedTokens(
     ansi: string,
     options: CodeToTokensBaseOptions = {},
-  ) {
+  ): ThemedToken[][] {
     const theme = shiki.getTheme(options.theme || shiki.getLoadedThemes()[0])
     return tokenizeAnsiWithTheme(theme, ansi)
   }

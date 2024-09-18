@@ -1,6 +1,6 @@
-import type monacoNs from 'monaco-editor-core'
-import type { ShikiInternal, ThemeRegistrationResolved } from '@shikijs/core'
+import type { ShikiInternal, ThemeRegistrationResolved } from '@shikijs/types'
 import type { StateStack } from '@shikijs/vscode-textmate'
+import type monacoNs from 'monaco-editor-core'
 import { EncodedTokenMetadata, INITIAL } from '@shikijs/vscode-textmate'
 
 export interface MonacoTheme extends monacoNs.editor.IStandaloneThemeData {}
@@ -58,7 +58,7 @@ export function shikiToMonaco(
   highlighter: ShikiInternal<any, any>,
   monaco: typeof monacoNs,
   options: ShikiToMonacoOptions = {},
-) {
+): void {
   // Convert themes to Monaco themes and register them
   const themeMap = new Map<string, MonacoTheme>()
   const themeIds = highlighter.getLoadedThemes()
@@ -94,7 +94,7 @@ export function shikiToMonaco(
   // Set the first theme as the default theme
   monaco.editor.setTheme(themeIds[0])
 
-  function findScopeByColor(color: string) {
+  function findScopeByColor(color: string): string | undefined {
     return colorToScopeMap.get(color)
   }
 
@@ -175,7 +175,7 @@ class TokenizerState implements monacoNs.languages.IState {
 function normalizeColor(color: undefined): undefined
 function normalizeColor(color: string): string
 function normalizeColor(color: string | undefined): string | undefined
-function normalizeColor(color: string | undefined) {
+function normalizeColor(color: string | undefined): string | undefined {
   if (!color)
     return color
 

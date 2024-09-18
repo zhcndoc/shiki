@@ -1,10 +1,12 @@
+import type { HighlighterCore, HighlighterCoreOptions } from '@shikijs/types'
+
 import { codeToHast } from '../highlight/code-to-hast'
 import { codeToHtml } from '../highlight/code-to-html'
 import { codeToTokens } from '../highlight/code-to-tokens'
 import { codeToTokensBase, getLastGrammarState } from '../highlight/code-to-tokens-base'
 import { codeToTokensWithThemes } from '../highlight/code-to-tokens-themes'
-import type { HighlighterCore, HighlighterCoreOptions } from '../types'
 import { createShikiInternal } from './internal'
+
 import { createShikiInternalSync } from './internal-sync'
 
 /**
@@ -51,12 +53,14 @@ export function createHighlighterCoreSync(options: HighlighterCoreOptions<true> 
   }
 }
 
-export function makeSingletonHighlighterCore(createHighlighter: typeof createHighlighterCore) {
+export function makeSingletonHighlighterCore(
+  createHighlighter: typeof createHighlighterCore,
+): (options?: Partial<HighlighterCoreOptions>) => Promise<HighlighterCore> {
   let _shiki: ReturnType<typeof createHighlighterCore>
 
   async function getSingletonHighlighterCore(
     options: Partial<HighlighterCoreOptions> = {},
-  ) {
+  ): Promise<HighlighterCore> {
     if (!_shiki) {
       _shiki = createHighlighter({
         ...options,

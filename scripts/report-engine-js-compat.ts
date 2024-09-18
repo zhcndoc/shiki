@@ -2,13 +2,20 @@
 // - `pnpm run build`
 // - `pnpm run report-engine-js`
 
+import type { Diff } from 'diff-match-patch-es'
+import type { BundledLanguage, BundledTheme, HighlighterGeneric } from 'shiki'
 import fs from 'node:fs/promises'
 import process from 'node:process'
-import { bundledLanguages, createHighlighter, createJavaScriptRegexEngine } from 'shiki'
+import { diffCleanupSemantic, diffMain } from 'diff-match-patch-es'
 import c from 'picocolors'
+import { format } from 'prettier'
+import { bundledLanguages, createHighlighter, createJavaScriptRegexEngine } from 'shiki'
 import { version } from '../package.json'
 
 const engine = createJavaScriptRegexEngine()
+const engineForgiving = createJavaScriptRegexEngine({
+  forgiving: true,
+})
 
 export interface ReportItem {
   lang: string
@@ -17,6 +24,7 @@ export interface ReportItem {
   patternsFailed: [string, unknown][]
   highlightA?: string
   highlightB?: string
+  diff: Diff[]
 }
 
 async function run() {
@@ -25,7 +33,8 @@ async function run() {
   await fs.rm(new URL('./compares', import.meta.url), { recursive: true, force: true })
 
   for (const lang of Object.keys(bundledLanguages)) {
-    const sample = await fs.readFile(`../tm-grammars-themes/samples/${lang}.sample`, 'utf-8')
+    const sample = await fs
+      .readFile(`../tm-grammars-themes/samples/${lang}.sample`, 'utf-8')
       .catch(() => '')
 
     if (!sample) {
@@ -42,8 +51,9 @@ async function run() {
       themes: ['vitesse-dark'],
     })
 
-    const grammar = shikiWasm.getLanguage(lang) as any
-    const patterns = getPatternsOfGrammar(grammar._grammar)
+    const grammars = shikiWasm.getLoadedLanguages().map(l => shikiWasm.getLanguage(l))
+    const patterns = new Set<string>()
+    grammars.map((grammar: any) => getPatternsOfGrammar(grammar._grammar, patterns))
     let highlightMatch: boolean | 'error' = false
 
     for (const pattern of patterns) {
@@ -56,8 +66,9 @@ async function run() {
       }
     }
 
-    const highlightA = shikiWasm.codeToHtml(sample, { lang, theme: 'vitesse-dark' })
-    let highlightB: string | undefined
+    const highlightA = serializeTokens(shikiWasm, sample, lang)
+    let highlightB: { tokens: string, html: string } | undefined
+    let highlightDiff: Diff[] = []
 
     try {
       shiki = await createHighlighter({
@@ -66,57 +77,81 @@ async function run() {
         engine,
       })
 
-      highlightB = shiki.codeToHtml(sample, { lang, theme: 'vitesse-dark' })
-
-      highlightMatch = highlightA === highlightB
-
-      if (!highlightMatch) {
-        console.log(c.yellow(`[${lang}] Mismatch`))
-
-        await fs.mkdir(new URL('./compares', import.meta.url), { recursive: true })
-
-        await fs.writeFile(
-          new URL(`./compares/${lang}.html`, import.meta.url),
-          [
-            '<style>',
-            'body { display: flex; }',
-            'pre { flex: 1; margin: 0; padding: 0; }',
-            '</style>',
-            '<pre>',
-            highlightA,
-            '</pre>',
-            '<pre>',
-            highlightB,
-            '</pre>',
-          ].join('\n'),
-          'utf-8',
-        )
-      }
-      else {
-        console.log(c.green(`[${lang}] OK`))
-      }
+      highlightB = serializeTokens(shiki, sample, lang)
     }
-    catch (e) {
+    catch (e: any) {
       highlightMatch = 'error'
-      console.log(c.red(`[${lang}] Error ${e}`))
+      console.log(c.red(`[${lang}] Error ${e} ${e.cause || ''}`))
     }
     finally {
-      report.push({
-        lang,
-        highlightMatch,
-        patternsParsable: parsablePatterns.length,
-        patternsFailed: unparsablePatterns,
-        ...highlightMatch === true
-          ? {}
-          : {
-              highlightA,
-              highlightB,
-            },
-      })
-
-      shikiWasm?.dispose()
       shiki?.dispose()
     }
+
+    try {
+      shiki = await createHighlighter({
+        langs: [lang],
+        themes: ['vitesse-dark'],
+        engine: engineForgiving,
+      })
+
+      highlightB = serializeTokens(shiki, sample, lang)
+    }
+    catch (e: any) {
+      console.log(c.red(`[${lang}] Error ${e} ${e.cause || ''}`))
+    }
+    finally {
+      shiki?.dispose()
+    }
+
+    if (highlightMatch !== 'error')
+      highlightMatch = highlightA.html === highlightB?.html
+    highlightDiff = highlightB && highlightA !== highlightB
+      ? diffMain(highlightA.tokens, highlightB.tokens)
+      : []
+    diffCleanupSemantic(highlightDiff)
+
+    if (highlightB && highlightMatch !== true) {
+      console.log(c.yellow(`[${lang}] Mismatch`))
+
+      await fs.mkdir(new URL('./compares', import.meta.url), { recursive: true })
+
+      await fs.writeFile(
+        new URL(`./compares/${lang}.html`, import.meta.url),
+        [
+          '<style>',
+          'body { display: flex; }',
+          'pre { flex: 1; margin: 0; padding: 0; }',
+          '</style>',
+          '<pre>',
+          highlightA.html,
+          '</pre>',
+          '<pre>',
+          highlightB?.html,
+          '</pre>',
+        ].join('\n'),
+        'utf-8',
+      )
+    }
+    else {
+      console.log(c.green(`[${lang}] OK`))
+    }
+
+    report.push({
+      lang,
+      highlightMatch,
+      patternsParsable: parsablePatterns.length,
+      patternsFailed: unparsablePatterns,
+      ...highlightMatch === true
+        ? {}
+        : {
+            highlightA: highlightA.html,
+            highlightB: highlightB?.html,
+          },
+      diff: highlightDiff,
+    })
+
+    shikiWasm?.dispose()
+    shiki?.dispose()
   }
 
   const order = [true, false, 'error']
@@ -138,16 +173,20 @@ async function run() {
   )
 
   function createTable(report: ReportItem[]) {
-    const table: readonly [string, string, string, string][] = [
-      ['Language', 'Highlight Match', 'Patterns Parsable', 'Patterns Failed'],
-      ['---', ':---', '---:', '---:'],
+    const table: readonly [string, string, string, string, string][] = [
+      ['Language', 'Highlight Match', 'Patterns Parsable', 'Patterns Failed', 'Diff'],
+      ['---', ':---', '---:', '---:', '---:'],
       ...report
-        .map(item => [
-          item.lang,
-          item.highlightMatch === true ? '✅ OK' : item.highlightMatch === 'error' ? '❌ Error' : '⚠️ Mismatch',
-          item.patternsParsable === 0 ? '-' : item.patternsParsable.toString(),
-          item.patternsFailed.length === 0 ? '-' : item.patternsFailed.length.toString(),
-        ] as [string, string, string, string]),
+        .map((item) => {
+          const diffChars = item.diff.map(diff => diff[0] === 1 ? diff[1].length : 0).reduce((a, b) => a + b, 0)
+          return [
+            item.lang,
+            item.highlightMatch === true ? '✅ OK' : item.highlightMatch === 'error' ? '❌ Error' : `[🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=${item.lang})`,
+            item.patternsParsable === 0 ? '-' : item.patternsParsable.toString(),
+            item.patternsFailed.length === 0 ? '-' : item.patternsFailed.length.toString(),
+            diffChars ? diffChars.toString() : '',
+          ] as [string, string, string, string, string]
+        }),
     ]
 
     return table.map(row => `| ${row.join(' | ')} |`).join('\n')
@@ -157,8 +196,10 @@ async function run() {
   const reportMismatch = report.filter(item => item.highlightMatch === false && item.patternsFailed.length === 0)
   const reportError = report.filter(item => item.highlightMatch === 'error' || item.patternsFailed.length > 0)
 
-  const markdown = [
+  let markdown = [
     '# JavaScript RegExp Engine Compatibility References',
+    '',
+    'Compatibility reference of all built-in grammars with the [JavaScript RegExp engine](/guide/regex-engines#javascript-regexp-engine-experimental).',
     '',
     `> Genreated on ${new Date().toLocaleDateString('en-US', { dateStyle: 'full' })} `,
     '>',
@@ -172,15 +213,23 @@ async function run() {
     '|  | Count |',
     '| :--- | ---: |',
     `| Total Languages | ${report.length} |`,
-    `| Fully Supported | [${reportOk.length}](#fully-supported-languages) |`,
+    `| Supported | [${reportOk.length}](#supported-languages) |`,
     `| Mismatched | [${reportMismatch.length}](#mismatched-languages) |`,
     `| Unsupported | [${reportError.length}](#unsupported-languages) |`,
     '',
-    '## Fully Supported Languages',
+    '## Supported Languages',
     '',
-    'Languages that works with the JavaScript RegExp engine, and will produce the same result as the WASM engine.',
+    'Languages that works with the JavaScript RegExp engine, and will produce the same result as the WASM engine (with the [sample snippets in the registry](https://github.com/shikijs/textmate-grammars-themes/tree/main/samples)).',
+    'In some edge cases, it\'s not guaranteed that the the highlight will be 100% the same. If that happens, please create an issue with the sample snippet.',
     '',
     createTable(reportOk),
+    '',
+    '###### Table Field Explanations',
+    '',
+    '- **Highlight Match**: Highlight results match with the WASM engine with the [sample snippets](https://github.com/shikijs/textmate-grammars-themes/tree/main/samples).',
+    '- **Patterns Parsable**: Number of regex patterns that can be parsed by the JavaScript RegExp engine.',
+    '- **Patterns Failed**: Number of regex patterns that can\'t be parsed by the JavaScript RegExp engine (throws error).',
+    '- **Diff**: Length of characters that are different between the highlight result of two engines.',
     '',
     '## Mismatched Languages',
     '',
@@ -195,32 +244,83 @@ async function run() {
     createTable(reportError),
   ].join('\n')
 
+  markdown = await format(
+    markdown,
+    {
+      parser: 'markdown',
+      singleQuote: true,
+      semi: false,
+      printWidth: 100,
+    },
+  )
+
   await fs.writeFile(
     new URL('../docs/references/engine-js-compat.md', import.meta.url),
     markdown,
   )
 }
 
-function getPatternsOfGrammar(grammar: any) {
-  const patterns = new Set<string>()
+function serializeTokens(shiki: HighlighterGeneric<BundledLanguage, BundledTheme>, sample: string, lang: string) {
+  const tokens = shiki
+    .codeToTokensBase(sample, { lang: lang as any, theme: 'vitesse-dark' })
+    .flat(1)
+    .map(t => t.color?.padEnd(18, ' ') + t.content)
+    .join('\n')
+  const html = shiki
+    .codeToHtml(sample, { lang: lang as any, theme: 'vitesse-dark' })
+  return {
+    tokens,
+    html,
+  }
+}
 
-  const scan = (obj: any) => {
-    if (!obj)
+function getPatternsOfGrammar(grammar: any, set = new Set<string>()): Set<string> {
+  function traverse(a: any): void {
+    if (Array.isArray(a)) {
+      a.forEach((j: any) => {
+        traverse(j)
+      })
       return
-    if (typeof obj.match === 'string')
-      patterns.add(obj.match)
-    if (typeof obj.begin === 'string')
-      patterns.add(obj.begin)
-    if (typeof obj.end === 'string')
-      patterns.add(obj.end)
-    if (obj.patterns)
-      obj.patterns.forEach(scan)
-    Object.values(obj.repository || {}).forEach(scan)
+    }
+    if (!a || typeof a !== 'object')
+      return
+    if (a.foldingStartMarker) {
+      set.add(a.foldingStartMarker)
+    }
+    if (a.foldingStopMarker) {
+      set.add(a.foldingStopMarker)
+    }
+    if (a.firstLineMatch) {
+      set.add(a.firstLineMatch)
+    }
+    if (a.match)
+      set.add(a.match)
+    if (a.begin)
+      set.add(a.begin)
+    if (a.end)
+      set.add(a.end)
+    if (a.while)
+      set.add(a.while)
+    if (a.patterns) {
+      traverse(a.patterns)
+    }
+    if (a.captures) {
+      traverse(Object.values(a.captures))
+    }
+    if (a.beginCaptures) {
+      traverse(Object.values(a.beginCaptures))
+    }
+    if (a.endCaptures) {
+      traverse(Object.values(a.endCaptures))
+    }
+    Object.values(a.repository || {}).forEach((j: any) => {
+      traverse(j)
+    })
   }
 
-  scan(grammar)
+  traverse(grammar)
 
-  return patterns
+  return set
 }
 
 run()

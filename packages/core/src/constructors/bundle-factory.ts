@@ -1,13 +1,32 @@
-import type { Root } from 'hast'
-import type { Awaitable, BundledHighlighterOptions, CodeToHastOptions, CodeToTokensBaseOptions, CodeToTokensOptions, CodeToTokensWithThemesOptions, CreatedBundledHighlighterOptions, GrammarState, HighlighterCoreOptions, HighlighterGeneric, LanguageInput, RegexEngine, RequireKeys, SpecialLanguage, SpecialTheme, ThemeInput, ThemedToken, ThemedTokenWithVariants, TokensResult } from '../types'
-import { isSpecialLang, isSpecialTheme } from '../utils'
-import { ShikiError } from '../error'
-import { createWasmOnigEngine } from '../engines/wasm'
-import { createHighlighterCore } from './highlighter'
+import type {
+  Awaitable,
+  BundledHighlighterOptions,
+  CodeToHastOptions,
+  CodeToTokensBaseOptions,
+  CodeToTokensOptions,
+  CodeToTokensWithThemesOptions,
+  CreatedBundledHighlighterOptions,
+  CreateHighlighterFactory,
+  GrammarState,
+  HighlighterCoreOptions,
+  HighlighterGeneric,
+  LanguageInput,
+  RegexEngine,
+  RequireKeys,
+  SpecialLanguage,
+  SpecialTheme,
+  ThemedToken,
+  ThemedTokenWithVariants,
+  ThemeInput,
+  TokensResult,
+} from '@shikijs/types'
 
-export type CreateHighlighterFactory<L extends string, T extends string> = (
-  options: BundledHighlighterOptions<L, T>
-) => Promise<HighlighterGeneric<L, T>>
+import type { Root } from 'hast'
+import { ShikiError } from '@shikijs/types'
+
+import { createWasmOnigEngine } from '../engines/oniguruma'
+import { isSpecialLang, isSpecialTheme } from '../utils'
+import { createHighlighterCore } from './highlighter'
 
 /**
  * Create a `createHighlighter` function with bundled themes, languages, and engine.
@@ -173,12 +192,14 @@ export interface ShorthandsBundle<L extends string, T extends string> {
   getLastGrammarState: (code: string, options: CodeToTokensBaseOptions<L, T>) => Promise<GrammarState>
 }
 
-export function makeSingletonHighlighter<L extends string, T extends string>(createHighlighter: CreateHighlighterFactory<L, T>) {
+export function makeSingletonHighlighter<L extends string, T extends string>(
+  createHighlighter: CreateHighlighterFactory<L, T>,
+): (options?: Partial<BundledHighlighterOptions<L, T>>) => Promise<HighlighterGeneric<L, T>> {
   let _shiki: ReturnType<typeof createHighlighter>
 
   async function getSingletonHighlighter(
     options: Partial<BundledHighlighterOptions<L, T>> = {},
-  ) {
+  ): Promise<HighlighterGeneric<L, T>> {
     if (!_shiki) {
       _shiki = createHighlighter({
         ...options,

@@ -1,4 +1,3 @@
-import type { Element, Root, Text } from 'hast'
 import type {
   CodeToHastOptions,
   CodeToHastRenderOptions,
@@ -7,8 +6,15 @@ import type {
   ShikiTransformerContextCommon,
   ShikiTransformerContextSource,
   ThemedToken,
-} from '../types'
-import { FontStyle } from '../types'
+} from '@shikijs/types'
+import type {
+  Element,
+  Root,
+  Text,
+} from 'hast'
+
+import { FontStyle } from '@shikijs/vscode-textmate'
+
 import { addClassToHast, getTokenStyleObject, stringifyTokenStyle } from '../utils'
 import { getTransformers } from './_get-transformers'
 import { codeToTokens } from './code-to-tokens'
@@ -23,7 +29,7 @@ export function codeToHast(
     codeToHast: (_code, _options) => codeToHast(internal, _code, _options),
     codeToTokens: (_code, _options) => codeToTokens(internal, _code, _options),
   },
-) {
+): Root {
   let input = code
 
   for (const transformer of getTransformers(options))
@@ -73,7 +79,7 @@ export function tokensToHast(
   tokens: ThemedToken[][],
   options: CodeToHastRenderOptions,
   transformerContext: ShikiTransformerContextSource,
-) {
+): Root {
   const transformers = getTransformers(options)
 
   const lines: (Element | Text)[] = []
@@ -84,6 +90,7 @@ export function tokensToHast(
 
   const {
     structure = 'classic',
+    tabindex = '0',
   } = options
 
   let preNode: Element = {
@@ -92,7 +99,11 @@ export function tokensToHast(
     properties: {
       class: `shiki ${options.themeName || ''}`,
       style: options.rootStyle || `background-color:${options.bg};color:${options.fg}`,
-      tabindex: '0',
+      ...(tabindex !== false && tabindex != null)
+        ? {
+            tabindex: tabindex.toString(),
+          }
+        : {},
       ...Object.fromEntries(
         Array.from(
           Object.entries(options.meta || {}),
@@ -206,7 +217,7 @@ export function tokensToHast(
   return result
 }
 
-function mergeWhitespaceTokens(tokens: ThemedToken[][]) {
+function mergeWhitespaceTokens(tokens: ThemedToken[][]): ThemedToken[][] {
   return tokens.map((line) => {
     const newLine: ThemedToken[] = []
     let carryOnContent = ''
@@ -249,7 +260,7 @@ function mergeWhitespaceTokens(tokens: ThemedToken[][]) {
   })
 }
 
-function splitWhitespaceTokens(tokens: ThemedToken[][]) {
+function splitWhitespaceTokens(tokens: ThemedToken[][]): ThemedToken[][] {
   return tokens.map((line) => {
     return line.flatMap((token) => {
       if (token.content.match(/^\s+$/))
