@@ -1,20 +1,30 @@
-import type { LoadWasmOptions } from '@shikijs/types'
-
-export * from '@shikijs/engine-oniguruma'
-
-let _defaultWasmLoader: LoadWasmOptions | undefined
+import type { LoadWasmOptions, RegexEngine } from '@shikijs/types'
+import {
+  createOnigurumaEngine as _createOnigurumaEngine,
+  loadWasm as _loadWasm,
+} from '@shikijs/engine-oniguruma'
+import { warnDeprecated } from '../warn'
 
 /**
- * Set the default wasm loader for `loadWasm`.
- * @internal
+ * @deprecated Import `createOnigurumaEngine` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead.
  */
-export function setDefaultWasmLoader(_loader: LoadWasmOptions): void {
-  _defaultWasmLoader = _loader
+export function createOnigurumaEngine(options?: LoadWasmOptions | null): Promise<RegexEngine> {
+  warnDeprecated('import `createOnigurumaEngine` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead')
+  return _createOnigurumaEngine(options)
 }
 
 /**
- * @internal
+ * @deprecated Import `createOnigurumaEngine` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead.
  */
-export function getDefaultWasmLoader(): LoadWasmOptions | undefined {
-  return _defaultWasmLoader
+export function createWasmOnigEngine(options?: LoadWasmOptions | null): Promise<RegexEngine> {
+  warnDeprecated('import `createOnigurumaEngine` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead')
+  return _createOnigurumaEngine(options)
+}
+
+/**
+ * @deprecated Import `loadWasm` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead.
+ */
+export function loadWasm(options: LoadWasmOptions): Promise<void> {
+  warnDeprecated('import `loadWasm` from `@shikijs/engine-oniguruma` or `shiki/engine/oniguruma` instead')
+  return _loadWasm(options)
 }

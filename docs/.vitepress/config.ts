@@ -1,7 +1,6 @@
 import type { DefaultTheme } from 'vitepress'
 import { bundledThemes } from 'shiki'
 import { defineConfig } from 'vitepress'
-// @ts-expect-error missing types
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
 import { version } from '../package.json'
@@ -21,6 +20,7 @@ const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '同步使用', link: '/guide/sync-usage' },
   { text: '自定义主题', link: '/guide/load-theme' },
   { text: '自定义语言', link: '/guide/load-lang' },
+  { text: '未来', link: '/guide/future' },
   { text: '迁移', link: '/guide/migrate' },
   { text: '兼容性构建', link: '/guide/compat' },
 ]

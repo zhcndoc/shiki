@@ -46,6 +46,7 @@ When importing `shiki`, all the themes and languages are bundled as async chunks
 // @noErrors
 // `shiki/core` entry does not include any themes or languages or the wasm binary.
 import { createHighlighterCore } from 'shiki/core'
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
 
 // directly import the theme and language modules, only the ones you imported will be bundled.
 import nord from 'shiki/themes/nord.mjs'
@@ -65,7 +66,7 @@ const highlighter = await createHighlighterCore({
     async () => JSON.parse(await fs.readFile('my-grammar.json', 'utf-8'))
   ],
   // `shiki/wasm` contains the wasm binary inlined as base64 string.
-  engine: createWasmOnigEngine(import('shiki/wasm'))
+  engine: createOnigurumaEngine(import('shiki/wasm'))
 })
 
 // optionally, load themes and languages after creation

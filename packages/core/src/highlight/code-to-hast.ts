@@ -16,6 +16,7 @@ import type {
 import { FontStyle } from '@shikijs/vscode-textmate'
 
 import { addClassToHast, getTokenStyleObject, stringifyTokenStyle } from '../utils'
+import { warnDeprecated } from '../warn'
 import { getTransformers } from './_get-transformers'
 import { codeToTokens } from './code-to-tokens'
 
@@ -171,16 +172,21 @@ export function tokensToHast(
       let tokenNode: Element = {
         type: 'element',
         tagName: 'span',
-        properties: {},
+        properties: {
+          ...token.htmlAttrs,
+        },
         children: [{ type: 'text', value: token.content }],
       }
 
-      const style = token.htmlStyle || stringifyTokenStyle(getTokenStyleObject(token))
+      if (typeof token.htmlStyle === 'string')
+        warnDeprecated('`htmlStyle` as a string is deprecated. Use an object instead.')
+
+      const style = stringifyTokenStyle(token.htmlStyle || getTokenStyleObject(token))
       if (style)
         tokenNode.properties.style = style
 
       for (const transformer of transformers)
-        tokenNode = transformer?.span?.call(context, tokenNode, idx + 1, col, lineNode) || tokenNode
+        tokenNode = transformer?.span?.call(context, tokenNode, idx + 1, col, lineNode, token) || tokenNode
 
       if (structure === 'inline')
         root.children.push(tokenNode)

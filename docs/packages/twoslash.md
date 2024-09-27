@@ -174,7 +174,7 @@ transformerTwoslash({
 我们简易地封装了它们，并在 [`twoslash-cdn`](https://github.com/antfu/twoslash-cdn) 中提供了易于使用的 API。例如：
 
 ```js
-// TODO: 在生产环境中使用显式的版本替换
+// FIXME: 在生产环境中使用显式的版本替换
 import { createTransformerFactory, rendererRich } from 'https://esm.sh/@shikijs/twoslash@latest/core'
 import { codeToHtml } from 'https://esm.sh/shiki@latest'
 import { createTwoslashFromCDN } from 'https://esm.sh/twoslash-cdn@latest'

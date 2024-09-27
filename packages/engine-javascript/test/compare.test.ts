@@ -2,8 +2,10 @@ import type { LanguageRegistration, RegexEngine, ThemeRegistration } from '../..
 import type { Instance } from './types'
 import { describe, expect, it } from 'vitest'
 
+import { loadWasm } from '../../engine-oniguruma/src'
 import { OnigScanner, OnigString } from '../../engine-oniguruma/src/oniguruma'
-import { createHighlighterCore, createJavaScriptRegexEngine, loadWasm } from '../../shiki/src/core'
+import { createHighlighterCore } from '../../shiki/src/core'
+import { createJavaScriptRegexEngine } from '../src'
 
 await loadWasm(import('@shikijs/core/wasm-inlined'))
 
