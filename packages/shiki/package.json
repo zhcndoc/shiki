@@ -1,7 +1,7 @@
 {
   "name": "shiki",
   "type": "module",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "description": "A beautiful Syntax Highlighter.",
   "author": "Pine Wu <octref@gmail.com>; Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -129,6 +129,7 @@
     "@types/hast": "catalog:"
   },
   "devDependencies": {
+    "rollup-plugin-copy": "^3.5.0",
     "tm-grammars": "catalog:",
     "tm-themes": "catalog:",
     "vscode-oniguruma": "catalog:"
