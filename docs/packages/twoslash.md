@@ -159,9 +159,9 @@ transformerTwoslash({
 你可以根据上面的说明自行将 Twoslash 与 Shiki 集成，也可以在这里找到与框架和工具的高级集成：
 
 - [VitePress](/packages/vitepress#twoslash) - 在 VitePress 中启用 Twoslash 支持。
-- [Nuxt](/packages/nuxt#twoslash) - 在 Nuxt Content 中启用 Twoslash 支持。
+- [Nuxt](/packages/nuxt#twoslash-integration) - 在 Nuxt Content 中启用 Twoslash 支持。
 - [Vocs](https://vocs.dev/docs/guides/twoslash) - 在 Vocs 中启用 Twoslash 支持。
-- [Slidev](https://sli.dev/custom/highlighters.html#twoslash-integration) - Slidev 具有内建的 Twoslash 支持。
+- [Slidev](https://sli.dev/features/twoslash#twoslash-integration) - Slidev 具有内建的 Twoslash 支持。
 
 ## 用例指南
 
