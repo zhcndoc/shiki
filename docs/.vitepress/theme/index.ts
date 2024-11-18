@@ -23,7 +23,7 @@ export default {
   Layout() {
     return h(Theme.Layout, null, {
       'home-hero-actions-after': () => h('div', { class: 'mt-10 mb--4 vp-doc' }, [
-        h('a', { href: 'https://nuxt.com/blog/shiki-v1', target: '_blank', class: 'no-underline! flex-inline gap-1 items-center' }, [
+        h('a', { href: 'https://nuxt.zhcndoc.com/blog/shiki-v1', target: '_blank', class: 'no-underline! flex-inline gap-1 items-center' }, [
           h('div', { class: 'i-ph-books-duotone text-2xl' }),
           'The Evolution of Shiki v1.0',
           h('div', { class: 'i-ph-arrow-up-right mt--3 ml--1' }),
