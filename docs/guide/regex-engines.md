@@ -77,11 +77,11 @@ JavaScript 引擎在浏览器中运行时及当您想要控制包大小时效果
 
 ### JavaScript 运行时目标
 
-为了获得最准确的结果，[Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 需要 [RegExp `v` 标志支持](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets)，该功能在 Node.js v20+ 和 ES2024 中可用（[浏览器兼容性](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets#browser_compatibility)）。
+为了获得最佳效果，[Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 使用 [RegExp `v` 标志](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets)，该标志在 Node.js v20+ 和 ES2024 中可用（[浏览器兼容性](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets#browser_compatibility)）。
 
-对于较旧的环境，它可以模拟 `u` 标志的行为，但可能会产生不太准确的结果。
+对于较旧的环境，它可以使用 `u` 标志，但支持的语法相对较少。
 
-默认情况下，它会自动检测运行时目标并使用适当的行为。您可以通过设置 `target` 选项来覆盖此行为：
+默认情况下，运行时目标会自动检测。您可以通过设置 `target` 选项来覆盖此行为：
 
 ```ts
 const jsEngine = createJavaScriptRegexEngine({
