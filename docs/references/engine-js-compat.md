@@ -2,9 +2,9 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine-experimental) 的兼容性参考。
 
-> 生成于 2024 年 11 月 17 日，星期日
+> 生成于 2024 年 11 月 22日，星期五
 >
-> 版本 `1.23.0`
+> 版本 `1.23.1`
 >
 > 运行环境：Node.js v22.11.0
 
@@ -13,8 +13,8 @@
 |                 |                        计数 |
 | :-------------- | ---------------------------: |
 | 总语言数       |                          215 |
-| 支持           |  [192](#supported-languages) |
-| 不匹配         |  [10](#mismatched-languages) |
+| 支持           |  [193](#supported-languages) |
+| 不匹配         |   [9](#mismatched-languages) |
 | 不支持         | [13](#unsupported-languages) |
 
 ## 支持的语言
@@ -129,6 +129,7 @@
 | marko              | ✅ OK           |               926 |               - |      |
 | matlab             | ✅ OK           |                88 |               - |      |
 | mdx                | ✅ OK           |               197 |               - |      |
+| mermaid            | ✅ OK           |               129 |               - |      |
 | mipsasm            | ✅ OK           |                17 |               - |      |
 | mojo               | ✅ OK           |               213 |               - |      |
 | move               | ✅ OK           |               120 |               - |      |
@@ -235,7 +236,6 @@
 | haskell   | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=haskell)   |               157 |               - |   39 |
 | kotlin    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kotlin)    |                58 |               - | 1953 |
 | kusto     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto)     |                60 |               - |   40 |
-| mermaid   | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=mermaid)   |               129 |               - |   38 |
 | nginx     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx)     |               378 |               - |    4 |
 | php       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=php)       |              1131 |               - |  605 |
 | po        | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=po)        |                23 |               - |  423 |
@@ -254,7 +254,7 @@
 | rst        | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=rst) |              1855 |               2 |   62 |
 | hack       | ❌ Error                                                                 |               947 |               1 |  114 |
 | purescript | ❌ Error                                                                 |                72 |               1 |   42 |
-| cpp        | ❌ Error                                                                 |               510 |               2 |    8 |
+| cpp        | ❌ Error                                                                 |               510 |               2 |   27 |
 | csharp     | ❌ Error                                                                 |               306 |               3 |  204 |
 | markdown   | ❌ Error                                                                 |               115 |               3 |  857 |
 | swift      | ❌ Error                                                                 |               326 |               3 |   40 |
