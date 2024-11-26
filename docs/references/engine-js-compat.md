@@ -2,7 +2,7 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine-experimental) 的兼容性参考。
 
-> 生成于 2024 年 11 月 22日，星期五
+> Generated on Sunday, November 24, 2024
 >
 > 版本 `1.23.1`
 >
@@ -210,7 +210,7 @@
 | wenyan             | ✅ OK           |                18 |               - |      |
 | wgsl               | ✅ OK           |                44 |               - |      |
 | wikitext           | ✅ OK           |               104 |               - |      |
-| wolfram            | ✅ OK           |               501 |               - |      |
+| wolfram            | ✅ OK           |               501 |               - |   10 |
 | xml                | ✅ OK           |               169 |               - |      |
 | xsl                | ✅ OK           |               171 |               - |      |
 | yaml               | ✅ OK           |                48 |               - |      |
@@ -254,7 +254,7 @@
 | rst        | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=rst) |              1855 |               2 |   62 |
 | hack       | ❌ Error                                                                 |               947 |               1 |  114 |
 | purescript | ❌ Error                                                                 |                72 |               1 |   42 |
-| cpp        | ❌ Error                                                                 |               510 |               2 |   27 |
+| cpp        | ❌ Error                                                                 |               510 |               2 |    8 |
 | csharp     | ❌ Error                                                                 |               306 |               3 |  204 |
 | markdown   | ❌ Error                                                                 |               115 |               3 |  857 |
 | swift      | ❌ Error                                                                 |               326 |               3 |   40 |

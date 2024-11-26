@@ -79,7 +79,7 @@ JavaScript 引擎在浏览器中运行时及当您想要控制包大小时效果
 
 为了获得最佳效果，[Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 使用 [RegExp `v` 标志](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets)，该标志在 Node.js v20+ 和 ES2024 中可用（[浏览器兼容性](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicodeSets#browser_compatibility)）。
 
-对于较旧的环境，它可以使用 `u` 标志，但支持的语法相对较少。
+对于较旧的环境，可以使用 `u` 标志，但这会导致支持的语法减少一些。
 
 默认情况下，运行时目标会自动检测。您可以通过设置 `target` 选项来覆盖此行为：
 
