@@ -2,7 +2,7 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine-experimental) 的兼容性参考。
 
-> Generated on Sunday, November 24, 2024
+> Generated on Wednesday, November 27, 2024
 >
 > 版本 `1.23.1`
 >
@@ -10,12 +10,12 @@
 
 ## 报告摘要
 
-|                 |                        计数 |
-| :-------------- | ---------------------------: |
-| 总语言数       |                          215 |
-| 支持           |  [193](#supported-languages) |
-| 不匹配         |   [9](#mismatched-languages) |
-| 不支持         | [13](#unsupported-languages) |
+|                 |                       计数 |
+| :-------------- | --------------------------: |
+| 总语言数       |                         215 |
+| 支持           | [197](#supported-languages) |
+| 不匹配         | [12](#mismatched-languages) |
+| 不支持         | [6](#unsupported-languages) |
 
 ## 支持的语言
 
@@ -80,6 +80,7 @@
 | fluent             | ✅ OK           |                23 |               - |      |
 | fortran-fixed-form | ✅ OK           |               332 |               - |      |
 | fortran-free-form  | ✅ OK           |               328 |               - |      |
+| fsharp             | ✅ OK           |               239 |               - |      |
 | fsl                | ✅ OK           |                30 |               - |      |
 | gdresource         | ✅ OK           |               157 |               - |      |
 | gdscript           | ✅ OK           |                93 |               - |      |
@@ -117,6 +118,7 @@
 | jsonnet            | ✅ OK           |                33 |               - |      |
 | jssm               | ✅ OK           |                30 |               - |      |
 | jsx                | ✅ OK           |               376 |               - |      |
+| julia              | ✅ OK           |              1168 |               - |      |
 | latex              | ✅ OK           |               283 |               - |      |
 | lean               | ✅ OK           |                32 |               - |      |
 | less               | ✅ OK           |               280 |               - |      |
@@ -128,6 +130,7 @@
 | make               | ✅ OK           |                51 |               - |      |
 | marko              | ✅ OK           |               926 |               - |      |
 | matlab             | ✅ OK           |                88 |               - |      |
+| mdc                | ✅ OK           |               783 |               - |      |
 | mdx                | ✅ OK           |               197 |               - |      |
 | mermaid            | ✅ OK           |               129 |               - |      |
 | mipsasm            | ✅ OK           |                17 |               - |      |
@@ -135,6 +138,7 @@
 | move               | ✅ OK           |               120 |               - |      |
 | narrat             | ✅ OK           |                34 |               - |      |
 | nextflow           | ✅ OK           |                32 |               - |      |
+| nim                | ✅ OK           |              1126 |               - |      |
 | nix                | ✅ OK           |                80 |               - |      |
 | nushell            | ✅ OK           |                81 |               - |      |
 | objective-c        | ✅ OK           |               223 |               - |      |
@@ -155,7 +159,7 @@
 | qmldir             | ✅ OK           |                 7 |               - |      |
 | qss                | ✅ OK           |                31 |               - |      |
 | r                  | ✅ OK           |                71 |               - |      |
-| racket             | ✅ OK           |                69 |               - |    8 |
+| racket             | ✅ OK           |                69 |               - |      |
 | raku               | ✅ OK           |                52 |               - |      |
 | reg                | ✅ OK           |                 9 |               - |      |
 | regexp             | ✅ OK           |                34 |               - |      |
@@ -210,7 +214,7 @@
 | wenyan             | ✅ OK           |                18 |               - |      |
 | wgsl               | ✅ OK           |                44 |               - |      |
 | wikitext           | ✅ OK           |               104 |               - |      |
-| wolfram            | ✅ OK           |               501 |               - |   10 |
+| wolfram            | ✅ OK           |               501 |               - |      |
 | xml                | ✅ OK           |               169 |               - |      |
 | xsl                | ✅ OK           |               171 |               - |      |
 | yaml               | ✅ OK           |                48 |               - |      |
@@ -233,30 +237,26 @@
 | --------- | :----------------------------------------------------------------------------- | ----------------: | --------------: | ---: |
 | apex      | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=apex)      |               187 |               - |  236 |
 | beancount | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=beancount) |                39 |               - |  171 |
+| cpp       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=cpp)       |               512 |               - |    8 |
 | haskell   | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=haskell)   |               157 |               - |   39 |
 | kotlin    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kotlin)    |                58 |               - | 1953 |
 | kusto     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto)     |                60 |               - |   40 |
+| markdown  | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=markdown)  |               118 |               - |  915 |
 | nginx     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx)     |               378 |               - |    4 |
 | php       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=php)       |              1131 |               - |  605 |
 | po        | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=po)        |                23 |               - |  423 |
 | pug       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=pug)       |               686 |               - |  164 |
+| rst       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=rst)       |              1857 |               - |   62 |
 
 ## 不支持的语言
 
 因语法的原因（例如包含我们尚未能填充的语法），或因语法包含无效的 Oniguruma 正则表达式（在使用 WASM 引擎时同样会失败，但不抛出错误），而导致在 JavaScript RegExp 引擎中抛出错误的语言。你可以尝试使用 `forgiving` 选项来跳过错误，但通常最好使用 Oniguruma 引擎。
 
-| Language   | Highlight Match                                                          | Patterns Parsable | Patterns Failed | Diff |
-| ---------- | :----------------------------------------------------------------------- | ----------------: | --------------: | ---: |
-| ada        | ✅ OK                                                                    |               201 |               1 |      |
-| julia      | ✅ OK                                                                    |              1166 |               2 |      |
-| fsharp     | ✅ OK                                                                    |               236 |               3 |      |
-| nim        | ✅ OK                                                                    |              1123 |               3 |      |
-| rst        | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=rst) |              1855 |               2 |   62 |
-| hack       | ❌ Error                                                                 |               947 |               1 |  114 |
-| purescript | ❌ Error                                                                 |                72 |               1 |   42 |
-| cpp        | ❌ Error                                                                 |               510 |               2 |    8 |
-| csharp     | ❌ Error                                                                 |               306 |               3 |  204 |
-| markdown   | ❌ Error                                                                 |               115 |               3 |  857 |
-| swift      | ❌ Error                                                                 |               326 |               3 |   40 |
-| mdc        | ❌ Error                                                                 |               779 |               4 |      |
-| razor      | ❌ Error                                                                 |               952 |               5 |   22 |
+| Language   | Highlight Match | Patterns Parsable | Patterns Failed | Diff |
+| ---------- | :-------------- | ----------------: | --------------: | ---: |
+| ada        | ✅ OK           |               201 |               1 |      |
+| hack       | ❌ Error        |               947 |               1 |  114 |
+| purescript | ❌ Error        |                72 |               1 |   42 |
+| csharp     | ❌ Error        |               306 |               3 |  204 |
+| swift      | ❌ Error        |               326 |               3 |   40 |
+| razor      | ❌ Error        |               952 |               5 |   22 |
