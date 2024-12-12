@@ -1,31 +1,42 @@
 # Next.js
 
-Shiki does not provide an official integration for [Next.js](https://nextjs.org), but it is rather straightforward to use Shiki in Next.js applications.
+Shiki 并没有为 [Next.js](https://nextjs.org) 提供官方集成，但在 Next.js 应用中使用 Shiki 其实非常简单。
 
 ::: info
-Using Shiki on Edge Runtime might cause unintended problems, Shiki relies on lazy imports to load languages and themes.
+在边缘运行时上使用 Shiki 可能会导致意外问题，Shiki 依赖于懒导入来加载语言和主题。
 
-Serverless Runtime is recommended.
+建议使用无服务器运行时。
 :::
 
-## React Server Component
+## React 服务器组件
 
-Since Server Components are server-only, you can use the bundled highlighter without worrying the bundle size.
+由于服务器组件仅在服务器上运行，因此您可以使用捆绑的高亮器，而不必担心捆绑大小。
 
 ```tsx
+import type { BundledLanguage } from 'shiki'
 import { codeToHtml } from 'shiki'
 
 export default function Page() {
   return (
     <main>
-      <CodeBlock />
+      <CodeBlock lang="ts">
+        {[
+          'console.log("Hello")',
+          'console.log("World")',
+        ].join('\n')}
+      </CodeBlock>
     </main>
   )
 }
 
-async function CodeBlock() {
-  const out = await codeToHtml('console.log("Hello World")', {
-    lang: 'ts',
+interface Props {
+  children: string
+  lang: BundledLanguage
+}
+
+async function CodeBlock(props: Props) {
+  const out = await codeToHtml(props.children, {
+    lang: props.lang,
     theme: 'github-dark'
   })
 
@@ -33,28 +44,38 @@ async function CodeBlock() {
 }
 ```
 
-### Custom Components
+### 自定义组件
 
-You can also call `codeToHast` to get the HTML abstract syntax tree, and render it using [`hast-util-to-jsx-runtime`](https://github.com/syntax-tree/hast-util-to-jsx-runtime). With this method, you can render your own `pre` and `code` components.
+您还可以调用 `codeToHast` 来获取 HTML 抽象语法树，并使用 [`hast-util-to-jsx-runtime`](https://github.com/syntax-tree/hast-util-to-jsx-runtime) 渲染它。通过这种方法，您可以渲染自己的 `pre` 和 `code` 组件。
 
 ```tsx
+import type { BundledLanguage } from 'shiki'
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
 import { Fragment } from 'react'
-// @ts-expect-error -- untyped
 import { jsx, jsxs } from 'react/jsx-runtime'
 import { codeToHast } from 'shiki'
 
 export default function Page() {
   return (
     <main>
-      <CodeBlock />
+      <CodeBlock lang="ts">
+        {[
+          'console.log("Hello")',
+          'console.log("World")',
+        ].join('\n')}
+      </CodeBlock>
     </main>
   )
 }
 
-async function CodeBlock() {
-  const out = await codeToHast('console.log("Hello World")', {
-    lang: 'ts',
+interface Props {
+  children: string
+  lang: BundledLanguage
+}
+
+async function CodeBlock(props: Props) {
+  const out = await codeToHtml(props.children, {
+    lang: props.lang,
     theme: 'github-dark'
   })
 
@@ -63,30 +84,30 @@ async function CodeBlock() {
     jsx,
     jsxs,
     components: {
-      // your custom `pre` element
+      // 您自定义的 `pre` 元素
       pre: props => <pre data-custom-codeblock {...props} />
     },
   })
 }
 ```
 
-## React Client Component
+## React 客户端组件
 
-For client components, they are pre-rendered on server and hydrated/rendered on client.
-We can start by creating a client `CodeBlock` component.
+对于客户端组件，它们在服务器上预渲染并在客户端进行水合/渲染。
+我们可以先创建一个客户端 `CodeBlock` 组件。
 
-Create a `shared.ts` for highlighter:
+为高亮器创建 `shared.ts`：
 
 ```ts
+import type { BundledLanguage } from 'shiki/bundle/web'
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
 import { Fragment } from 'react'
-// @ts-expect-error -- untyped
 import { jsx, jsxs } from 'react/jsx-runtime'
 import { codeToHast } from 'shiki/bundle/web'
 
-export async function highlight(code: string) {
+export async function highlight(code: string, lang: BundledLanguage) {
   const out = await codeToHast(code, {
-    lang: 'ts',
+    lang,
     theme: 'github-dark'
   })
 
@@ -98,7 +119,7 @@ export async function highlight(code: string) {
 }
 ```
 
-In your `codeblock.tsx`:
+在您的 `codeblock.tsx` 中：
 
 ```tsx
 'use client'
@@ -109,46 +130,46 @@ export function CodeBlock({ initial }: { initial?: JSX.Element }) {
   const [nodes, setNodes] = useState(initial)
 
   useLayoutEffect(() => {
-    void highlight('console.log("Rendered on client")').then(setNodes)
+    void highlight('console.log("Rendered on client")', 'ts').then(setNodes)
   }, [])
 
   return nodes ?? <p>Loading...</p>
 }
 ```
 
-The `initial` prop can be passed from a server component to pre-render the code block on server.
+`initial` 属性可以从服务器组件传递，以便在服务器上预渲染代码块。
 
-In your `page.tsx`:
+在您的 `page.tsx` 中：
 
 ```tsx
 import { CodeBlock } from './codeblock'
 import { highlight } from './shared'
 
 export default async function Page() {
-  // `initial` is optional.
+  // `initial` 是可选的。
   return (
     <main>
-      <CodeBlock initial={await highlight('console.log("Rendered on server")')} />
+      <CodeBlock initial={await highlight('console.log("Rendered on server")', 'ts')} />
     </main>
   )
 }
 ```
 
 ::: info
-The above example uses the `shiki/bundle/web` bundle. You can change it to [Fine-grained Bundle](/guide/bundles#fine-grained-bundle) to fully control the bundled languages/themes.
+上述示例使用了 `shiki/bundle/web` 包。您可以将其更改为 [细粒度捆绑](/guide/bundles#fine-grained-bundle)，以完全控制捆绑的语言/主题。
 :::
 
-### Performance
+### 性能
 
-Shiki lazy loads the requested languages and themes, the Next.js bundler can handle lazy imports automatically.
-Importing `shiki` or its web bundle is efficient enough for most Next.js applications, Fine-grained Bundle won't significantly impact the bundle size.
+Shiki 会懒加载请求的语言和主题，Next.js 打包器可以自动处理懒导入。
+导入 `shiki` 或其 web 包对于大多数 Next.js 应用来说效率足够高，细粒度捆绑不会显著影响捆绑大小。
 
-In addition, you can use the `createHighlighter` API to preload specific languages and themes.
-Please refer to [Highlighter Usage](/guide/install#highlighter-usage) for further details.
+此外，您可以使用 `createHighlighter` API 预加载特定的语言和主题。
+请参阅 [高亮器使用](/guide/install#highlighter-usage) 以获取更多详细信息。
 
-### Highlighter Instance
+### 高亮器实例
 
-If you define a highlighter (without `await`) as a global variable, you can reference it directly from server and client components.
+如果您将高亮器（不带 `await`）定义为全局变量，您可以直接从服务器和客户端组件中引用它。
 
 ```ts
 import { createHighlighter } from 'shiki'
@@ -158,7 +179,7 @@ const highlighter = createHighlighter({
   langs: ['javascript'],
 })
 
-// Inside an async server component, or client side `useEffect`
+// 在异步服务器组件内部，或客户端的 `useEffect`
 const html = (await highlighter).codeToHtml('const a = 1', {
   lang: 'javascript',
   theme: 'nord'
