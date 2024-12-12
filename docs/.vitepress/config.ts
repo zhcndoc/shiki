@@ -240,11 +240,11 @@ export default withMermaid(defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/zhcndoc/shiki' },
+      { icon: 'github', link: 'https://github.com/shikijs/shiki' },
     ],
 
     footer: {
-      message: `<a target="_blank" href="https://www.zhcndoc.com?ref=shiki">简中文档</a>`,
+      message: `<a target="_blank" href="https://www.zhcndoc.com">简中文档</a>`,
       copyright: '<a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
     },
   },
@@ -260,30 +260,6 @@ export default withMermaid(defineConfig({
   },
 
   head: [
-    ['meta', { name: 'baidu-site-verification', content: 'codeva-MwZywAJCYJ' }],
-    [
-      'script',
-      {
-        'defer': '',
-        'src': 'https://analytics.ikxin.com/script.js',
-        'data-website-id': 'f0e90b0d-e086-4fdc-b173-de4857b71900',
-      },
-    ],
-    [
-      'script',
-      {
-        async: '',
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-HYH4TH7PWM',
-      },
-    ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HYH4TH7PWM');`,
-    ],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Pine Wu, Anthony Fu' }],
@@ -293,5 +269,12 @@ export default withMermaid(defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: 'https://shiki.zhcndoc.com/og.png' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
+    [
+      'script',
+      {
+        src: 'https://www.zhcndoc.com/js/common.js',
+        async: '',
+      },
+    ],
   ],
 }))
