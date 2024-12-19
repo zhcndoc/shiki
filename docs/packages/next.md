@@ -49,6 +49,7 @@ async function CodeBlock(props: Props) {
 您还可以调用 `codeToHast` 来获取 HTML 抽象语法树，并使用 [`hast-util-to-jsx-runtime`](https://github.com/syntax-tree/hast-util-to-jsx-runtime) 渲染它。通过这种方法，您可以渲染自己的 `pre` 和 `code` 组件。
 
 ```tsx
+import type { JSX } from 'react'
 import type { BundledLanguage } from 'shiki'
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
 import { Fragment } from 'react'
@@ -87,7 +88,7 @@ async function CodeBlock(props: Props) {
       // 您自定义的 `pre` 元素
       pre: props => <pre data-custom-codeblock {...props} />
     },
-  })
+  }) as JSX.Element
 }
 ```
 
@@ -99,6 +100,7 @@ async function CodeBlock(props: Props) {
 为高亮器创建 `shared.ts`：
 
 ```ts
+import type { JSX } from 'react'
 import type { BundledLanguage } from 'shiki/bundle/web'
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
 import { Fragment } from 'react'
@@ -115,7 +117,7 @@ export async function highlight(code: string, lang: BundledLanguage) {
     Fragment,
     jsx,
     jsxs,
-  })
+  }) as JSX.Element
 }
 ```
 
