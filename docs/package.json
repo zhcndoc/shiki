@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "version": "1.24.2",
+  "version": "1.24.3",
   "packageManager": "pnpm@9.11.0",
   "private": true,
   "scripts": {
@@ -9,17 +9,17 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "@iconify-json/ph": "^1.2.1",
+    "@iconify-json/ph": "^1.2.2",
     "fuse.js": "^7.0.0"
   },
   "devDependencies": {
     "@braintree/sanitize-url": "^7.1.0",
-    "@iconify-json/svg-spinners": "^1.2.1",
-    "@shikijs/colorized-brackets": "^1.24.2",
-    "@shikijs/markdown-it": "^1.24.2",
-    "@shikijs/transformers": "^1.24.2",
-    "@shikijs/twoslash": "^1.24.2",
-    "@shikijs/vitepress-twoslash": "^1.24.2",
+    "@iconify-json/svg-spinners": "^1.2.2",
+    "@shikijs/colorized-brackets": "^1.24.3",
+    "@shikijs/markdown-it": "^1.24.3",
+    "@shikijs/transformers": "^1.24.3",
+    "@shikijs/twoslash": "^1.24.3",
+    "@shikijs/vitepress-twoslash": "^1.24.3",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.10.2",
     "@unocss/reset": "^0.64.1",
@@ -31,10 +31,10 @@
     "floating-vue": "^5.2.2",
     "markdown-it": "^14.1.0",
     "pinia": "^2.3.0",
-    "shiki": "^1.24.2",
+    "shiki": "^1.24.3",
     "unocss": "^0.63.6",
     "unplugin-vue-components": "^0.27.5",
-    "vite": "^6.0.3",
+    "vite": "^6.0.4",
     "vite-tsconfig-paths": "^5.1.4",
     "vitepress": "^1.5.0",
     "vitepress-plugin-mermaid": "^2.0.17",
