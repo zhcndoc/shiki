@@ -1,21 +1,21 @@
 # JavaScript RegExp 引擎兼容性参考
 
-所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine-experimental) 的兼容性参考。
+所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Thursday, December 19, 2024
+> Generated on Saturday, December 21, 2024
 >
-> 版本 `1.24.2`
+> 版本 `1.24.3`
 >
 > 运行环境：Node.js v22.11.0
 
 ## 报告摘要
 
-|                 |                       计数 |
-| :-------------- | --------------------------: |
-| 总语言数       |                         218 |
-| 支持           | [206](#supported-languages) |
-| 不匹配         |  [6](#mismatched-languages) |
-| 不支持         | [6](#unsupported-languages) |
+|          |                        计数 |
+| :------- | --------------------------: |
+| 总语言数 |                         218 |
+| 支持     | [208](#supported-languages) |
+| 不匹配   |  [4](#mismatched-languages) |
+| 不支持   | [6](#unsupported-languages) |
 
 ## 支持的语言
 
@@ -132,6 +132,7 @@
 | lua                | ✅ OK           |               278 |               - |      |
 | luau               | ✅ OK           |                88 |               - |      |
 | make               | ✅ OK           |                51 |               - |      |
+| markdown           | ✅ OK           |               118 |               - |      |
 | marko              | ✅ OK           |               926 |               - |      |
 | matlab             | ✅ OK           |                88 |               - |      |
 | mdc                | ✅ OK           |               783 |               - |      |
@@ -152,6 +153,7 @@
 | perl               | ✅ OK           |               941 |               - |      |
 | php                | ✅ OK           |              1131 |               - |      |
 | plsql              | ✅ OK           |                45 |               - |      |
+| po                 | ✅ OK           |                23 |               - |      |
 | postcss            | ✅ OK           |                49 |               - |      |
 | powerquery         | ✅ OK           |                30 |               - |      |
 | powershell         | ✅ OK           |                88 |               - |      |
@@ -242,14 +244,12 @@
 
 不与 JavaScript RegExp 引擎兼容的语言，但会产生与 WASM 引擎不同的结果。请谨慎使用。
 
-| Language | Highlight Match                                                               | Patterns Parsable | Patterns Failed | Diff |
-| -------- | :---------------------------------------------------------------------------- | ----------------: | --------------: | ---: |
-| apex     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=apex)     |               187 |               - |   33 |
-| cpp      | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=cpp)      |               512 |               - |    8 |
-| kusto    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto)    |                60 |               - |   40 |
-| markdown | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=markdown) |               118 |               - |  100 |
-| nginx    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx)    |               378 |               - |  122 |
-| po       | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=po)       |                23 |               - |  114 |
+| Language | Highlight Match                                                            | Patterns Parsable | Patterns Failed | Diff |
+| -------- | :------------------------------------------------------------------------- | ----------------: | --------------: | ---: |
+| apex     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=apex)  |               187 |               - |   33 |
+| cpp      | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=cpp)   |               512 |               - |    8 |
+| kusto    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto) |                60 |               - |   40 |
+| nginx    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx) |               378 |               - |  122 |
 
 ## 不支持的语言
 

@@ -37,11 +37,7 @@ const shiki = await createShiki({
 })
 ```
 
-## JavaScript 正则表达式引擎（实验性）
-
-::: warning 实验性
-此功能是实验性的，可能会在未遵循遵循语义化版本控制的情况下发生变化。
-:::
+## JavaScript 正则表达式引擎
 
 此引擎使用 JavaScript 的原生正则表达式。由于 TextMate 语法使用的正则表达式是为 Oniguruma 编写的，它们可能包含 JavaScript 的正则表达式不支持的语法，或者对于相同语法期望不同的行为。因此，我们使用 [Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 将 Oniguruma 模式转换为原生 JavaScript 正则表达式。
 
