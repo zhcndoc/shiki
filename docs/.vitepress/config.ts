@@ -3,11 +3,11 @@ import { bundledThemes } from 'shiki'
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
-import { version } from '../package.json'
-import { transformerColorizedBrackets } from '@shikijs/colorized-brackets'
-import { transformerMetaWordHighlight, transformerNotationWordHighlight, transformerRemoveNotationEscape } from '@shikijs/transformers'
-import { createFileSystemTypesCache } from '@shikijs/vitepress-twoslash/cache-fs'
-import { defaultHoverInfoProcessor, transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { version } from '../../package.json'
+import { transformerColorizedBrackets } from '../../packages/colorized-brackets/src'
+import { transformerMetaWordHighlight, transformerNotationWordHighlight, transformerRemoveNotationEscape } from '../../packages/transformers/src'
+import { createFileSystemTypesCache } from '../../packages/vitepress-twoslash/src/cache-fs'
+import { defaultHoverInfoProcessor, transformerTwoslash } from '../../packages/vitepress-twoslash/src/index'
 import vite from './vite.config'
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
@@ -134,7 +134,7 @@ export default withMermaid(defineConfig({
     ],
   },
 
-  cleanUrls: false,
+  cleanUrls: true,
   vite,
 
   sitemap: {
@@ -191,29 +191,9 @@ export default withMermaid(defineConfig({
     ),
 
     editLink: {
-      text: '在 GitHub 上查看此页面',
       pattern: 'https://github.com/zhcndoc/shiki/tree/main/docs/:path',
+      text: '在 GitHub 上查看此页面',
     },
-    docFooter: {
-      prev: '上一页',
-      next: '下一页',
-    },
-    outline: {
-      label: '页面导航',
-    },
-    lastUpdated: {
-      text: '最后更新于',
-      formatOptions: {
-        dateStyle: 'short',
-        timeStyle: 'medium',
-      },
-    },
-    langMenuLabel: '多语言',
-    returnToTopLabel: '回到顶部',
-    sidebarMenuLabel: '菜单',
-    darkModeSwitchLabel: '主题',
-    lightModeSwitchTitle: '切换到浅色模式',
-    darkModeSwitchTitle: '切换到深色模式',
 
     search: {
       provider: 'local',
@@ -238,6 +218,27 @@ export default withMermaid(defineConfig({
         },
       },
     },
+
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    outline: {
+      label: '页面导航',
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/shikijs/shiki' },
@@ -272,8 +273,8 @@ export default withMermaid(defineConfig({
     [
       'script',
       {
-        src: 'https://www.zhcndoc.com/js/common.js',
         async: '',
+        src: 'https://www.zhcndoc.com/js/common.js',
       },
     ],
   ],

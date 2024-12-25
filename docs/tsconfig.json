@@ -1,31 +1,9 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext", "DOM"],
-    "rootDir": ".",
+    "target": "ESNext",
     "module": "esnext",
     "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "noEmit": true,
-    "preserveValueImports": false,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.mjs",
-    ".vitepress/**/*.ts",
-    ".vitepress/**/*.vue",
-    "eslint.config.js"
-  ],
-  "exclude": [
-    "**/vendor/**",
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/fixtures/**"
-  ]
+    "strict": true
+  }
 }

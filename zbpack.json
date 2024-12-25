@@ -1,0 +1,6 @@
+{
+  "app_dir": "/",
+  "build_command": "pnpm run build && pnpm run docs:build",
+  "install_command": "pnpm install",
+  "output_dir": "docs/.vitepress/dist"
+}
