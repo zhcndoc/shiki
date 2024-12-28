@@ -2,9 +2,9 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Saturday, December 21, 2024
+> Generated on Friday, December 27, 2024
 >
-> 版本 `1.24.3`
+> 版本 `1.24.4`
 >
 > 运行环境：Node.js v22.11.0
 
@@ -13,8 +13,8 @@
 |          |                        计数 |
 | :------- | --------------------------: |
 | 总语言数 |                         218 |
-| 支持     | [208](#supported-languages) |
-| 不匹配   |  [4](#mismatched-languages) |
+| 支持     | [210](#supported-languages) |
+| 不匹配   |  [2](#mismatched-languages) |
 | 不支持   | [6](#unsupported-languages) |
 
 ## 支持的语言
@@ -29,6 +29,7 @@
 | angular-html       | ✅ OK           |               670 |               - |      |
 | angular-ts         | ✅ OK           |               779 |               - |      |
 | apache             | ✅ OK           |                60 |               - |      |
+| apex               | ✅ OK           |               187 |               - |      |
 | apl                | ✅ OK           |               917 |               - |      |
 | applescript        | ✅ OK           |               152 |               - |      |
 | ara                | ✅ OK           |                54 |               - |      |
@@ -58,6 +59,7 @@
 | coffee             | ✅ OK           |               469 |               - |      |
 | common-lisp        | ✅ OK           |                60 |               - |      |
 | coq                | ✅ OK           |                26 |               - |      |
+| cpp                | ✅ OK           |               512 |               - |      |
 | crystal            | ✅ OK           |              1067 |               - |      |
 | css                | ✅ OK           |               141 |               - |      |
 | csv                | ✅ OK           |                 1 |               - |      |
@@ -218,8 +220,8 @@
 | verilog            | ✅ OK           |                33 |               - |      |
 | vhdl               | ✅ OK           |                82 |               - |      |
 | viml               | ✅ OK           |                72 |               - |      |
-| vue                | ✅ OK           |               692 |               - |      |
-| vue-html           | ✅ OK           |               716 |               - |      |
+| vue                | ✅ OK           |               694 |               - |      |
+| vue-html           | ✅ OK           |               718 |               - |      |
 | vyper              | ✅ OK           |               238 |               - |      |
 | wasm               | ✅ OK           |                78 |               - |      |
 | wenyan             | ✅ OK           |                18 |               - |      |
@@ -246,8 +248,6 @@
 
 | Language | Highlight Match                                                            | Patterns Parsable | Patterns Failed | Diff |
 | -------- | :------------------------------------------------------------------------- | ----------------: | --------------: | ---: |
-| apex     | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=apex)  |               187 |               - |   33 |
-| cpp      | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=cpp)   |               512 |               - |    8 |
 | kusto    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto) |                60 |               - |   40 |
 | nginx    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx) |               378 |               - |  122 |
 
@@ -260,6 +260,6 @@
 | ada        | ✅ OK           |               201 |               1 |      |
 | hack       | ❌ Error        |               947 |               1 |  114 |
 | purescript | ❌ Error        |                72 |               1 |      |
-| csharp     | ❌ Error        |               306 |               3 |  148 |
+| csharp     | ❌ Error        |               306 |               3 |  137 |
 | swift      | ❌ Error        |               326 |               3 |    8 |
-| razor      | ❌ Error        |               952 |               5 |   14 |
+| razor      | ❌ Error        |               952 |               5 |      |
