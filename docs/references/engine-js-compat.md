@@ -2,20 +2,20 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Friday, December 27, 2024
+> Generated on Thursday, January 2, 2025
 >
 > 版本 `1.24.4`
 >
-> 运行环境：Node.js v22.11.0
+> 运行环境：Node.js v20.18.0
 
 ## 报告摘要
 
 |          |                        计数 |
 | :------- | --------------------------: |
-| 总语言数 |                         218 |
-| 支持     | [210](#supported-languages) |
-| 不匹配   |  [2](#mismatched-languages) |
-| 不支持   | [6](#unsupported-languages) |
+| 总语言数 |                         219 |
+| 支持     | [213](#supported-languages) |
+| 不匹配   |  [1](#mismatched-languages) |
+| 不支持   | [5](#unsupported-languages) |
 
 ## 支持的语言
 
@@ -24,8 +24,9 @@
 
 | Language           | Highlight Match | Patterns Parsable | Patterns Failed | Diff |
 | ------------------ | :-------------- | ----------------: | --------------: | ---: |
-| abap               | ✅ OK           |                51 |               - |      |
+| abap               | ✅ OK           |                52 |               - |      |
 | actionscript-3     | ✅ OK           |                57 |               - |      |
+| ada                | ✅ OK           |               201 |               - |      |
 | angular-html       | ✅ OK           |               670 |               - |      |
 | angular-ts         | ✅ OK           |               779 |               - |      |
 | apache             | ✅ OK           |                60 |               - |      |
@@ -125,11 +126,12 @@
 | jsx                | ✅ OK           |               376 |               - |      |
 | julia              | ✅ OK           |              1168 |               - |      |
 | kotlin             | ✅ OK           |                58 |               - |      |
+| kusto              | ✅ OK           |                60 |               - |      |
 | latex              | ✅ OK           |               283 |               - |      |
 | lean               | ✅ OK           |                32 |               - |      |
 | less               | ✅ OK           |               280 |               - |      |
 | liquid             | ✅ OK           |               689 |               - |      |
-| log                | ✅ OK           |                30 |               - |      |
+| log                | ✅ OK           |                31 |               - |      |
 | logo               | ✅ OK           |                 9 |               - |      |
 | lua                | ✅ OK           |               278 |               - |      |
 | luau               | ✅ OK           |                88 |               - |      |
@@ -156,6 +158,7 @@
 | php                | ✅ OK           |              1131 |               - |      |
 | plsql              | ✅ OK           |                45 |               - |      |
 | po                 | ✅ OK           |                23 |               - |      |
+| polar              | ✅ OK           |                30 |               - |      |
 | postcss            | ✅ OK           |                49 |               - |      |
 | powerquery         | ✅ OK           |                30 |               - |      |
 | powershell         | ✅ OK           |                88 |               - |      |
@@ -248,7 +251,6 @@
 
 | Language | Highlight Match                                                            | Patterns Parsable | Patterns Failed | Diff |
 | -------- | :------------------------------------------------------------------------- | ----------------: | --------------: | ---: |
-| kusto    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=kusto) |                60 |               - |   40 |
 | nginx    | [🚧 Mismatch](https://textmate-grammars-themes.netlify.app/?grammar=nginx) |               378 |               - |  122 |
 
 ## 不支持的语言
@@ -257,7 +259,6 @@
 
 | Language   | Highlight Match | Patterns Parsable | Patterns Failed | Diff |
 | ---------- | :-------------- | ----------------: | --------------: | ---: |
-| ada        | ✅ OK           |               201 |               1 |      |
 | hack       | ❌ Error        |               947 |               1 |  114 |
 | purescript | ❌ Error        |                72 |               1 |      |
 | csharp     | ❌ Error        |               306 |               3 |  137 |
