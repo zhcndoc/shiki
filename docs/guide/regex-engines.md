@@ -83,15 +83,15 @@ const jsEngine = createJavaScriptRegexEngine({
 })
 ```
 
-### Pre-compiled Languages
+### 预编译语言
 
-Instead of compiling the regular expressions at on-the-fly, we also provided pre-compiled languages for the JavaScript engine to further reduce the startup time.
+为了进一步减少启动时间，我们提供了预编译语言，而不是在运行时编译正则表达式。
 
 ::: info
-Pre-compiled languages requires RegExp uncoide sets support (`v` flag), which is targeting **ES2024** or Node.js 20+, and may not work in older environments. [Can I use](https://caniuse.com/mdn-javascript_builtins_regexp_unicode).
+预编译语言需要 RegExp Unicode 集支持（`v` 标志），目标是 **ES2024** 或 Node.js 20 及更高版本，可能在旧环境中无法使用。[我能否使用](https://caniuse.com/mdn-javascript_builtins_regexp_unicode)。
 :::
 
-You can install them with `@shikijs/langs-precompiled`, and change your `@shikijs/langs` imports to `@shikijs/langs-precompiled`:
+您可以使用 `@shikijs/langs-precompiled` 安装它们，并将您的 `@shikijs/langs` 导入更改为 `@shikijs/langs-precompiled`：
 
 ```ts
 import { createHighlighterCore } from 'shiki/core'
@@ -113,6 +113,6 @@ const highlighter = await createHighlighterCore({
 })
 ```
 
-If you are not using the custom grammars that requires transpilation, you can use the `createJavaScriptRawEngine` to skip the transpilation step further reducing bundle size.
+如果您没有使用需要转译的自定义语法，您可以使用 `createJavaScriptRawEngine` 跳过转译步骤，进一步减少包的大小。
 
-If you are using [`shiki-codegen`](/packages/codegen), you can generate the pre-compiled languages with the `--precompiled` and `--engine=javascript-raw` flags.
+如果您使用 [`shiki-codegen`](/packages/codegen)，您可以使用 `--precompiled` 和 `--engine=javascript-raw` 标志生成预编译的语言。
