@@ -15,6 +15,8 @@ const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '安装和使用', link: '/guide/install' },
   { text: '捆绑包', link: '/guide/bundles' },
   { text: '双重主题', link: '/guide/dual-themes' },
+  { text: '缩写', link: '/guide/shorthands' },
+  { text: '最佳性能实践', link: '/guide/best-performance' },
   { text: '装饰器', link: '/guide/decorations' },
   { text: '转换器', link: '/guide/transformers' },
   { text: '主题颜色控制', link: '/guide/theme-colors' },
@@ -44,6 +46,7 @@ const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [
   { text: 'Astro', link: '/packages/astro' },
   { text: '常用转换器', link: '/packages/transformers' },
   { text: '彩色括号', link: '/packages/colorized-brackets' },
+  { text: '代码生成', link: '/packages/codegen' },
   { text: 'CLI', link: '/packages/cli' },
 ]
 
