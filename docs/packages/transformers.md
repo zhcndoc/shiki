@@ -41,6 +41,44 @@ const html = await codeToHtml(code, {
 
 转换器只应用到类，并不带有样式，你可以提供自己的 CSS 规则来样式化它们。
 
+## 匹配算法
+
+我们发现 v1 中评论匹配的算法有时不够直观，我们正在以渐进的方式进行修复。从 v1.29.0 开始，我们为大多数转换器引入了一个新的 `matchAlgorithm` 选项，供您在不同的匹配算法之间切换。目前，默认选项是 `v1`，即旧算法，`v3` 是新算法。当 Shiki v3 发布时，默认将是 `v3`。
+
+```ts
+const html = await codeToHtml(code, {
+  lang: 'ts',
+  theme: 'nord',
+  transformers: [
+    transformerNotationDiff({
+      matchAlgorithm: 'v3', // [!code hl]
+    }),
+  ],
+})
+```
+
+### `matchAlgorithm: 'v1'`
+
+匹配算法主要影响单行注释的匹配，在 `v1` 中，它将把注释行计为第一行，而在 `v3` 中，它将从注释行开始计数：
+
+```ts
+// [\!code highlight:3]
+console.log('highlighted') // [!code hl]
+console.log('highlighted') // [!code hl]
+console.log('not highlighted')
+```
+
+### `matchAlgorithm: 'v3'`
+
+在 `v3` 中，匹配算法将从评论下方的行开始计数：
+
+```ts
+// [\!code highlight:2]
+console.log('highlighted') // [!code hl]
+console.log('highlighted') // [!code hl]
+console.log('not highlighted')
+```
+
 ## 转换器
 
 ### `transformerNotationDiff`

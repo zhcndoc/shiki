@@ -93,8 +93,12 @@ Number.parseInt('123', 10)
 
 ```ts twoslash
 import { createHighlighterCore } from 'shiki/core'
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
-const highlighter = await createHighlighterCore({})
+const highlighter = await createHighlighterCore({
+  engine: createJavaScriptRegexEngine()
+})
+
 // @log: 自定义日志信息
 const a = 1
 // @error: 自定义错误信息

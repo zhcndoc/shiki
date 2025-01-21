@@ -2,9 +2,9 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Tuesday, January 14, 2025
+> Generated on Monday, January 20, 2025
 >
-> 版本 `1.27.0`
+> 版本 `1.27.2`
 >
 > 运行环境：Node.js v22.11.0
 
@@ -262,5 +262,5 @@
 | sass       | ✅ OK           |                67 |               2 |      |
 | purescript | ❌ Error        |                72 |               1 |      |
 | csharp     | ❌ Error        |               310 |               3 |  137 |
+| razor      | ❌ Error        |               959 |               3 |      |
 | swift      | ❌ Error        |               326 |               3 |      |
-| razor      | ❌ Error        |               957 |               5 |      |

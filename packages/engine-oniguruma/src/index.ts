@@ -36,7 +36,7 @@ export async function createOnigurumaEngine(options?: LoadWasmOptions | null): P
 }
 
 /**
- * Deprecated. Use `createOnigurumaEngine` instead.
+ * @deprecated Use `createOnigurumaEngine` instead.
  */
 export async function createWasmOnigEngine(options?: LoadWasmOptions | null): Promise<RegexEngine> {
   return createOnigurumaEngine(options)

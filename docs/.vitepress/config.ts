@@ -22,9 +22,9 @@ const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '主题颜色控制', link: '/guide/theme-colors' },
   { text: 'RegExp 引擎', link: '/guide/regex-engines' },
   { text: '同步使用', link: '/guide/sync-usage' },
+  { text: '语法状态', link: '/guide/grammar-state' },
   { text: '自定义主题', link: '/guide/load-theme' },
   { text: '自定义语言', link: '/guide/load-lang' },
-  { text: '未来', link: '/guide/future' },
   { text: '迁移', link: '/guide/migrate' },
   { text: '兼容性构建', link: '/guide/compat' },
 ]
@@ -50,12 +50,18 @@ const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [
   { text: 'CLI', link: '/packages/cli' },
 ]
 
+const BLOGS: DefaultTheme.NavItemWithLink[] = [
+  { text: 'Shiki v2.0', link: '/blog/v2' },
+  { text: 'The Evolution of Shiki v1.0', link: 'https://nuxt.com/blog/shiki-v1' },
+]
+
 const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
   { text: `v${version} (current)`, link: '/' },
   { text: `发布日志`, link: 'https://github.com/shikijs/shiki/releases' },
   { text: `贡献`, link: 'https://github.com/shikijs/shiki/blob/main/CONTRIBUTING.md' },
   {
     items: [
+      { text: '从 v1.0 迁移', link: '/blog/v2' },
       { text: '从 v0.14 迁移', link: '/guide/migrate#migrate-from-v0-14' },
       { text: '从 Shikiji 迁移', link: '/guide/migrate#migrate-from-shikiji' },
     ],
@@ -163,10 +169,10 @@ export default withMermaid(defineConfig({
         text: '参考',
         items: REFERENCES,
       },
-      // {
-      //   text: 'Play',
-      //   link: '/play',
-      // },
+      {
+        text: '博客',
+        items: BLOGS,
+      },
       {
         text: `v${version}`,
         items: VERSIONS,
@@ -244,6 +250,7 @@ export default withMermaid(defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
 
     socialLinks: [
+      { icon: 'bluesky', link: 'https://bsky.app/profile/shiki.style' },
       { icon: 'github', link: 'https://github.com/shikijs/shiki' },
     ],
 

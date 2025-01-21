@@ -1,21 +1,22 @@
-import { describe, expect, it } from 'vitest'
-// eslint-disable-next-line antfu/no-import-dist
-import { wasmBinary } from '../../engine-oniguruma/dist/wasm-inlined.mjs'
+import { createJavaScriptRegexEngine } from '@shikijs/engine-javascript'
+import { createOnigurumaEngine } from '@shikijs/engine-oniguruma'
 
-import { createHighlighterCore } from '../src/core'
-import js from '../src/langs/javascript.mjs'
-import ts from '../src/langs/typescript.mjs'
-import mtp from '../src/themes/material-theme-palenight.mjs'
-import nord from '../src/themes/nord.mjs'
+import { wasmBinary } from '@shikijs/engine-oniguruma/wasm-inlined'
+import js from '@shikijs/langs/javascript'
+import ts from '@shikijs/langs/typescript'
+import mtp from '@shikijs/themes/material-theme-palenight'
+import nord from '@shikijs/themes/nord'
+import { describe, expect, it } from 'vitest'
+import { createHighlighterCore } from '../src'
 
 describe('should', () => {
   it('works', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [js],
-      loadWasm: {
+      engine: createOnigurumaEngine({
         instantiator: obj => WebAssembly.instantiate(wasmBinary, obj),
-      },
+      }),
     })
 
     expect(shiki.codeToHtml('console.log("Hi")', { lang: 'javascript', theme: 'nord' }))
@@ -23,20 +24,20 @@ describe('should', () => {
   })
 
   it('dynamic load theme and lang', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [
         js,
-        import('../src/langs/c.mjs'),
+        import('@shikijs/langs/c'),
       ],
-      loadWasm: {
+      engine: createOnigurumaEngine({
         // https://github.com/WebAssembly/esm-integration/tree/main/proposals/esm-integration
         instantiator: obj => WebAssembly.instantiate(wasmBinary, obj).then(r => r.instance.exports),
-      },
+      }),
     })
 
-    await shiki.loadLanguage(() => import('../src/langs/python.mjs'))
-    await shiki.loadTheme(() => import('../dist/themes/vitesse-light.mjs').then(m => m.default))
+    await shiki.loadLanguage(() => import('@shikijs/langs/python'))
+    await shiki.loadTheme(() => import('@shikijs/themes/vitesse-light').then(m => m.default))
 
     expect(shiki.getLoadedLanguages())
       .toMatchInlineSnapshot(`
@@ -61,11 +62,12 @@ describe('should', () => {
   })
 
   it('requires nested lang', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [
-        import('../src/langs/cpp.mjs'),
+        import('@shikijs/langs/cpp'),
       ],
+      engine: createJavaScriptRegexEngine(),
     })
 
     expect(shiki.getLoadedLanguages().sort())
@@ -84,7 +86,9 @@ describe('should', () => {
   })
 
   it('works without no initial langs and themes', async () => {
-    const shiki = await createHighlighterCore()
+    using shiki = await createHighlighterCore({
+      engine: createJavaScriptRegexEngine(),
+    })
 
     await shiki.loadLanguage(js)
     await shiki.loadTheme(nord)
@@ -95,11 +99,12 @@ describe('should', () => {
   })
 
   it('works with alias', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       langAlias: {
         mylang: 'javascript',
         mylang2: 'js', // nested alias
       },
+      engine: createJavaScriptRegexEngine(),
     })
 
     await shiki.loadLanguage(js)
@@ -112,10 +117,11 @@ describe('should', () => {
   })
 
   it('works with alias override', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       langAlias: {
         js: 'typescript',
       },
+      engine: createJavaScriptRegexEngine(),
     })
 
     await shiki.loadLanguage(ts)
@@ -128,9 +134,10 @@ describe('should', () => {
 
 describe('errors', () => {
   it('throw on invalid theme', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [js as any],
+      engine: createJavaScriptRegexEngine(),
     })
 
     await expect(() => shiki.codeToHtml('console.log("Hi")', { lang: 'javascript', theme: 'invalid' }))
@@ -138,9 +145,10 @@ describe('errors', () => {
   })
 
   it('throw on invalid lang', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [js as any],
+      engine: createJavaScriptRegexEngine(),
     })
 
     await expect(() => shiki.codeToHtml('console.log("Hi")', { lang: 'abc', theme: 'nord' }))
@@ -148,12 +156,12 @@ describe('errors', () => {
   })
 
   it('highlight with raw theme registation', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
       langs: [js as any],
-      loadWasm: {
+      engine: createOnigurumaEngine({
         instantiator: obj => WebAssembly.instantiate(wasmBinary, obj),
-      },
+      }),
     })
 
     const code = shiki.codeToHtml('console.log("Hi")', { lang: 'javascript', theme: mtp })
@@ -169,11 +177,12 @@ describe('errors', () => {
   })
 
   it('throw on circular alias', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       langAlias: {
         mylang: 'mylang2',
         mylang2: 'mylang',
       },
+      engine: createJavaScriptRegexEngine(),
     })
 
     await shiki.loadLanguage(js)
@@ -184,9 +193,10 @@ describe('errors', () => {
   })
 
   it('throw on using disposed instance', async () => {
-    const shiki = await createHighlighterCore({
+    using shiki = await createHighlighterCore({
       themes: [nord],
-      langs: [js as any],
+      langs: [js],
+      engine: createJavaScriptRegexEngine(),
     })
 
     expect(shiki.codeToHtml('console.log("Hi")', { lang: 'javascript', theme: 'nord' }))
