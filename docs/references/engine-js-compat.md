@@ -2,9 +2,9 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Monday, January 20, 2025
+> Generated on Tuesday, January 21, 2025
 >
-> 版本 `1.27.2`
+> 版本 `2.0.3`
 >
 > 运行环境：Node.js v22.11.0
 
@@ -13,9 +13,9 @@
 |          |                        计数 |
 | :------- | --------------------------: |
 | 总语言数 |                         219 |
-| 支持     | [213](#supported-languages) |
+| 支持     | [214](#supported-languages) |
 | 不匹配   |  [0](#mismatched-languages) |
-| 不支持   | [6](#unsupported-languages) |
+| 不支持   | [5](#unsupported-languages) |
 
 ## 支持的语言
 
@@ -54,7 +54,7 @@
 | clj                | ✅ OK           |                38 |               - |      |
 | clojure            | ✅ OK           |                38 |               - |      |
 | cmake              | ✅ OK           |                23 |               - |      |
-| cobol              | ✅ OK           |               867 |               - |      |
+| cobol              | ✅ OK           |               868 |               - |      |
 | codeowners         | ✅ OK           |                 4 |               - |      |
 | coffee             | ✅ OK           |               471 |               - |      |
 | common-lisp        | ✅ OK           |                60 |               - |      |
@@ -183,7 +183,8 @@
 | ruby               | ✅ OK           |              1787 |               - |      |
 | rust               | ✅ OK           |                89 |               - |      |
 | sas                | ✅ OK           |               101 |               - |      |
-| scala              | ✅ OK           |               117 |               - |      |
+| sass               | ✅ OK           |                69 |               - |      |
+| scala              | ✅ OK           |               118 |               - |      |
 | scheme             | ✅ OK           |                34 |               - |      |
 | scss               | ✅ OK           |               234 |               - |      |
 | sdbl               | ✅ OK           |                23 |               - |      |
@@ -259,8 +260,7 @@
 | Language   | Highlight Match | Patterns Parsable | Patterns Failed | Diff |
 | ---------- | :-------------- | ----------------: | --------------: | ---: |
 | codeql     | ✅ OK           |               150 |               1 |      |
-| sass       | ✅ OK           |                67 |               2 |      |
+| csharp     | ❌ Error        |               312 |               1 |  137 |
 | purescript | ❌ Error        |                72 |               1 |      |
-| csharp     | ❌ Error        |               310 |               3 |  137 |
-| razor      | ❌ Error        |               959 |               3 |      |
-| swift      | ❌ Error        |               326 |               3 |      |
+| razor      | ❌ Error        |               961 |               1 |      |
+| swift      | ❌ Error        |               330 |               1 |      |

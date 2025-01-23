@@ -91,7 +91,7 @@ const jsEngine = createJavaScriptRegexEngine({
 预编译语言需要支持 RegExp UnicodeSets（`v` 标志），这需要 **ES2024** 或 Node.js 20 及以上版本，可能在较旧的环境中无法工作。[Can I use](https://caniuse.com/mdn-javascript_builtins_regexp_unicodesets)。
 :::
 
-您可以通过 `@shikijs/langs-precompiled` 安装它们，然后将您的 `@shikijs/langs` 导入更改为 `@shikijs/langs-precompiled`：
+您可以使用 `@shikijs/langs-precompiled` 安装它们，并将您的 `@shikijs/langs` 导入更改为 `@shikijs/langs-precompiled`：
 
 ```ts
 import { createHighlighterCore } from 'shiki/core'
