@@ -2,15 +2,31 @@
 
 <Badges name="@shikijs/markdown-it" />
 
-适用于 [markdown-it](https://markdown-it.github.io/) 的 Shiki 插件。
+Shiki 的 [markdown-it](https://markdown-it.github.io/) 插件。
 
 ## 安装
 
-```bash
+::: code-group
+
+```sh [npm]
 npm i -D @shikijs/markdown-it
 ```
 
-## 使用方法
+```sh [yarn]
+yarn add -D @shikijs/markdown-it
+```
+
+```sh [pnpm]
+pnpm add -D @shikijs/markdown-it
+```
+
+```sh [bun]
+bun add -D @shikijs/markdown-it
+```
+
+:::
+
+## 使用
 
 ```ts twoslash
 import Shiki from '@shikijs/markdown-it'
@@ -51,11 +67,11 @@ const md = MarkdownIt()
 md.use(fromHighlighter(highlighter, { /* 选项 */ }))
 ```
 
-## With Shorthands
+## 使用简写
 
-Shiki's [shorthands](/guide/shorthands) provides on-demand loading of themes and languages, but also makes the highlighting process asynchronous. Unfortunately, `markdown-it` itself [does NOT support async highlighting](https://github.com/markdown-it/markdown-it/blob/master/docs/development.md#i-need-async-rule-how-to-do-it) out of the box.
+Shiki 的 [简写](/guide/shorthands) 提供按需加载主题和语言，但也使高亮过程变成异步。不幸的是，`markdown-it` 本身 [不支持异步高亮](https://github.com/markdown-it/markdown-it/blob/master/docs/development.md#i-need-async-rule-how-to-do-it) 默认情况下。
 
-To workaround this, you can use [`markdown-it-async`](https://github.com/antfu/markdown-it-async) by [Anthony Fu](https://github.com/antfu). Where Shiki also provides an integration with it, you can import `fromAsyncCodeToHtml` from `@shikijs/markdown-it/async`.
+为了解决这个问题，您可以使用 [Anthony Fu](https://github.com/antfu) 的 [`markdown-it-async`](https://github.com/antfu/markdown-it-async)。Shiki 也提供与它的集成，您可以从 `@shikijs/markdown-it/async` 导入 `fromAsyncCodeToHtml`。
 
 ````ts twoslash
 import { fromAsyncCodeToHtml } from '@shikijs/markdown-it/async'

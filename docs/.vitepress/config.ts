@@ -1,8 +1,9 @@
 import type { DefaultTheme } from 'vitepress'
 import { bundledThemes } from 'shiki'
 import { defineConfig } from 'vitepress'
-import { withMermaid } from 'vitepress-plugin-mermaid'
+import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
 
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import { version } from '../../package.json'
 import { transformerColorizedBrackets } from '../../packages/colorized-brackets/src'
 import { transformerMetaWordHighlight, transformerNotationWordHighlight, transformerRemoveNotationEscape } from '../../packages/transformers/src'
@@ -68,7 +69,7 @@ const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] 
   },
 ]
 
-// https://vitepress.dev/reference/site-config
+// https://vitepress.zhcndoc.com/reference/site-config
 export default withMermaid(defineConfig({
   title: 'Shiki 中文文档',
   lang: 'zh-CN',
@@ -145,6 +146,9 @@ export default withMermaid(defineConfig({
     ],
     // @ts-expect-error Waits for https://github.com/vuejs/vitepress/pull/4507
     languages: ['js', 'jsx', 'ts', 'tsx'],
+    config: (md) => {
+      md.use(groupIconMdPlugin)
+    },
   },
 
   cleanUrls: true,

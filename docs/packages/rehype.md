@@ -10,9 +10,25 @@ outline: deep
 
 ## 安装
 
-```bash
+::: code-group
+
+```sh [npm]
 npm i -D @shikijs/rehype
 ```
+
+```sh [yarn]
+yarn add -D @shikijs/rehype
+```
+
+```sh [pnpm]
+pnpm add -D @shikijs/rehype
+```
+
+```sh [bun]
+bun add -D @shikijs/rehype
+```
+
+:::
 
 ## 使用方法
 
@@ -98,16 +114,16 @@ console.log('4') // 高亮
 ```
 ````
 
-### Inline Code
+### 行内代码
 
-You can also highlight inline codes with the `inline` option.
+你也可以使用 `inline` 选项来突出显示行内代码。
 
-| Option                  | Example          | Description                                                 |
-| ----------------------- | ---------------- | ----------------------------------------------------------- |
-| `false`                 | -                | Disable inline code highlighting (default)                  |
-| `'tailing-curly-colon'` | `let a = 1{:js}` | Highlight with a `{:language}` marker inside the code block |
+| 选项                    | 示例             | 描述                                        |
+| ----------------------- | ---------------- | ------------------------------------------- |
+| `false`                 | -                | 禁用行内代码高亮（默认）                    |
+| `'tailing-curly-colon'` | `let a = 1{:js}` | 在代码块内部使用 `{:language}` 标记进行高亮 |
 
-Enable `inline` on the Rehype plugin:
+在 Rehype 插件中启用 `inline`：
 
 ```ts twoslash
 // @noErrors: true
@@ -128,8 +144,8 @@ const file = await unified()
   .process(await fs.readFile('./input.md'))
 ```
 
-Then you can use inline code in markdown:
+然后你可以在 markdown 中使用行内代码：
 
 ```md
-This code `console.log("Hello World"){:js}` will be highlighted.
+这段代码 `console.log("Hello World"){:js}` 将被高亮显示。
 ```

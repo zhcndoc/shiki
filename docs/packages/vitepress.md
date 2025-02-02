@@ -4,9 +4,9 @@ outline: deep
 
 # VitePress 集成
 
-[VitePress](https://vitepress.dev/) 在底层使用了 Shiki，所以你不需要显式地集成。
+[VitePress](https://vitepress.zhcndoc.com/) 在底层使用了 Shiki，所以你不需要显式地集成。
 
-VitePress 提供了[一些 Shiki 的自定义选项](https://github.com/vuejs/vitepress/blob/main/src/node/markdown/markdown.ts#L66-L112)，在 [VitePress 文档](https://vitepress.dev/zh/reference/site-config#markdown)上查看更多。
+VitePress 提供了[一些 Shiki 的自定义选项](https://github.com/vuejs/vitepress/blob/main/src/node/markdown/markdown.ts#L66-L112)，在 [VitePress 文档](https://vitepress.zhcndoc.com/zh/reference/site-config#markdown)上查看更多。
 
 ## Twoslash
 
@@ -14,16 +14,31 @@ VitePress 提供了[一些 Shiki 的自定义选项](https://github.com/vuejs/vi
 
 <Badges name="@shikijs/vitepress-twoslash" />
 
-### 安装
+### 设置
 
-```bash
+::: code-group
+
+```sh [npm]
 npm i -D @shikijs/vitepress-twoslash
 ```
 
-在 [`.vitepress/config.ts`](https://vitepress.dev/reference/site-config) 配置文件中：
+```sh [yarn]
+yarn add -D @shikijs/vitepress-twoslash
+```
 
-```ts
-// .vitepress/config.ts
+```sh [pnpm]
+pnpm add -D @shikijs/vitepress-twoslash
+```
+
+```sh [bun]
+bun add -D @shikijs/vitepress-twoslash
+```
+
+:::
+
+在你的 [`vitepress/config.ts`](https://vitepress.zhcndoc.com/reference/site-config):
+
+```ts [.vitepress/config.ts]
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash' // [!code hl]
 import { defineConfig } from 'vitepress'
 
@@ -39,11 +54,10 @@ export default defineConfig({
 })
 ```
 
-然后在你的 [`.vitepress/theme/index.ts`](https://vitepress.dev/guide/custom-theme) 中，安装 Vue 插件并通过 `vitepress-plugin-twoslash/styles.css` 导入 CSS。
+然后在你的 [`.vitepress/theme/index.ts`](https://vitepress.zhcndoc.com/guide/custom-theme) 中，安装 Vue 插件并通过 `vitepress-plugin-twoslash/styles.css` 导入 CSS。
 
-```ts twoslash
+```ts twoslash [.vitepress/theme/index.ts]
 // @noErrors: true
-// .vitepress/theme/index.ts
 import type { EnhanceAppContext } from 'vitepress' // [!code hl]
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 import Theme from 'vitepress/theme'
@@ -121,14 +135,13 @@ onMounted(() => {
 </template>
 ```
 
-### File System Cache
+### 文件系统缓存
 
-To speed up the build process, you can enable the file system cache for the generated types, that shares across multiple builds. By default the cache is stored in the `.vitepress/cache/twoslash` along with other VitePress caches.
+为了加快构建过程，您可以为生成的类型启用文件系统缓存，该缓存可以跨多个构建共享。默认情况下，缓存存储在 `.vitepress/cache/twoslash` 中，与其他 VitePress 缓存一起。
 
-In your [`.vitepress/config.ts`](https://vitepress.dev/reference/site-config):
+在您的 [`.vitepress/config.ts`](https://vitepress.zhcndoc.com/reference/site-config)：
 
-```ts
-// .vitepress/config.ts
+```ts [.vitepress/config.ts]
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { createFileSystemTypesCache } from '@shikijs/vitepress-twoslash/cache-fs' // [!code hl]
 import { defineConfig } from 'vitepress'

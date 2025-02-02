@@ -10,9 +10,25 @@ outline: deep
 
 ## 安装
 
-```bash
+::: code-group
+
+```sh [npm]
 npm i -D @shikijs/transformers
 ```
+
+```sh [yarn]
+yarn add -D @shikijs/transformers
+```
+
+```sh [pnpm]
+pnpm add -D @shikijs/transformers
+```
+
+```sh [bun]
+bun add -D @shikijs/transformers
+```
+
+:::
 
 ## 使用方法
 
