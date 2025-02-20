@@ -10,7 +10,7 @@ export interface MatchAlgorithmOptions {
    * Match algorithm to use
    *
    * @see https://shiki.style/packages/transformers#matching-algorithm
-   * @default 'v1'
+   * @default 'v3'
    */
   matchAlgorithm?: MatchAlgorithm
 }
@@ -50,9 +50,8 @@ export function createCommentNotationTransformer(
         if (comment.info[1].length === 0)
           continue
 
-        const isLineCommentOnly = comment.line.children.length === (comment.isJsxStyle ? 3 : 1)
         let lineIdx = lines.indexOf(comment.line)
-        if (isLineCommentOnly && matchAlgorithm !== 'v1')
+        if (comment.isLineCommentOnly && matchAlgorithm !== 'v1')
           lineIdx++
 
         let replaced = false
@@ -68,16 +67,15 @@ export function createCommentNotationTransformer(
         if (!replaced)
           continue
 
-        if (matchAlgorithm === 'v1') {
+        if (matchAlgorithm === 'v1')
           comment.info[1] = v1ClearEndCommentPrefix(comment.info[1])
-        }
 
         const isEmpty = comment.info[1].trim().length === 0
         // ignore comment node
         if (isEmpty)
           comment.info[1] = ''
 
-        if (isEmpty && isLineCommentOnly) {
+        if (isEmpty && comment.isLineCommentOnly) {
           linesToRemove.push(comment.line)
         }
         else if (isEmpty && comment.isJsxStyle) {
@@ -95,8 +93,14 @@ export function createCommentNotationTransformer(
         }
       }
 
-      for (const line of linesToRemove)
-        code.children.splice(code.children.indexOf(line), 1)
+      for (const line of linesToRemove) {
+        const index = code.children.indexOf(line)
+        const nextLine = code.children[index + 1]
+        let removeLength = 1
+        if (nextLine?.type === 'text' && nextLine?.value === '\n')
+          removeLength = 2
+        code.children.splice(index, removeLength)
+      }
     },
   }
 }
