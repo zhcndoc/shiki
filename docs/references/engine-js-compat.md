@@ -2,11 +2,11 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Wednesday, February 5, 2025
+> Generated on Thursday, February 20, 2025
 >
-> 版本 `2.3.1`
+> 版本 `3.0.0`
 >
-> 运行环境：Node.js v22.13.1
+> 运行环境：Node.js v22.14.0
 
 ## 报告摘要
 
@@ -206,7 +206,7 @@
 | svelte             | ✅ OK           |               645 |               - |      |
 | system-verilog     | ✅ OK           |               102 |               - |      |
 | systemd            | ✅ OK           |                32 |               - |      |
-| talonscript        | ✅ OK           |                44 |               - |      |
+| talonscript        | ✅ OK           |                45 |               - |      |
 | tasl               | ✅ OK           |                23 |               - |      |
 | tcl                | ✅ OK           |                34 |               - |      |
 | templ              | ✅ OK           |               682 |               - |      |

@@ -87,6 +87,10 @@ const jsEngine = createJavaScriptRegexEngine({
 
 我们还提供预编译的语言，以进一步减少启动时间，而不是即时编译正则表达式。
 
+::: warning
+预编译语言尚不支持，因为存在一个影响许多语言的 [已知问题](https://github.com/shikijs/shiki/issues/918)。请谨慎使用。
+:::
+
 ::: info
 预编译语言需要支持 RegExp UnicodeSets（`v` 标志），这需要 **ES2024** 或 Node.js 20 及以上版本，可能在较旧的环境中无法工作。[Can I use](https://caniuse.com/mdn-javascript_builtins_regexp_unicodesets)。
 :::
