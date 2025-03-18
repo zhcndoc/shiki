@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/cli",
   "type": "module",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Shiki in the command line",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -43,10 +43,9 @@
   "dependencies": {
     "@shikijs/vscode-textmate": "catalog:prod",
     "ansis": "catalog:prod",
-    "minimist": "catalog:prod",
+    "cac": "catalog:prod",
     "shiki": "workspace:*"
   },
   "devDependencies": {
-    "@types/minimist": "catalog:types"
   }
 }
