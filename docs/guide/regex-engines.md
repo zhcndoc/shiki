@@ -37,7 +37,7 @@ const shiki = await createShiki({
 
 ## JavaScript 正则表达式引擎
 
-该引擎使用 JavaScript 的原生 `RegExp`。由于 TextMate 语法使用的正则表达式是为 Oniguruma 编写的，因此它们可能包含 JavaScript 的 `RegExp` 不支持的语法，或者对相同语法的行为期待不同。因此，我们使用 [Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 将 Oniguruma 模式转译为原生 JavaScript 正则表达式。
+该引擎使用 JavaScript 的原生 `RegExp`。由于 TextMate 语法使用的正则表达式是为 Oniguruma 编写的，我们使用 [Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) 将 Oniguruma 模式转译为原生 JavaScript 正则表达式。
 
 ```ts {2,4,9}
 import { createHighlighter } from 'shiki'
@@ -54,22 +54,24 @@ const shiki = await createHighlighter({
 const html = shiki.codeToHtml('const a = 1', { lang: 'javascript', theme: 'nord' })
 ```
 
-使用 JavaScript 引擎的优点是它不需要加载一个大型的 WebAssembly 文件用于 Oniguruma，并且对于某些语法来说运行速度更快（因为正则表达式作为本地 JavaScript 运行）。
+使用 JavaScript 引擎的优点是它不需要加载大型的 Oniguruma WebAssembly 文件，并且对于某些语言来说速度更快（因为正则表达式作为本地 JavaScript 运行）。
 
-请检查 [兼容性表](/references/engine-js-compat) 以了解您正在使用的语言的支持状态。
+请查看 [兼容性表](/references/engine-js-compat) 以获取您使用的语言的支持状态。几乎所有语言都受到支持。
 
-JavaScript 引擎默认是严格的，如果遇到无法转换的模式，它会抛出错误。如果不匹配是可以接受的，并且您希望对不支持的语法进行尽力而为的结果，可以启用 `forgiving` 选项以抑制任何转换错误：
+::: info
+JavaScript 引擎在浏览器中运行时表现最佳，尤其是在你想要控制包大小的情况下。如果你在 Node.js（或在构建时）运行 Shiki，并且对包大小或 WebAssembly 支持不关心，Oniguruma 引擎可以确保最大程度的语言兼容性。
+:::
+
+### 使用不支持的语言
+
+与 Oniguruma 引擎不同，JavaScript 引擎默认是严格的。如果遇到无效的 Oniguruma 模式或无法转换的模式，它将抛出错误。如果您希望对不支持的语法进行尽力而为的结果，可以启用 `forgiving` 选项以抑制任何转换错误：
 
 ```ts
 const jsEngine = createJavaScriptRegexEngine({ forgiving: true })
 // ...使用引擎
 ```
 
-::: info
-如果您在 Node.js（或构建时）运行 Shiki，并且包大小或 WebAssembly 支持不是问题，我们仍然建议使用 Oniguruma 引擎。
-
-JavaScript 引擎在浏览器中运行时及当您想要控制包大小时效果最佳。
-:::
+请谨慎使用此选项，因为可能会出现高亮不匹配的情况。
 
 ### JavaScript 运行时目标
 
@@ -92,7 +94,7 @@ const jsEngine = createJavaScriptRegexEngine({
 :::
 
 ::: info
-预编译语言需要支持 RegExp UnicodeSets（`v` 标志），这需要 **ES2024** 或 Node.js 20 及以上版本，可能在较旧的环境中无法工作。[Can I use](https://caniuse.com/mdn-javascript_builtins_regexp_unicodesets)。
+预编译语言需要支持 RegExp UnicodeSets（`v` 标志），这需要 ES2024 或 Node.js 20 及以上版本，可能在较旧的环境中无法工作。[Can I use](https://caniuse.com/mdn-javascript_builtins_regexp_unicodesets)。
 :::
 
 您可以使用 `@shikijs/langs-precompiled` 安装它们，并将您的 `@shikijs/langs` 导入更改为 `@shikijs/langs-precompiled`：
