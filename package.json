@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "version": "3.4.2",
+  "version": "3.6.0",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "lint": "eslint . --cache",
     "release": "bumpp",

@@ -146,4 +146,27 @@ const code = await codeToHtml('console.log("hello")', {
 
 在这种情况下，生成的 HTML 将没有默认样式，你需要添加自己的 CSS 来控制它们的颜色。
 
-当然，还可以通过 CSS 变量来控制主题；对此，你可以参考 [@mayank99](https://github.com/mayank99) 在[议题 #6](https://github.com/antfu/shikiji/issues/6) 中优秀的研究和示例。
+也可以通过 CSS 变量来控制主题。更多内容，请参考 [@mayank99](https://github.com/mayank99) 在 [这个问题 #6](https://github.com/antfu/shikiji/issues/6) 中的深入研究和示例。
+
+## `light-dark()` 函数
+
+你也可以使用 [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark) 函数来避免手动维护 CSS 变量。
+
+将 `defaultColor` 设置为特殊值 `light-dark()` 以使用它。使用此方法时，需要同时提供 `light` 和 `dark` 主题。
+
+```ts twoslash
+import { codeToHtml } from 'shiki'
+
+const code = await codeToHtml('console.log("hello")', {
+  lang: 'javascript',
+  themes: {
+    light: 'min-light',
+    dark: 'nord',
+  },
+  defaultColor: 'light-dark()', // [!code hl]
+})
+```
+
+:::info 兼容性注意
+`light-dark()` 函数相对较新，可能不被旧浏览器支持。[Can I use?](https://caniuse.com/?search=css-light-dark)
+:::
