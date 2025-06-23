@@ -114,6 +114,7 @@ const code = highlighter.codeToHtml('const a = 1', {
 
 ```ts twoslash
 import { createHighlighter } from 'shiki'
+
 const highlighter = await createHighlighter({ themes: [], langs: [] })
 // ---cut---
 // 在创建后加载主题和语言

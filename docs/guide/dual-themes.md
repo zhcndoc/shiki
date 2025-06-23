@@ -6,7 +6,7 @@ outline: deep
 
 Shiki 支持输出浅色和深色两个主题。与 [markdown-it-shiki](https://github.com/antfu/markdown-it-shiki#dark-mode) 将代码渲染两次的实现不同，Shiki 的多主题实现使用 CSS 变量来存储每个标签上的颜色；其在性能上更高效，并且包更小。
 
-将 `codeToHtml` 上的 `theme` 选项改为含 `light` 和 `dark` 两键的 `options` 来指定两个主题。
+将 `codeToHtml` 中的 `theme` 选项更改为 `themes`，并使用 `light` 和 `dark` 键以生成两个主题。
 
 ```ts twoslash
 import { codeToHtml } from 'shiki'

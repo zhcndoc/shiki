@@ -72,6 +72,7 @@ console.log(x)
 ```ts twoslash
 /* eslint-disable import/no-duplicates */
 import { DecorationItem } from 'shiki'
+
 function doSomethingWithCode(code: string): DecorationItem[] {
   return []
 }
