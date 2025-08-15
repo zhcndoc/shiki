@@ -63,11 +63,31 @@ const x = 10
 console.log(x)
 ```
 
-## 在转换器中使用代码装饰
+负字符位置表示从行末开始的字符，起始于行末：
 
-对于一些高级的用例，你可以使用[转换器 API](./transformers.md) 来完全控制标签和 HAST 树。
+```ts twoslash
+import { DecorationItem } from 'shiki'
+// ---cut---
+const item: DecorationItem = {
+  start: { line: 0, character: 0 },
+  end: { line: 0, character: -1 },
+  properties: { class: 'highlighted-word' }
+}
+```
 
-如果你想在转换器中添加代码装饰，你可以使用以下的方法：
+这突出了整行的第一行：
+
+```ts
+// @decorations:[{"start":{"line":0,"character":0},"end":{"line":0,"character":-1},"properties":{"class":"highlighted-word"}}]
+const x = 10
+console.log(x)
+```
+
+## 在变换器中使用装饰
+
+对于高级用例，您可以使用 [Transformers API](./transformers.md) 完全访问令牌和 HAST 树。
+
+同时，如果您想在变换器中附加装饰，可以使用：
 
 ```ts twoslash
 /* eslint-disable import/no-duplicates */

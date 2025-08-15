@@ -34,6 +34,10 @@ pnpm add -D @shikijs/vitepress-twoslash
 bun add -D @shikijs/vitepress-twoslash
 ```
 
+```sh [deno]
+deno add npm:@shikijs/vitepress-twoslash
+```
+
 :::
 
 在你的 [`vitepress/config.ts`](https://vitepress.zhcndoc.com/reference/site-config):

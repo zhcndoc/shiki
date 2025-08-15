@@ -6,7 +6,7 @@ outline: deep
 
 TextMate 语法基于匹配标记的正则表达式。更具体地说，它们假设将使用 [Oniguruma](https://github.com/kkos/oniguruma) （一个用 C 编写的强大正则表达式引擎）来解释正则表达式。为了在 JavaScript 中实现这一点，我们将 Oniguruma 编译为 WebAssembly 以在浏览器或 Node.js 中运行。
 
-自 v1.15 起，我们提供了让用户切换正则表达式引擎或提供自定义实现的功能。要实现这一点，请在 `createHighlighter` 或 `createHighlighterCore` 中添加 `engine` 选项。例如：
+Shiki 还提供切换正则表达式引擎或提供自定义实现的能力。为此，可以在 `createHighlighter` 或 `createHighlighterCore` 中添加一个 `engine` 选项。例如：
 
 ```ts
 import { createHighlighter } from 'shiki'
@@ -54,9 +54,9 @@ const shiki = await createHighlighter({
 const html = shiki.codeToHtml('const a = 1', { lang: 'javascript', theme: 'nord' })
 ```
 
-使用 JavaScript 引擎的优点是它不需要加载大型的 Oniguruma WebAssembly 文件，并且对于某些语言来说速度更快（因为正则表达式作为本地 JavaScript 运行）。
+使用 JavaScript 引擎的优点在于它不需要加载大型的 WebAssembly 文件来支持 Oniguruma。对于某些语言来说，它的速度也更快，因为正则表达式以原生 JavaScript 的形式运行。
 
-请查看 [兼容性表](/references/engine-js-compat) 以获取您使用的语言的支持状态。几乎所有语言都受到支持。
+请查看 [兼容性表](/references/engine-js-compat) 以了解您使用的语言的支持状态。截止到 Shiki 3.9.1，所有内置语言均已支持。
 
 ::: info
 JavaScript 引擎在浏览器中运行时表现最佳，尤其是在你想要控制包大小的情况下。如果你在 Node.js（或在构建时）运行 Shiki，并且对包大小或 WebAssembly 支持不关心，Oniguruma 引擎可以确保最大程度的语言兼容性。
@@ -71,7 +71,7 @@ const jsEngine = createJavaScriptRegexEngine({ forgiving: true })
 // ...使用引擎
 ```
 
-请谨慎使用此选项，因为可能会出现高亮不匹配的情况。
+这可能导致突出不匹配，因此请检查您的结果。
 
 ### JavaScript 运行时目标
 

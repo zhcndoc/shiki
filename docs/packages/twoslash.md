@@ -30,6 +30,10 @@ pnpm add -D @shikijs/twoslash
 bun add -D @shikijs/twoslash
 ```
 
+```sh [deno]
+deno add npm:@shikijs/twoslash
+```
+
 :::
 
 这个包是 shiki 的一个**转换器插件**，这意味着对于每个支持传递 shiki 转换器的集成，你都可以使用此包。
