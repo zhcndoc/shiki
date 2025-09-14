@@ -7,8 +7,8 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 import { version } from '../../package.json'
 import { transformerColorizedBrackets } from '../../packages/colorized-brackets/src'
 import { transformerMetaWordHighlight, transformerNotationWordHighlight, transformerRemoveNotationEscape } from '../../packages/transformers/src'
-import { createFileSystemTypesCache } from '../../packages/vitepress-twoslash/src/cache-fs'
-import { defaultHoverInfoProcessor, transformerTwoslash } from '../../packages/vitepress-twoslash/src/index'
+import { createTwoslashWithInlineCache } from '../../packages/vitepress-twoslash/src/cache-inline'
+import { defaultHoverInfoProcessor } from '../../packages/vitepress-twoslash/src/index'
 import vite from './vite.config'
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
@@ -71,8 +71,17 @@ const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] 
   },
 ]
 
+const withTwoslashInlineCache = createTwoslashWithInlineCache({
+  // errorRendering: 'hover',
+  processHoverInfo(info) {
+    return defaultHoverInfoProcessor(info)
+      // Remove shiki_core namespace
+      .replace(/_shikijs_core\w*\./g, '')
+  },
+})
+
 // https://vitepress.zhcndoc.com/reference/site-config
-export default withMermaid(defineConfig({
+export default withTwoslashInlineCache(withMermaid(defineConfig({
   title: 'Shiki 中文文档',
   lang: 'zh-CN',
   description: '一个美丽而强大的语法高亮显示器',
@@ -134,15 +143,6 @@ export default withMermaid(defineConfig({
           return code
         },
       },
-      transformerTwoslash({
-        // errorRendering: 'hover',
-        processHoverInfo(info) {
-          return defaultHoverInfoProcessor(info)
-            // Remove shiki_core namespace
-            .replace(/_shikijs_core\w*\./g, '')
-        },
-        typesCache: createFileSystemTypesCache(),
-      }),
       transformerRemoveNotationEscape(),
       transformerColorizedBrackets({ explicitTrigger: true }),
     ],
@@ -297,4 +297,4 @@ export default withMermaid(defineConfig({
       },
     ],
   ],
-}))
+})))
