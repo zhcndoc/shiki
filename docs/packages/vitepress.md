@@ -52,7 +52,7 @@ export default defineConfig({
       transformerTwoslash() // [!code hl]
     ],
     // [!code hl:2]
-    // 显式加载这些语言以便类型高亮
+    // Explicitly load these languages for types highlighting
     languages: ['js', 'jsx', 'ts', 'tsx']
   }
 })

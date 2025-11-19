@@ -358,6 +358,48 @@ pre.shiki .space::before {
 
 ---
 
+### `transformerRenderIndentGuides`
+
+将缩进渲染为单独的 span，类名为 `indent`。
+
+通过一些额外的 CSS 规则，你可以让它看起来像这样：
+
+<div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre v-pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0"><code><span class="line"><span style="color:#CB7676">function</span><span style="color:#80A665"> func</span><span style="color:#666666">()</span><span style="color:#666666"> {</span></span>
+<span class="line"><span class="indent">  </span><span style="color:#BD976A">console</span><span style="color:#666666">.</span><span style="color:#80A665">log</span><span style="color:#666666">(</span><span style="color:#4C9A91">1</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="indent" style="--indent-offset: 0ch;"></span></span>
+<span class="line"><span class="indent">  </span><span style="color:#4D9375">for</span><span style="color:#666666"> (</span><span style="color:#CB7676">const </span><span style="color:#BD976A">i</span><span style="color:#CB7676"> of</span><span style="color:#666666"> [])</span><span style="color:#666666"> {</span></span>
+<span class="line"><span class="indent">  </span><span class="indent">  </span><span style="color:#BD976A">console</span><span style="color:#666666">.</span><span style="color:#80A665">log</span><span style="color:#666666">(</span><span style="color:#4C9A91">2</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="indent">  </span><span style="color:#666666">}</span></span>
+<span class="line"><span style="color:#666666">}</span></span></code></pre></div>
+
+::: details Example CSS
+
+```css
+pre.shiki .indent {
+  display: inline-block;
+  position: relative;
+  left: var(--indent-offset);
+}
+
+pre.shiki .indent:empty {
+  height: 1lh;
+  vertical-align: bottom;
+}
+
+pre.shiki .indent::before {
+  content: '';
+  position: absolute;
+  opacity: 0.15;
+  width: 1px;
+  height: 100%;
+  background-color: currentColor;
+}
+```
+
+:::
+
+---
+
 ### `transformerMetaHighlight`
 
 根据代码片段上提供的[元字符串](/guide/transformers#元)，高亮显示行。
