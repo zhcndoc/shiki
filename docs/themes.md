@@ -4,9 +4,12 @@
 
 以下列出的主题来自 [`tm-themes`](https://github.com/antfu/textmate-grammars-themes/tree/main/packages/tm-themes)。
 
+> [!NOTE]
+> Shiki 并不控制或维护这些主题。如果你想为这些主题做出贡献，请参考 [`textmate-grammars-themes`](https://github.com/shikijs/textmate-grammars-themes#contribute)。
+
 <ThemesList />
 
-这些主题的许可证由其代码库覆盖，它们的许可证是宽松的 (Apache-2.0、MIT 等)，你可以在[此通知](https://github.com/antfu/textmate-grammars-themes/blob/main/packages/tm-grammars/NOTICE)中查看。
+主题受其各自仓库的许可协议（如 apache-2.0、mit 等）约束，并在[此 NOTICE](https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/NOTICE) 中提供。
 
 如果你要加载自定义语言，请参考[这个指南](/guide/load-theme)。
 

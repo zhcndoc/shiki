@@ -127,4 +127,4 @@ const html = await codeToHtml(code, {
 })
 ```
 
-注意，你只能在 `preprocess` 钩子添加代码装饰，在往后的钩子中，装饰数组的修改会被忽略。
+请注意，您只能在 `preprocess` 钩子中或之前提供装饰。在后续的钩子中，对装饰数组的更改将被忽略。

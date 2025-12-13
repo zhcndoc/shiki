@@ -544,3 +544,45 @@ CSS 输出：
   --shiki-light-bg: #ffffff;
 }
 ```
+
+### `transformerRemoveComments`
+
+从代码中移除注释。它通过检查内部语法标记元数据来确定该标记是否为注释。
+
+此转换器需要 `includeExplanation: true` 才能工作。
+
+```ts
+import { transformerRemoveComments } from '@shikijs/transformers'
+
+const html = await codeToHtml(code, {
+  lang: 'ts',
+  includeExplanation: true, // [!code highlight]
+  transformers: [
+    transformerRemoveComments(), // [!code highlight]
+  ],
+})
+```
+
+选项：
+
+- `removeEmptyLines`：在移除注释后，删除变为空的行。默认值为 `true`。
+
+例如：
+
+````md
+```js
+// This is a comment
+const x = 1 // Inline comment
+/* Block comment */
+const y = 2
+
+// Another comment
+```
+````
+
+将渲染为：
+
+```js
+const x = 1
+const y = 2
+```

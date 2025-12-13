@@ -86,7 +86,7 @@ Shiki 提供了 [两个引擎](/guide/regex-engines) 用于执行正则表达式
 
 ## 使用 Workers
 
-Shiki 使用正则表达式高亮显示代码，这可能是 CPU 密集型的。您可以将高亮工作卸载到 Web Worker/Node Worker，以避免阻塞主线程。
+Shiki 使用正则表达式高亮代码，这可能会占用大量 CPU。你可以将高亮工作卸载到 Web Worker/Node Worker，以避免阻塞主线程。
 
 ::: info
 

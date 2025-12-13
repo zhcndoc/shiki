@@ -11,7 +11,7 @@ import { createTwoslashWithInlineCache } from '../../packages/vitepress-twoslash
 import { defaultHoverInfoProcessor } from '../../packages/vitepress-twoslash/src/index'
 import vite from './vite.config'
 
-const GUIDES: DefaultTheme.NavItemWithLink[] = [
+const GUIDES = [
   { text: '快速开始', link: '/guide/' },
   { text: '安装和使用', link: '/guide/install' },
   { text: '捆绑包', link: '/guide/bundles' },
@@ -28,15 +28,15 @@ const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '自定义语言', link: '/guide/load-lang' },
   { text: '迁移', link: '/guide/migrate' },
   { text: '兼容性构建', link: '/guide/compat' },
-]
+] as const satisfies (DefaultTheme.NavItemWithLink | DefaultTheme.SidebarItem)[]
 
-const REFERENCES: DefaultTheme.NavItemWithLink[] = [
+const REFERENCES = [
   { text: '主题', link: '/themes' },
   { text: '语言', link: '/languages' },
   { text: 'JavaScript 引擎兼容性', link: '/references/engine-js-compat' },
-]
+] as const satisfies (DefaultTheme.NavItemWithLink | DefaultTheme.SidebarItem)[]
 
-const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [
+const INTEGRATIONS = [
   { text: 'TypeScript Twoslash', link: '/packages/twoslash' },
   { text: 'markdown-it', link: '/packages/markdown-it' },
   { text: 'Rehype', link: '/packages/rehype' },
@@ -49,7 +49,7 @@ const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [
   { text: '彩色括号', link: '/packages/colorized-brackets' },
   { text: '代码生成', link: '/packages/codegen' },
   { text: 'CLI', link: '/packages/cli' },
-]
+] as const satisfies (DefaultTheme.NavItemWithLink | DefaultTheme.SidebarItem)[]
 
 const BLOGS: DefaultTheme.NavItemWithLink[] = [
   { text: 'Shiki v3.0', link: '/blog/v3' },
@@ -188,25 +188,20 @@ export default withTwoslashInlineCache(withMermaid(defineConfig({
       },
     ],
 
-    sidebar: Object.assign(
-      {},
+    sidebar: [
       {
-        '/': [
-          {
-            text: '指南',
-            items: GUIDES,
-          },
-          {
-            text: '集成',
-            items: INTEGRATIONS,
-          },
-          {
-            text: '参考',
-            items: REFERENCES,
-          },
-        ],
+        text: '指南',
+        items: GUIDES,
       },
-    ),
+      {
+        text: '集成',
+        items: INTEGRATIONS,
+      },
+      {
+        text: '参考',
+        items: REFERENCES,
+      },
+    ] satisfies DefaultTheme.SidebarItem[],
 
     editLink: {
       pattern: 'https://github.com/zhcndoc/shiki/tree/main/docs/:path',

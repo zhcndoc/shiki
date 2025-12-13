@@ -6,7 +6,7 @@ outline: deep
 
 <Badges name="@shikijs/rehype" />
 
-适用于 [rehype](https://github.com/rehypejs/rehype) 的 Shiki 插件。
+[rehype](https://github.com/rehypejs/rehype) 的 Shiki 插件。
 
 ## 安装
 
@@ -49,7 +49,7 @@ const file = await unified()
   .use(remarkParse)
   .use(remarkRehype)
   .use(rehypeShiki, {
-    // 也可以是只有单个主题的 `theme` 字段
+    // 或者使用单个主题的 `theme`
     themes: {
       light: 'vitesse-light',
       dark: 'vitesse-dark',
@@ -59,11 +59,11 @@ const file = await unified()
   .process(await fs.readFile('./input.md'))
 ```
 
-`@shikijs/rehype` 的默认导出使用 `getSingletonHighlighter` 中的 `shiki` 共享实例，该实例将在进程之间保持不变。如果您想要完全控制高亮器的生命周期，请改用[细粒度捆绑包 `@shikijs/rehype/core`](#fine-grained-bundle)。
+`@shikijs/rehype` 的默认导出使用来自 `getSingletonHighlighter` 的共享 `shiki` 实例，该实例将在进程间保持。如果你希望完全控制高亮器的生命周期，请改用 [精细粒度打包 `@shikijs/rehype/core`](#fine-grained-bundle)。
 
-## 细粒度捆绑
+## 精细粒度打包
 
-默认情况下会导入完整的 `shiki` 捆绑包。如果你使用了[细粒度捆绑](/guide/bundles#细粒度捆绑)，你可以从 `@shikijs/rehype/core` 中导入 `rehypeShikiFromHighlighter` 并传入你自己的高亮器：
+默认情况下，会导入 `shiki` 的完整包。如果你使用的是[精细粒度打包](/guide/bundles#fine-grained-bundle)，你可以从 `@shikijs/rehype/core` 导入 `rehypeShikiFromHighlighter`，并传入你自己的高亮器：
 
 ```ts twoslash
 // @twoslash-cache: {"v":1,"hash":"141199456275121b3ddecb36bbeedc3ec800ba9c5d4c78ec0a3f651e44ac22ee","data":"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"}
@@ -84,7 +84,7 @@ const highlighter = await createHighlighterCore({
   langs: [
     import('@shikijs/langs/javascript'),
   ],
-  engine: createOnigurumaEngine(() => getWasm)
+  engine: createOnigurumaEngine(() => import('shiki/wasm'))
 })
 
 const raw = await fs.readFile('./input.md')
@@ -92,7 +92,7 @@ const file = await unified()
   .use(remarkParse)
   .use(remarkRehype)
   .use(rehypeShikiFromHighlighter, highlighter, {
-    // 也可以是只有单个主题的 `theme` 字段
+    // 或者使用单个主题的 `theme`
     themes: {
       light: 'vitesse-light',
       dark: 'vitesse-dark',
@@ -102,33 +102,16 @@ const file = await unified()
   .processSync(raw) // 也可以同步处理
 ```
 
-## 功能
-
-### 行高亮
-
-::: warning 警告
-已废弃，在 `v0.10.0` 版本中已被默认禁用，并会在下一个次版本 (minor) 中移除。应该考虑使用 [`transformerNotationHighlight`](/packages/transformers#transformernotationhighlight)。
-:::
-
-除了支持 `shiki` 的功能以外，此插件还支持行的高亮。你可以以 `{<line-numbers>}` 的格式在代码块语言标注后指定你要高亮的行；以逗号分隔行号 (`<line-number>`)，并用大括号包裹。每一个行号可以是一个单独的数 (如 `{2}` 会高亮第 2 行，`{1,4}` 会高亮第 1 行和第 4 行)，或者指定一个范围 (如 `{5-7}` 会高亮第 5 到第 7 行，`{1-3,5-6}` 会高亮第 1 行到第 3 行，及第 5 行到第 6 行)。例如：
-
-````md
-```js {1,3-4}
-console.log('1') // 高亮
-console.log('2')
-console.log('3') // 高亮
-console.log('4') // 高亮
-```
-````
+## 特性
 
 ### 行内代码
 
-你也可以使用 `inline` 选项来突出显示行内代码。
+你也可以通过 `inline` 选项高亮行内代码。
 
-| 选项                    | 示例             | 描述                                        |
-| ----------------------- | ---------------- | ------------------------------------------- |
-| `false`                 | -                | 禁用行内代码高亮（默认）                    |
-| `'tailing-curly-colon'` | `let a = 1{:js}` | 在代码块内部使用 `{:language}` 标记进行高亮 |
+| 选项                      | 示例               | 说明                                                        |
+| ------------------------- | ------------------ | ----------------------------------------------------------- |
+| `false`                   | -                  | 禁用行内代码高亮（默认）                                    |
+| `'tailing-curly-colon'`   | `let a = 1{:js}`   | 使用 `{:language}` 标记在代码块内进行高亮                   |
 
 在 Rehype 插件中启用 `inline`：
 
@@ -145,7 +128,7 @@ const file = await unified()
   .use(remarkParse)
   .use(remarkRehype)
   .use(rehypeShiki, {
-    inline: 'tailing-curly-colon', // or other options
+    inline: 'tailing-curly-colon', // 或其他选项
     // ...
   })
   .use(rehypeStringify)
@@ -155,5 +138,58 @@ const file = await unified()
 然后你可以在 markdown 中使用行内代码：
 
 ```md
-这段代码 `console.log("Hello World"){:js}` 将被高亮显示。
+This code `console.log("Hello World"){:js}` will be highlighted.
+```
+
+## 后处理转换器
+
+::: info
+`postprocess` 转换器钩子仅在生成 HTML 字符串（即使用 `codeToHtml`）时调用。由于 `@shikijs/rehype` 是基于 HAST（超文本抽象语法树）而非 HTML 字符串进行操作，所以不会执行 postprocess 转换器。
+:::
+
+这是有意为之：在 rehype 中运行 `postprocess` 钩子需要进行 HAST → HTML → 运行 postprocess → 解析回 HAST 的转换流程，这样会改变语义，可能让期望仅操作 HAST 的用户感到意外。
+
+### 针对基于 HTML 的后处理的解决方案
+
+如果你需要在 rehype 中执行基于 HTML 的后处理，可以使用一个 `root` 转换器，它：
+
+1. 使用 `hast-util-to-html` 将 HAST 片段转换成 HTML
+2. 运行你的 HTML 转换
+3. 使用 `hast-util-from-html` 转换回 HAST
+
+示例：
+
+```ts
+import { fromHtml } from 'hast-util-from-html'
+import { toHtml } from 'hast-util-to-html'
+
+const file = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeShiki, {
+    themes: {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark',
+    },
+    transformers: [
+      {
+        name: 'custom-html-postprocessor',
+        root(node) {
+          // 转换 HAST 到 HTML
+          const html = toHtml(node)
+
+          // 执行自定义 HTML 转换
+          const processedHtml = myCustomPostprocess(html)
+
+          // 解析回 HAST
+          const newNode = fromHtml(processedHtml, { fragment: true })
+
+          // 替换节点
+          return newNode
+        }
+      }
+    ]
+  })
+  .use(rehypeStringify)
+  .process(await fs.readFile('./input.md'))
 ```

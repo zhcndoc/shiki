@@ -20,7 +20,7 @@ console.log(html) // 高亮的 HTML 字符串
 您可以使用细粒度捆绑来创建自己的简写。以下是使用细粒度捆绑创建简写的示例：
 
 ```ts
-import { createdBundledHighlighter, createSingletonShorthands } from 'shiki/core'
+import { createBundledHighlighter, createSingletonShorthands } from 'shiki/core'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
 const BundledLanguage = {
@@ -35,7 +35,7 @@ const BundledTheme = {
 }
 
 // 这会使用细粒度捆绑创建您的自定义 'createHighlighter' 函数
-export const createHighlighter = /* @__PURE__ */ createdBundledHighlighter<
+export const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
   BundledLanguage,
   BundledTheme
 >({
