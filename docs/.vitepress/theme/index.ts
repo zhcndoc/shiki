@@ -30,6 +30,18 @@ export default {
           h('div', { class: 'i-ph-arrow-up-right mt--3 ml--1' }),
         ]),
       ]),
+      'aside-outline-before': () =>
+        h('div', {
+          class: 'wwads-cn wwads-vertical',
+          style: 'max-width: 200px; margin-top: 0; margin-bottom: 1rem;',
+          'data-id': '354'
+        }),
+      'doc-after': () =>
+        h('div', {
+          class: 'wwads-cn wwads-horizontal',
+          style: 'width: 100%; margin-top: 1rem;',
+          'data-id': '354'
+        })
     })
   },
 }
