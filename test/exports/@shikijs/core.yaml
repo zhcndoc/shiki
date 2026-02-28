@@ -8,15 +8,16 @@
   codeToTokensWithThemes: function
   createBundledHighlighter: function
   createCssVariablesTheme: function
-  createdBundledHighlighter: function
   createHighlighterCore: function
   createHighlighterCoreSync: function
   createPositionConverter: function
   createShikiInternal: function
   createShikiInternalSync: function
+  createShikiPrimitive: function
+  createShikiPrimitiveAsync: function
   createSingletonShorthands: function
-  enableDeprecationWarnings: function
   flatTokenVariants: function
+  getLastGrammarState: function
   getSingletonHighlighterCore: function
   getTokenStyleObject: function
   guessEmbeddedLanguages: function
@@ -40,7 +41,6 @@
   tokenizeWithTheme: function
   tokensToHast: function
   transformerDecorations: function
-  warnDeprecated: function
 ./textmate:
   disposeOnigString: function
   EncodedTokenMetadata: function

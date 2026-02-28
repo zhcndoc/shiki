@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/rehype",
   "type": "module",
-  "version": "3.22.0",
+  "version": "4.0.0",
   "description": "rehype integration for shiki",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -27,9 +27,12 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "prepublishOnly": "nr build"
   },
   "dependencies": {

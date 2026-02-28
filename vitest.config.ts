@@ -37,6 +37,7 @@ export default defineConfig({
         '**/node_modules/**',
         '**/dist/**',
         '**/scripts/**',
+        '**/*.test.ts',
 
         // Vendored code
         'packages/engine-oniguruma/src/oniguruma/onig.ts',

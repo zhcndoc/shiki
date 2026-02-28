@@ -23,6 +23,10 @@ describe('getExtFromUrl', () => {
     expect(getExtFromUrl('https://github.com/shikijs/shiki/blob/main/taze.config.ts?raw=true')).toBe('ts')
   })
 
+  it('normalizes extension casing', () => {
+    expect(getExtFromUrl('https://example.com/FILE.TS')).toBe('ts')
+  })
+
   it('invalid URL', () => {
     expect(getExtFromUrl('not-a-url')).toBe('')
   })
@@ -44,6 +48,15 @@ describe('readSource', () => {
 
   it('local file', async () => {
     const result = await readSource(testFile)
+    expect(result.content).toBe(testContent)
+    expect(result.ext).toBe('ts')
+  })
+
+  it('local file with uppercase extension', async () => {
+    const upperFile = path.join(testDir, 'UPPER.TS')
+    await fs.writeFile(upperFile, testContent)
+
+    const result = await readSource(upperFile)
     expect(result.content).toBe(testContent)
     expect(result.ext).toBe('ts')
   })
@@ -120,7 +133,7 @@ describe('run', () => {
     }))
 
     const output: string[] = []
-    await run(['node', 'shiki', '--lang', 'python', 'https://example.com/code'], msg => output.push(msg))
+    await run(['node', 'shiki', '--lang', 'PYTHON', 'https://example.com/code'], msg => output.push(msg))
 
     expect(output.length).toBe(1)
     expect(output[0]).toContain('print')
@@ -142,5 +155,23 @@ describe('run', () => {
     expect(output[0]).toContain('console')
 
     vi.unstubAllGlobals()
+  })
+
+  it('--list-themes', async () => {
+    const output: string[] = []
+    await run(['node', 'shiki', '--list-themes'], msg => output.push(msg))
+
+    expect(output.length).toBeGreaterThan(0)
+    expect(output).toContain('vitesse-dark')
+    expect(output).toContain('nord')
+  })
+
+  it('--list-langs', async () => {
+    const output: string[] = []
+    await run(['node', 'shiki', '--list-langs'], msg => output.push(msg))
+
+    expect(output.length).toBeGreaterThan(0)
+    expect(output).toContain('javascript')
+    expect(output).toContain('python')
   })
 })

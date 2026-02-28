@@ -14,7 +14,6 @@
   codeToTokensWithThemes: function
   createBundledHighlighter: function
   createCssVariablesTheme: function
-  createdBundledHighlighter: function
   createHighlighter: function
   createHighlighterCore: function
   createHighlighterCoreSync: function
@@ -23,9 +22,10 @@
   createPositionConverter: function
   createShikiInternal: function
   createShikiInternalSync: function
+  createShikiPrimitive: function
+  createShikiPrimitiveAsync: function
   createSingletonShorthands: function
   defaultJavaScriptRegexConstructor: function
-  enableDeprecationWarnings: function
   flatTokenVariants: function
   getLastGrammarState: function
   getSingletonHighlighter: function
@@ -53,7 +53,6 @@
   tokenizeWithTheme: function
   tokensToHast: function
   transformerDecorations: function
-  warnDeprecated: function
 ./bundle/full:
   addClassToHast: function
   applyColorReplacements: function
@@ -70,15 +69,15 @@
   codeToTokensWithThemes: function
   createBundledHighlighter: function
   createCssVariablesTheme: function
-  createdBundledHighlighter: function
   createHighlighter: function
   createHighlighterCore: function
   createHighlighterCoreSync: function
   createPositionConverter: function
   createShikiInternal: function
   createShikiInternalSync: function
+  createShikiPrimitive: function
+  createShikiPrimitiveAsync: function
   createSingletonShorthands: function
-  enableDeprecationWarnings: function
   flatTokenVariants: function
   getLastGrammarState: function
   getSingletonHighlighter: function
@@ -105,7 +104,6 @@
   tokenizeWithTheme: function
   tokensToHast: function
   transformerDecorations: function
-  warnDeprecated: function
 ./bundle/web:
   addClassToHast: function
   applyColorReplacements: function
@@ -122,15 +120,15 @@
   codeToTokensWithThemes: function
   createBundledHighlighter: function
   createCssVariablesTheme: function
-  createdBundledHighlighter: function
   createHighlighter: function
   createHighlighterCore: function
   createHighlighterCoreSync: function
   createPositionConverter: function
   createShikiInternal: function
   createShikiInternalSync: function
+  createShikiPrimitive: function
+  createShikiPrimitiveAsync: function
   createSingletonShorthands: function
-  enableDeprecationWarnings: function
   flatTokenVariants: function
   getLastGrammarState: function
   getSingletonHighlighter: function
@@ -157,7 +155,6 @@
   tokenizeWithTheme: function
   tokensToHast: function
   transformerDecorations: function
-  warnDeprecated: function
 ./core:
   addClassToHast: function
   applyColorReplacements: function
@@ -168,15 +165,16 @@
   codeToTokensWithThemes: function
   createBundledHighlighter: function
   createCssVariablesTheme: function
-  createdBundledHighlighter: function
   createHighlighterCore: function
   createHighlighterCoreSync: function
   createPositionConverter: function
   createShikiInternal: function
   createShikiInternalSync: function
+  createShikiPrimitive: function
+  createShikiPrimitiveAsync: function
   createSingletonShorthands: function
-  enableDeprecationWarnings: function
   flatTokenVariants: function
+  getLastGrammarState: function
   getSingletonHighlighterCore: function
   getTokenStyleObject: function
   guessEmbeddedLanguages: function
@@ -200,7 +198,6 @@
   tokenizeWithTheme: function
   tokensToHast: function
   transformerDecorations: function
-  warnDeprecated: function
 ./engine/javascript:
   createJavaScriptRawEngine: function
   createJavaScriptRegexEngine: function

@@ -2,10 +2,10 @@
 
 所有内置语法与 [JavaScript RegExp 引擎](/guide/regex-engines#javascript-regexp-engine) 的兼容性参考。
 
-> Generated on Monday, December 1, 2025
->
-> 版本 `3.17.0`
->
+> 生成于 2025 年 12 月 1 日 星期一  
+>  
+> 版本 `3.17.0`  
+>  
 > 运行环境：Node.js v24.8.0
 
 ## 报告摘要
@@ -19,7 +19,7 @@
 
 ## 支持的语言
 
-与 JavaScript RegExp 引擎兼容的语言，并且将产生与 WASM 引擎相同的结果（使用 [注册表中的示例代码片段](https://github.com/shikijs/textmate-grammars-themes/tree/main/samples)）。
+与 JavaScript RegExp 引擎兼容的语言，并且将产生与 WASM 引擎相同的结果（使用 [注册表中的示例代码片段](https://github.com/shikijs/textmate-grammars-themes/tree/main/samples)）。  
 在某些边缘情况下，不能保证高亮显示会完全相同。如果发生这种情况，请创建一个包含示例代码片段的问题。
 
 | Language           | Highlight Match | Patterns Parsable | Patterns Failed | Diff |
@@ -248,7 +248,7 @@
 | zenscript          | ✅ OK           |                21 |               - |      |
 | zig                | ✅ OK           |                51 |               - |      |
 
-###### 表格字段说明
+### 表格字段说明
 
 - **Highlight Match**: 高亮显示结果是否与 WASM 引擎匹配（使用 [注册表中的示例代码片段](https://github.com/shikijs/textmate-grammars-themes/tree/main/samples)）。
 - **Patterns Parsable**: JavaScript RegExp 引擎可以解析的正则表达式模式数量。

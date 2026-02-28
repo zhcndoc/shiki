@@ -1,7 +1,7 @@
 {
   "name": "@shikijs/engine-oniguruma",
   "type": "module",
-  "version": "3.22.0",
+  "version": "4.0.0",
   "description": "Engine for Shiki using Oniguruma RegExp engine in WebAssembly",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -28,6 +28,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -cw",

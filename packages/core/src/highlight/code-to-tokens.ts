@@ -1,10 +1,9 @@
-import type { CodeOptionsMultipleThemes, CodeToTokensOptions, GrammarState, ShikiInternal, StringLiteralUnion, ThemedToken, ThemeRegistrationAny, TokensResult } from '@shikijs/types'
+import type { CodeOptionsMultipleThemes, CodeToTokensOptions, GrammarState, ShikiPrimitive, StringLiteralUnion, ThemedToken, ThemeRegistrationAny, TokensResult } from '@shikijs/types'
+import { codeToTokensWithThemes, getLastGrammarStateFromMap, setLastGrammarStateToMap } from '@shikijs/primitive'
 import { ShikiError } from '@shikijs/types'
-import { getLastGrammarStateFromMap, setLastGrammarStateToMap } from '../textmate/grammar-state'
 import { applyColorReplacements, flatTokenVariants, resolveColorReplacements } from '../utils'
-import { DEFAULT_COLOR_LIGHT_DARK } from '../utils/_constants'
+import { DEFAULT_COLOR_LIGHT_DARK } from '../utils/constants'
 import { codeToTokensBase } from './code-to-tokens-base'
-import { codeToTokensWithThemes } from './code-to-tokens-themes'
 
 /**
  * High-level code-to-tokens API.
@@ -12,7 +11,7 @@ import { codeToTokensWithThemes } from './code-to-tokens-themes'
  * It will use `codeToTokensWithThemes` or `codeToTokensBase` based on the options.
  */
 export function codeToTokens(
-  internal: ShikiInternal,
+  primitive: ShikiPrimitive,
   code: string,
   options: CodeToTokensOptions,
 ): TokensResult {
@@ -40,7 +39,7 @@ export function codeToTokens(
       throw new ShikiError('`themes` option must not be empty')
 
     const themeTokens = codeToTokensWithThemes(
-      internal,
+      primitive,
       code,
       options,
     )
@@ -50,7 +49,7 @@ export function codeToTokens(
     if (defaultColor && DEFAULT_COLOR_LIGHT_DARK !== defaultColor && !themes.find(t => t.color === defaultColor))
       throw new ShikiError(`\`themes\` option must contain the defaultColor key \`${defaultColor}\``)
 
-    const themeRegs = themes.map(t => internal.getTheme(t.theme))
+    const themeRegs = themes.map(t => primitive.getTheme(t.theme))
     const themesOrder = themes.map(t => t.color)
     tokens = themeTokens
       .map(line => line.map(token => flatTokenVariants(token, themesOrder, cssVariablePrefix, defaultColor, colorsRendering)))
@@ -70,12 +69,12 @@ export function codeToTokens(
     const colorReplacements = resolveColorReplacements(options.theme, options)
 
     tokens = codeToTokensBase(
-      internal,
+      primitive,
       code,
       options,
     )
 
-    const _theme = internal.getTheme(options.theme)
+    const _theme = primitive.getTheme(options.theme)
     bg = applyColorReplacements(_theme.bg, colorReplacements)
     fg = applyColorReplacements(_theme.fg, colorReplacements)
     themeName = _theme.name

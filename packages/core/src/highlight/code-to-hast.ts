@@ -2,7 +2,7 @@ import type {
   CodeToHastOptions,
   CodeToHastRenderOptions,
   GrammarState,
-  ShikiInternal,
+  ShikiPrimitive,
   ShikiTransformerContext,
   ShikiTransformerContextCommon,
   ShikiTransformerContextSource,
@@ -14,21 +14,21 @@ import type {
   Text,
 } from 'hast'
 
+import { getLastGrammarStateFromMap, setLastGrammarStateToMap } from '@shikijs/primitive'
 import { FontStyle } from '@shikijs/vscode-textmate'
-import { getLastGrammarStateFromMap, setLastGrammarStateToMap } from '../textmate/grammar-state'
 import { addClassToHast, getTokenStyleObject, stringifyTokenStyle } from '../utils'
 import { getTransformers } from './_get-transformers'
 import { codeToTokens } from './code-to-tokens'
 
 export function codeToHast(
-  internal: ShikiInternal,
+  primitive: ShikiPrimitive,
   code: string,
   options: CodeToHastOptions,
   transformerContext: ShikiTransformerContextCommon = {
     meta: {},
     options,
-    codeToHast: (_code, _options) => codeToHast(internal, _code, _options),
-    codeToTokens: (_code, _options) => codeToTokens(internal, _code, _options),
+    codeToHast: (_code, _options) => codeToHast(primitive, _code, _options),
+    codeToTokens: (_code, _options) => codeToTokens(primitive, _code, _options),
   },
 ): Root {
   let input = code
@@ -43,7 +43,7 @@ export function codeToHast(
     themeName,
     rootStyle,
     grammarState,
-  } = codeToTokens(internal, input, options)
+  } = codeToTokens(primitive, input, options)
 
   const {
     mergeWhitespaces = true,

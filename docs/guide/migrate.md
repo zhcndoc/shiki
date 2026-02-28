@@ -6,6 +6,10 @@ outline: deep
 
 我们建议您逐步迁移，按照每个版本的迁移指南进行操作。
 
+## 从 v3.0 迁移
+
+如果您当前使用的是 v3.0，v4.0 只是不再支持 Node.js 18 并移除了已弃用的 API，因此您应该可以直接升级到 v4.0。更多详情请阅读 [Shiki v4.0](/blog/v4)。
+
 ## 从 v2.0 迁移
 
 如果您在 v2.0 上且在使用中没有警告，您应该能够直接升级到 v3.0，详细信息请阅读 [Shiki v3.0](/blog/v3)。
@@ -18,7 +22,7 @@ outline: deep
 
 Shiki 的 v1.0 版本是一次重大的重写，我们利用这个机会重新审视了过去做出的每一个设计决策。我们最初有一个单独的包名 [Shikiji](https://github.com/antfu/shikiji) 来实验新的设计，现在它已合并回 Shiki，成为 v1.0。
 
-> [!TIP] 了解更多
+> [!TIP] 了解更多  
 > 有兴趣了解 v1.0 背后的故事吗？请查看这篇 [博客文章](https://nuxt.com/blog/shiki-v1) 获取更多细节。
 
 与 [`shiki@0.14.3`](https://github.com/shikijs/shiki/releases/tag/v0.14.3) 相比，破坏性变更的列表如下：

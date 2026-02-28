@@ -25,7 +25,7 @@ const highlightedType = shiki.codeToHtml(
 
 <img width="223" alt="image" src="https://github.com/shikijs/shiki/assets/11247099/c896c2ae-2a88-428b-9d06-2d2552eaae8b">
 
-### 语法上下文代码
+## 语法上下文代码
 
 对于一次性的语法上下文切换，我们也提供了通过 `grammarContextCode` 选项的简便方法：
 

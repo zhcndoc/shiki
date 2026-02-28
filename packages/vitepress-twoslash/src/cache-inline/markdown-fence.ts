@@ -16,7 +16,7 @@ export interface MarkdownFenceSourceMapCodec {
   /**
    * Injects source map data into the markdown source.
    * @param code markdown source
-   * @param injects map of inject positions to source maps
+   * @param path markdown file path
    * @returns markdown source with injected source maps
    */
   injectToMarkdown: (code: string, path: string) => string
