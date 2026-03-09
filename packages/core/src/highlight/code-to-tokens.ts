@@ -42,6 +42,7 @@ export function codeToTokens(
       primitive,
       code,
       options,
+      codeToTokensBase,
     )
 
     grammarState = getLastGrammarStateFromMap(themeTokens)
