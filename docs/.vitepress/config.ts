@@ -11,6 +11,10 @@ import { createTwoslashWithInlineCache } from '../../packages/vitepress-twoslash
 import { defaultHoverInfoProcessor } from '../../packages/vitepress-twoslash/src/index'
 import vite from './vite.config'
 
+const RE_SHIKIJS_CORE = /_shikijs_core\w*\./g
+const RE_THEME_META = /\btheme:([\w,-]+)\b/
+const RE_DECORATIONS_META = /^\/\/ @decorations:(.*)\n/
+
 const GUIDES = [
   { text: 'Getting Started', link: '/guide/' },
   { text: 'Installation & Usage', link: '/guide/install' },
@@ -79,7 +83,7 @@ const withTwoslashInlineCache = createTwoslashWithInlineCache({
   processHoverInfo(info) {
     return defaultHoverInfoProcessor(info)
       // Remove shiki_core namespace
-      .replace(/_shikijs_core\w*\./g, '')
+      .replace(RE_SHIKIJS_CORE, '')
   },
 })
 
@@ -104,8 +108,7 @@ export default withTwoslashInlineCache(withMermaid(defineConfig({
         // Render custom themes with codeblocks
         name: 'shiki:inline-theme',
         preprocess(code, options) {
-          const reg = /\btheme:([\w,-]+)\b/
-          const match = options.meta?.__raw?.match(reg)
+          const match = options.meta?.__raw?.match(RE_THEME_META)
           if (!match?.[1])
             return
           const theme = match[1]
@@ -136,8 +139,7 @@ export default withTwoslashInlineCache(withMermaid(defineConfig({
       {
         name: 'shiki:inline-decorations',
         preprocess(code, options) {
-          const reg = /^\/\/ @decorations:(.*)\n/
-          code = code.replace(reg, (_match, decorations) => {
+          code = code.replace(RE_DECORATIONS_META, (_match, decorations) => {
             options.decorations ||= []
             options.decorations.push(...JSON.parse(decorations))
             return ''
