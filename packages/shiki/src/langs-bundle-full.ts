@@ -805,7 +805,7 @@ export const bundledLanguagesInfo: BundledLanguageInfo[] = [
   },
   {
     'id': 'nextflow-groovy',
-    'name': 'nextflow-groovy',
+    'name': 'Nextflow Groovy',
     'import': (() => import('@shikijs/langs/nextflow-groovy')) as DynamicImportLanguageRegistration
   },
   {

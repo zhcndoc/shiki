@@ -3,6 +3,11 @@ import { EmulatedRegExp } from 'oniguruma-to-es'
 import { loadLangs } from '../../langs/scripts/langs'
 import { precompileGrammar } from './precompile'
 
+const RE_NON_WORD = /\W/g
+const RE_MULTIPLE_NEWLINES = /\n{2,}/g
+const RE_VALID_FILENAME = /^[\w-]+$/
+const RE_VALID_IDENTIFIER = /^[a-z_$][\w$]*$/i
+
 export async function prepareLangs() {
   const resolvedLangs = await loadLangs()
   const exportedFileNames: string[] = []
@@ -10,7 +15,7 @@ export async function prepareLangs() {
   for (const json of resolvedLangs) {
     const deps: string[] = json.embeddedLangs || []
     const depsStr = [
-      ...deps.map(i => `...${i.replace(/\W/g, '_')}`),
+      ...deps.map(i => `...${i.replace(RE_NON_WORD, '_')}`),
       'lang',
     ].join(',\n') || ''
 
@@ -32,12 +37,12 @@ throw new Error("${json.name} is not supported due to the grammar limits")
 `
         : `
 ${precompiledStr.includes('new EmulatedRegExp') ? 'import { EmulatedRegExp } from \'oniguruma-to-es\'' : ''}
-${deps.map(i => `import ${i.replace(/\W/g, '_')} from './${i}.mjs'`).join('\n')}
+${deps.map(i => `import ${i.replace(RE_NON_WORD, '_')} from './${i}.mjs'`).join('\n')}
 
 const lang = Object.freeze(${precompiledStr})
 
 export default [\n${depsStr}\n]
-`.replace(/\n{2,}/g, '\n\n').trimStart(),
+`.replace(RE_MULTIPLE_NEWLINES, '\n\n').trimStart(),
       'utf-8',
     )
 
@@ -106,7 +111,7 @@ export const languageAliasNames: string[]
 }
 
 function isInvalidFilename(filename: string) {
-  return !filename.match(/^[\w-]+$/)
+  return !filename.match(RE_VALID_FILENAME)
 }
 
 export function toJsLiteral(value: any, seen = new Set()): string {
@@ -178,8 +183,7 @@ export function toJsLiteral(value: any, seen = new Set()): string {
  */
 function safeKey(key: string) {
   // A simple check for valid identifier names
-  const validIdentifier = /^[a-z_$][\w$]*$/i
-  if (validIdentifier.test(key)) {
+  if (RE_VALID_IDENTIFIER.test(key)) {
     return key // leave as is
   }
   // otherwise, wrap in quotes

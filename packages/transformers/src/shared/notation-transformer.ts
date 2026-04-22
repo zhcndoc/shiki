@@ -28,9 +28,7 @@ export function createCommentNotationTransformer(
   ) => boolean,
   matchAlgorithm: MatchAlgorithm | undefined,
 ): ShikiTransformer {
-  if (matchAlgorithm == null) {
-    matchAlgorithm = 'v3'
-  }
+  matchAlgorithm ??= 'v3'
 
   return {
     name,

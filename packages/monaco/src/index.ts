@@ -5,6 +5,8 @@ import { EncodedTokenMetadata, FontStyle, INITIAL } from '@shikijs/vscode-textma
 import { TokenizerState } from './tokenizer'
 import { normalizeColor } from './utils'
 
+const RE_FONT_STYLE_SPLIT = /[\s,]+/
+
 export interface MonacoTheme extends monacoNs.editor.IStandaloneThemeData { }
 
 export interface ShikiToMonacoOptions {
@@ -207,7 +209,7 @@ function normalizeFontStyleString(fontStyle?: string): string {
 
   const styles = new Set(
     fontStyle
-      .split(/[\s,]+/)
+      .split(RE_FONT_STYLE_SPLIT)
       .map(style => style.trim().toLowerCase())
       .map(style => VALID_FONT_ALIASES[style] || style)
       .filter(Boolean),

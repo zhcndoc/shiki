@@ -7,6 +7,8 @@ import { useLocalStorage } from '@vueuse/core'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref, shallowRef, watch } from 'vue'
 
+const RE_IMPORT_FROM = /\n.*?from.*$/i
+
 export const usePlayground = defineStore('playground', () => {
   const lang = useLocalStorage<BundledLanguage>('shiki-playground-lang', 'typescript')
   const theme = useLocalStorage<BundledTheme>('shiki-playground-theme', 'vitesse-dark')
@@ -70,7 +72,7 @@ export const usePlayground = defineStore('playground', () => {
         if ((o[0] || !input.value) && n[0] !== o[0]) {
           const sample = await fetchSample(lang.value)
           if (sample)
-            input.value = sample.trim().replace(/\n.*?from.*$/i, '').trim()
+            input.value = sample.trim().replace(RE_IMPORT_FROM, '').trim()
         }
         run()
       }, { immediate: true })

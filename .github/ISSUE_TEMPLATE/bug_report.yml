@@ -27,7 +27,7 @@ body:
       placeholder: Bug description
     validations:
       required: true
-  - type: input
+  - type: textarea
     id: reproduction
     attributes:
       label: Reproduction

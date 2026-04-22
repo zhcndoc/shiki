@@ -3,6 +3,8 @@ import { dirname, resolve } from 'node:path'
 import { cac } from 'cac'
 import { codegen } from '.'
 
+const RE_TYPESCRIPT_EXT = /\.[cm]?ts$/i
+
 const cli = cac('shiki-codegen')
 
 cli
@@ -25,7 +27,7 @@ cli
       .map(theme => theme.trim())
       .filter(Boolean)
 
-    const isTypeScript = !!output.match(/\.[cm]?ts$/i)
+    const isTypeScript = !!output.match(RE_TYPESCRIPT_EXT)
 
     if (!themes.length) {
       throw new Error('No themes specified, use --themes=theme-name to specify themes')
