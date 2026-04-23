@@ -533,6 +533,9 @@ importers:
       floating-vue:
         specifier: catalog:docs
         version: 5.2.2(vue@3.5.29(typescript@5.9.3))
+      markdown-it-async:
+        specifier: catalog:integrations
+        version: 2.2.0
       pinia:
         specifier: catalog:cli
         version: 3.0.4(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3))

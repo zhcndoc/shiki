@@ -15,6 +15,7 @@
     "@unocss/reset": "catalog:docs",
     "@vueuse/core": "catalog:docs",
     "floating-vue": "catalog:docs",
+    "markdown-it-async": "catalog:integrations",
     "pinia": "catalog:cli",
     "tm-grammars": "catalog:inlined",
     "tm-themes": "catalog:inlined",
