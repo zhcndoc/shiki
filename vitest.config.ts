@@ -1,13 +1,12 @@
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 import { wasmPlugin } from './packages/engine-oniguruma/rollup.config.mjs'
 
 export default defineConfig({
   plugins: [
     wasmPlugin(),
-    tsconfigPaths(),
   ],
   resolve: {
+    tsconfigPaths: true,
     alias: {
       '@shikijs/engine-oniguruma/wasm-inlined': new URL('./packages/engine-oniguruma/src/wasm-inlined.ts', import.meta.url).pathname,
     },
