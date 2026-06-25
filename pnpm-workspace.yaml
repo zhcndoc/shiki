@@ -19,7 +19,7 @@ packages:
   - docs
 
 overrides:
-  semver: ^7.8.1
+  semver: ^7.8.5
 
 catalogs:
   bundling:
@@ -36,16 +36,16 @@ catalogs:
     '@vitejs/plugin-react': ^6.0.2
     '@vitejs/plugin-vue': ^6.0.7
     babel-preset-solid: ^1.9.12
-    baseline-browser-mapping: ^2.10.33
-    esbuild: ^0.28.0
+    baseline-browser-mapping: ^2.10.38
+    esbuild: ^0.28.1
     pathe: ^2.0.3
-    rolldown-plugin-dts: ^0.25.2
-    rollup: ^4.61.0
+    rolldown-plugin-dts: ^0.26.0
+    rollup: ^4.62.2
     rollup-plugin-copy: ^3.5.0
     rollup-plugin-dts: ^6.4.1
     rollup-plugin-esbuild: ^6.2.1
     tinyexec: ^1.2.4
-    tsdown: ^0.22.1
+    tsdown: ^0.22.3
     unbuild: ^3.6.1
     vite: ^8.0.16
     vite-plugin-solid: ^2.11.12
@@ -53,34 +53,34 @@ catalogs:
     '@antfu/eslint-config': ^9.0.0
     '@antfu/ni': ^30.1.0
     bumpp: ^11.1.0
-    eslint: ^10.4.1
+    eslint: ^10.5.0
     eslint-plugin-format: ^2.0.1
     jiti: ^2.7.0
-    lint-staged: ^17.0.7
+    lint-staged: ^17.0.8
     pinia: ^3.0.4
-    pnpm: ^11.5.0
-    prettier: ^3.8.3
+    pnpm: ^11.8.0
+    prettier: ^3.8.4
     rimraf: ^6.1.3
     simple-git-hooks: ^2.13.1
     taze: ^19.14.1
     tsx: ^4.22.4
     typescript: ^6.0.3
-    vue-tsc: ^3.3.3
-    wrangler: ^4.97.0
+    vue-tsc: ^3.3.5
+    wrangler: ^4.103.0
   docs:
-    '@unocss/reset': ^66.7.0
+    '@unocss/reset': ^66.7.2
     '@vueuse/core': ^14.3.0
     floating-vue: ^5.2.2
-    fuse.js: ^7.4.1
-    unocss: ^66.7.0
+    fuse.js: ^7.4.2
+    unocss: ^66.7.2
     unplugin-vue-components: ^32.1.0
     vitepress: ^2.0.0-alpha.17
     vitepress-plugin-group-icons: ^1.7.5
     vitepress-plugin-mermaid: ^2.0.17
-    vue: ^3.5.35
+    vue: ^3.5.38
   icons:
-    '@iconify-json/carbon': ^1.2.22
-    '@iconify-json/codicon': ^1.2.58
+    '@iconify-json/carbon': ^1.2.23
+    '@iconify-json/codicon': ^1.2.62
     '@iconify-json/ph': ^1.2.2
     '@iconify-json/svg-spinners': ^1.2.4
   inlined:
@@ -110,9 +110,9 @@ catalogs:
     remark-parse: ^11.0.0
     remark-rehype: ^11.1.2
     solid-js: ^1.9.13
-    svelte: ^5.56.1
-    twoslash: ^0.3.8
-    twoslash-vue: ^0.3.8
+    svelte: ^5.56.3
+    twoslash: ^0.3.9
+    twoslash-vue: ^0.3.9
     unified: ^11.0.5
     unist-util-visit: ^5.1.0
   prod:
@@ -121,22 +121,21 @@ catalogs:
     cac: ^7.0.0
     oniguruma-to-es: ^4.3.6
   testing:
-    '@vitest/coverage-v8': ^4.1.8
+    '@vitest/coverage-v8': ^4.1.9
     diff-match-patch-es: ^1.0.1
     fast-glob: ^3.3.3
     fs-extra: ^11.3.5
     happy-dom: ^20.10.6
-    js-yaml: ^4.2.0
-    vitest: ^4.1.8
+    js-yaml: ^5.1.0
+    vitest: ^4.1.9
     vitest-package-exports: ^1.2.0
   types:
     '@types/fs-extra': ^11.0.4
     '@types/hast': ^3.0.4
-    '@types/js-yaml': ^4.0.9
     '@types/markdown-it': ^14.1.2
     '@types/mdast': ^4.0.4
-    '@types/node': ^25.9.1
-    '@types/react': ^19.2.16
+    '@types/node': ^26.0.0
+    '@types/react': ^19.2.17
     '@types/react-dom': ^19.2.3
     '@types/unist': ^3.0.3
 onlyBuiltDependencies:

@@ -2,7 +2,7 @@
   "type": "module",
   "version": "4.2.0",
   "private": true,
-  "packageManager": "pnpm@11.5.0",
+  "packageManager": "pnpm@11.8.0",
   "engines": {
     "node": ">=20"
   },
@@ -44,7 +44,6 @@
     "@sveltejs/vite-plugin-svelte": "catalog:bundling",
     "@types/fs-extra": "catalog:types",
     "@types/hast": "catalog:types",
-    "@types/js-yaml": "catalog:types",
     "@types/markdown-it": "catalog:types",
     "@types/node": "catalog:types",
     "@vitest/coverage-v8": "catalog:testing",
