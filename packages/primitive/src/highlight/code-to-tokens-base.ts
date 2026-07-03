@@ -134,6 +134,7 @@ function _tokenizeWithTheme(
   const {
     tokenizeMaxLineLength = 0,
     tokenizeTimeLimit = 500,
+    includeExplanation = false,
   } = options
 
   const lines = splitLines(code)
@@ -181,7 +182,7 @@ function _tokenizeWithTheme(
     let tokensWithScopes
     let tokensWithScopesIndex
 
-    if (options.includeExplanation) {
+    if (includeExplanation && includeExplanation !== 'tokenType') {
       resultWithScopes = grammar.tokenizeLine(line, stateStack, tokenizeTimeLimit)
       tokensWithScopes = resultWithScopes.tokens
       tokensWithScopesIndex = 0
@@ -210,10 +211,13 @@ function _tokenizeWithTheme(
         fontStyle,
       }
 
-      if (options.includeExplanation) {
+      if (includeExplanation === 'tokenType') {
+        token.type = EncodedTokenMetadata.getTokenType(metadata)
+      }
+      else if (includeExplanation) {
         const themeSettingsSelectors: ThemeSettingsSelectors[] = []
 
-        if (options.includeExplanation !== 'scopeName') {
+        if (includeExplanation !== 'scopeName') {
           for (const setting of theme.settings) {
             let selectors: string[]
             switch (typeof setting.scope) {
@@ -246,7 +250,7 @@ function _tokenizeWithTheme(
           offset += tokenWithScopesText.length
           token.explanation.push({
             content: tokenWithScopesText,
-            scopes: options.includeExplanation === 'scopeName'
+            scopes: includeExplanation === 'scopeName'
               ? explainThemeScopesNameOnly(
                   tokenWithScopes.scopes,
                 )
