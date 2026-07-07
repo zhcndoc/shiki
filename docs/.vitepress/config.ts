@@ -52,6 +52,8 @@ const INTEGRATIONS = [
   { text: 'Astro', link: '/packages/astro' },
   { text: '常用转换器', link: '/packages/transformers' },
   { text: '彩色括号', link: '/packages/colorized-brackets' },
+  { text: '魔法移动', link: '/packages/magic-move' },
+  { text: 'Stream', link: '/packages/stream' },
   { text: '代码生成', link: '/packages/codegen' },
   { text: 'CLI', link: '/packages/cli' },
 ] as const satisfies (DefaultTheme.NavItemWithLink | DefaultTheme.SidebarItem)[]
@@ -158,7 +160,7 @@ export default withTwoslashInlineCache(withMermaid(defineConfig({
   },
 
   cleanUrls: true,
-  vite,
+  vite: vite as any,
 
   sitemap: {
     hostname: 'https://shiki.zhcndoc.com',

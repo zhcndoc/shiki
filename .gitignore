@@ -4,6 +4,9 @@
 *.log
 *.tgz
 .temp
+.ghfs
+.omo
+.context
 coverage
 dist
 lib-cov

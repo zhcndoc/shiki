@@ -6,7 +6,7 @@ outline: deep
 
 <Badges name="@shikijs/transformers" />
 
-受 [shiki-processor](https://github.com/innocenzi/shiki-processor) 启发，为 Shiki 设计的常用转换器 (Transformers) 的集合。
+受 [shiki-processor](https://github.com/innocenzi/shiki-processor) 启发，为 Shiki 设计的常用转换器（Transformers）集合。
 
 ## 安装
 
@@ -37,7 +37,7 @@ deno add npm:@shikijs/transformers
 ## 使用方法
 
 ```ts twoslash
-// @twoslash-cache: {"v":1,"hash":"8efec5d385627b3d23e03e4c9bdf13f9a3c80178f3105cfb878cd54cef1eacb9","data":"N4Igdg9gJgpgziAXAbVAFwJ4AcZJACwgDcYAnEAGhDRgA808AKAQwBsBLZuASgAIAzAK5gAxmnYQwvNKWZg4/CKQC2ZAHIQ0zcZIAi7fv0YQsO+QH5EvACqz5iles3aJYfYYDyp1zysBlfHYAa3ZbOQUlVVIAHTB2ZSwlNGk7CMdSDS0zd35KECgIEQREEABVOBheAANkAEIRaEqAaiaAXSreOShquobYXgBaAfbpCF5lZlIgzqhYbq7eUhhlYhhujjB4ADo8uC1SBkQAZgAWKlYYMABzNHwkACYjqn2rmEPqVIcozJc9A1zzuxNg8qCJ8JNmGIyA8AL4UdDYXAlQgkcjPOjvFgcLh8BryZJ9GDWCAACTQylYVkYhKse1IQKuFF4JjMcCsAGFGsSSVw0F5WQAeABCwigFygABk5FdBMxXkyRWAxWtrPhljAAHx8AC8Gt4AAVSBBlOwKgK6QyNbF4okDrxCdzyaxdvtDgBGN0ABnOlxud0QXuek1e7wdpKdeQ2SIAbKDwbIoeREPc4QicHgUdD0fQ8Hi9vbGlZoiA8xALltWBArowAORq1iVmvcYsuybuk5nEAXa63JCdl5vXONSNApEATjjEMTSGjqeoiIzqzR1AxQ/xvHwTtpMgZrYOSDdAA5vV3fb3EP3g4PkRHAcCAyewVOaEnZ/D5+nkUu8jQcyUsZwPAFrAjoUtSha8Ba1xMiyPgclypK8vyPjCqK4pStcsryrwirKlAqrqlqViGsapowOaO7XFacQJEkwFEuGFJ7u6Y5PKePb+oG1BXqGCFkkxd5IlxT4Ji+B5jnOmCfgQ37Zrx640rwxaluWlbVnWMANhATYtlQextg8nqdt2fp9kGpAhkOsAjvewnxpCYnHJ6kkLl+qI/qu/5YEaOAHBgfCsNKRbUHAukgPp+7Jm6xlnv6l4WdeXbSjZQlupOonQsmLnSZmy6/pi3kmGQmB8JysDIZIcB+AyFwEaoqFKuKdWalstzqlYzUAEowFcpoyL8YAAIJgBgvAAD68H4lFXBK7AvmwpRxJIDV4c1TJQVcGrMQ89yHj6HFIAArOZlklG1qgpQe9zpQ5mUpu+UlIjJ7lyUwhW+SVNifJEZAVfIrXfekcCWJNgQhGE9g/aQyCtONvCijA/CjlAeQFEUeAQ2kURwAISjSGqoPBOwvBYOwOBRjsemug8JzHexpkBtd3EJe8/WQ0Dl0BmxIm3Um91pk9uUeX+IAATiKThF8ThZK4OTGN4lUg5jUsZM42T/H9viE+DgNRNatF2mzWPSwNOSo4UxRlBUPT1I0vAtCMCw1Lb/RDCMaBjBMUwzHMnRKosyyrOso5wJT4XU8m0Z0yZ56PCdiVGyrPzq4YnPRTd04XjCrSgsOJQAPT57wvR24EVz4Bw5doIgh2tPrtrJMAsS8BL7PfGrsv/BQze8IXvBbAPsQwgIRrKLwNYAAJwGD7AAFZwPnidQ3ANb13RTdSPRoGsN3YDD/wo/j9PROr2AsR5gSdvatUKkwBWVa1vWjbcFU5+Vckm4Urw1/MAA7swc0t6MVYOBWATIN4t0CtcKwNY0Ar13i3c6MAYGQFIFAGsCDW7G1IGyYuPdEG6xNinIw3AmR9xLv0MuFd2BVzrpvFufcB5bB7jnIe3A8iqC0EgUAGJLhwFcHgOBIAYQwiAA==="}
+// @twoslash-cache: {"v":1,"hash":"8efec5d385627b3d23e03e4c9bdf13f9a3c80178f3105cfb878cd54cef1eacb9","data":"N4Igdg9gJgpgziAXAbVAFwJ4AcZJACwgDcYAnEAGhDRgA808AKAQwBsBLZuASgAIAzAK5gAxmnYQwvNKWZg4/CKQC2ZAHIQ0zcZIAi7fv0YQsO+QH5EvACqz5iles3aJYfYYDyp1zysBlfHYAa3ZbOQUlVVIAHTB2ZSwlNGk7CMdSDS0zd35KECgIEQREEABVOBheAANkAEIRaEqAaiaAXSreOShquobYXgBaAfbpCF5lZlIgzqhYbq7eUhhlYhhujjB4ADo8uC1SBkQAZgAWKlYYMABzNHwkACYjqn2rmEPqVIcozJc9A1zzuxNg8qCJ8JNmGIyA8AL4UdDYXAlQgkcjPOjvFgcLh8BryZJ9GDWCAACTQylYVkYhKse1IQKuFF4JjMcCsAGFGsSSVw0F5WQAeABCwigFygABk5FdBMxXkyRWAxWtrPhljAAHx8AC8Gt4AAVSBBlOwKgK6QyNbF4okDrxCdzyaxdvtDgBGN0ABnOlxud0QXuek1e7wdpKdeQ2SIAbKDwbIoeREPc4QicHgUdD0fQ8Hi9vbGlZoiA8xALltWBArowAORq1iVmvcYsuybuk5nEAXa63JCdl5vXONSNApEATjjEMTSGjqeoiIzqzR1AxQ/xvHwTtpMgZrYOSDdAA5vV3fb3EP3g4PkRHAcCAyewVOaEnZ/D5+nkUu8jQcyUsZwPAFrAjoUtSha8Ba1xMiyPgclypK8vyPjCqK4pStcsryrwirKlAqrqlqViGsapowOaO7XFacQJEkwFEuGFJ7u6Y5PKePb+oG1BXqGCFkkxd5IlxT4Ji+B5jnOmCfgQ37Zrx640rwxaluWlbVnWMANhATYtlQextg8nqdt2fp9kGpAhkOsAjvewnxpCYnHJ6kkLl+qI/qu/5YEaOAHBgfCsNKRbUHAukgPp+7Jm6xlnv6l4WdeXbSjZQlupOonQsmLnSZmy6/pi3kmGQmB8JysDIZIcB+AyFwEaoqFKuKdWalstzqlYzUAEowFcpoyL8YAAIJgBgvAAD68H4lFXBK7AvmwpRxJIDV4c1TJQVcGrMQ89yHj6HFIAArOZlklG1qgpQe9zpQ5mUpu+UlIjJ7lyUwhW+SVNifJEZAVfIrXfekcCWJNgQhGE9g/aQyCtONvCijA/CjlAeQFEUeAQ2kURwAISjSGqoPBOwvBYOwOBRjsemug8JzHHexpkBtd3EJe8/WQ0Dl0BmxIm3Um91pk9uUeX+IAATiKThF8ThZK4OTGN4lUg5jUsZM42T/H9viE+DgNRNatF2mzWPSwNOSo4UxRlBUPT1I0vAtCMCw1Lb/RDCMaBjBMUwzHMnRKosyyrOso5wJT4XU8m0Z0yZ56PCdiVGyrPzq4YnPRTd04XjCrSgsOJQAPT57wvR24EVz4Bw5doIgh2tPrtrJMAsS8BL7PfGrsv/BQze8IXvBbAPsQwgIRrKLwNYAAJwGD7AAFZwPnidQ3ANb13RTdSPRoGsN3YDD/wo/j9PROr2AsR5gSdvatUKkwBWVa1vWjbcFU5+Vckm4Urw1/MAA7swc0t6MVYOBWATIN4t0CtcKwNY0Ar13i3c6MAYGQFIFAGsCDW7G1IGyYuPdEG6xNinIw3AmR9xLv0MuFd2BVzrpvFufcB5bB7jnIe3A8iqC0EgUAGJLhwFcHgOBIAYQwiAA==="}
 // [!code highlight:5]
 import {
   transformerNotationDiff,
@@ -62,9 +62,9 @@ const html = await codeToHtml(code, {
 
 转换器只应用到类，并不带有样式，你可以提供自己的 CSS 规则来样式化它们。
 
-## 匹配算法
+## Match Algorithm
 
-我们发现 v1 中评论匹配的算法有时不够直观，我们正在以渐进的方式进行修复。从 v1.29.0 开始，我们为大多数转换器引入了一个新的 `matchAlgorithm` 选项，供您在不同的匹配算法之间切换。目前，默认选项是 `v1`，即旧算法，`v3` 是新算法。当 Shiki v3 发布时，默认将是 `v3`。
+We found that the comment matching algorithm in v1 was sometimes not intuitive enough, and we are fixing it in a gradual manner. Starting from v1.29.0, we introduced a new `matchAlgorithm` option for most transformers, allowing you to switch between different matching algorithms. Currently, the default option is `v1`, which is the old algorithm, while `v3` is the new algorithm. When Shiki v3 is released, the default will be `v3`.
 
 ```ts
 const html = await codeToHtml(code, {
@@ -80,7 +80,7 @@ const html = await codeToHtml(code, {
 
 ### `matchAlgorithm: 'v1'`
 
-匹配算法主要影响单行注释的匹配，在 `v1` 中，它将把注释行计为第一行，而在 `v3` 中，它将从注释行开始计数：
+The matching algorithm mainly affects single-line comments. In `v1`, it counts the comment line as the first line, while in `v3`, it starts counting from the line with the comment:
 
 ```ts
 // [\!code highlight:3]
@@ -91,7 +91,7 @@ console.log('not highlighted')
 
 ### `matchAlgorithm: 'v3'`
 
-在 `v3` 中，匹配算法将从评论下方的行开始计数：
+In `v3`, the matching algorithm starts counting from the line below the comment:
 
 ```ts
 // [\!code highlight:2]
@@ -104,7 +104,7 @@ console.log('not highlighted')
 
 ### `transformerNotationDiff`
 
-使用 `[!code ++]` 和 `[!code --]` 来标记增删的行。
+Use `[!code ++]` and `[!code --]` to mark added and removed lines.
 
 ````md
 ```ts
@@ -114,7 +114,7 @@ console.log('goodbye')
 ```
 ````
 
-渲染成 (已样式化)：
+Rendered as (styled):
 
 ```ts
 console.log('hewwo') // [!code --]
@@ -122,11 +122,11 @@ console.log('hello') // [!code ++]
 console.log('goodbye')
 ```
 
-- `// [!code ++]` 输出：`<span class="line diff add">`
-- `// [!code --]` 输出：`<span class="line diff remove">`
-- 外围的 `<pre>` 标签修改为：`<pre class="has-diff">`
+- `// [!code ++]` outputs: `<span class="line diff add">`
+- `// [!code --]` outputs: `<span class="line diff remove">`
+- The outer `<pre>` tag is changed to: `<pre class="has-diff">`
 
-::: details HTML 输出
+::: details HTML output
 
 ```html
 <!-- 输出（为了清晰，已去除 style 属性） -->
@@ -148,8 +148,6 @@ console.log('goodbye')
 
 :::
 
----
-
 ### `transformerNotationHighlight`
 
 使用 `[!code highlight]` 来高亮显示行：
@@ -162,7 +160,7 @@ console.log('Not highlighted')
 ```
 ````
 
-渲染成 (已样式化)：
+渲染成（已样式化）：
 
 ```ts
 console.log('Not highlighted')
@@ -178,6 +176,7 @@ console.log('Not highlighted')
 ````md
 ```ts
 // [\!code highlight:3]
+console.log('Highlighted')
 console.log('Highlighted')
 console.log('Highlighted')
 console.log('Not highlighted')
@@ -197,6 +196,7 @@ console.log('Not highlighted')
 // [!code highlight:3]
 console.log('Highlighted')
 console.log('Highlighted')
+console.log('Highlighted')
 console.log('Not highlighted')
 ```
 
@@ -211,7 +211,7 @@ console.log('Not highlighted')
 
 ### `transformerNotationWordHighlight`
 
-使用 `[!code word:Hello]` 在接下来的代码中高亮所有的 `Hello`。
+Use `[!code word:Hello]` to highlight all instances of `Hello` in the subsequent code.
 
 ````md
 ```ts
@@ -221,7 +221,7 @@ console.log(message) // prints Hello World
 ```
 ````
 
-渲染成 (已样式化)：
+Rendered as (styled):
 
 ```ts
 // [!code word:Hello]
@@ -229,9 +229,9 @@ const message = 'Hello World'
 console.log(message) // prints Hello World
 ```
 
-输出：匹配到的单词会变成 `<span class="highlighted-word">Hello</span>`
+Output: matched words will become `<span class="highlighted-word">Hello</span>`
 
-你还可以指定高亮显示的次数，例如 `[!code word:Hello:2]` 会高亮最近的那个 `Hello`。
+You can also specify how many times to highlight it, for example `[!code word:Hello:2]` will highlight the most recent `Hello`.
 
 ````md
 ```ts
@@ -241,7 +241,7 @@ console.log(message) // prints Hello World
 ```
 ````
 
-渲染为：
+Rendered as:
 
 ```ts
 // [!code word:Hello:1]
@@ -253,7 +253,7 @@ console.log(message) // prints Hello World
 
 ### `transformerNotationFocus`
 
-使用 `[!code focus]` 来聚焦显示行：
+Use `[!code focus]` to highlight lines:
 
 ````md
 ```ts
@@ -263,7 +263,7 @@ console.log('Not focused');
 ```
 ````
 
-渲染成 (已样式化)：
+Rendered as (styled):
 
 ```ts
 console.log('Not focused')
@@ -271,24 +271,26 @@ console.log('Focused') // [!code focus]
 console.log('Not focused')
 ```
 
-- 输出：`<span class="line focused">`
-- 外围的 `<pre>` 标签被修改为：`<pre class="has-focused">`
+- Output: `<span class="line focused">`
+- The outer `<pre>` tag is modified to: `<pre class="has-focused">`
 
-你也可以使用单个注释聚焦多行：
+You can also use a single comment to highlight multiple lines:
 
 ````md
 ```ts
 // [\!code focus:3]
 console.log('Focused')
 console.log('Focused')
+console.log('Focused')
 console.log('Not focused')
 ```
 ````
 
-渲染为：
+Rendered as:
 
 ```ts
 // [!code focus:3]
+console.log('Focused')
 console.log('Focused')
 console.log('Focused')
 console.log('Not focused')
@@ -302,10 +304,10 @@ console.log('Not focused')
 
 ````md
 ```ts
-console.log('No errors or warnings')
-console.error('Error') // [\!code error]
-console.warn('Warning') // [\!code warning]
-console.log('Info') // [\!code info]
+console.log('没有错误或警告')
+console.error('错误') // [\!code error]
+console.warn('警告') // [\!code warning]
+console.log('信息') // [\!code info]
 ```
 ````
 
@@ -317,10 +319,10 @@ console.log('Info') // [\!code info]
 加上一些额外的 CSS 规则，它们看起来可能像这样：
 
 ```ts
-console.log('No errors or warnings')
-console.error('Error') // [!code error]
-console.warn('Warning') // [!code warning]
-console.log('Info') // [!code info]
+console.log('没有错误或警告')
+console.error('错误') // [!code error]
+console.warn('警告') // [!code warning]
+console.log('信息') // [!code info]
 ```
 
 ---
@@ -335,7 +337,7 @@ console.log('Info') // [!code info]
 
 结合一些额外的 CSS 规则，你可以让它看起来像这样：
 
-<div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre v-pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0"><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">function</span><span class="space"> </span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">block</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">{</span></span>
+<div class="language-js vp-adaptive-theme"><button title="复制代码" class="copy"></button><span class="lang">js</span><pre v-pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0"><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">function</span><span class="space"> </span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">block</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">{</span></span>
 <span class="line"><span class="space"> </span><span class="space"> </span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">space</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span></span>
 <span class="line"><span class="tab">&#9;</span><span class="tab">&#9;</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">tab</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span class="space"> </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;"> </span></span>
 <span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span></code></pre></div>
@@ -371,10 +373,10 @@ pre.shiki .space::before {
 
 通过一些额外的 CSS 规则，你可以让它看起来像这样：
 
-<div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre v-pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0"><code><span class="line"><span style="color:#CB7676">function</span><span style="color:#80A665"> func</span><span style="color:#666666">()</span><span style="color:#666666"> {</span></span>
+<div class="language-js vp-adaptive-theme"><button title="复制代码" class="copy"></button><span class="lang">js</span><pre v-pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0"><code><span class="line"><span style="color:#CB7676">function</span><span style="color:#80A665"> func</span><span style="color:#666666">()</span><span style="color:#666666"> {</span></span>
 <span class="line"><span class="indent">  </span><span style="color:#BD976A">console</span><span style="color:#666666">.</span><span style="color:#80A665">log</span><span style="color:#666666">(</span><span style="color:#4C9A91">1</span><span style="color:#666666">);</span></span>
 <span class="line"><span class="indent" style="--indent-offset: 0ch;"></span></span>
-<span class="line"><span class="indent">  </span><span style="color:#4D9375">for</span><span style="color:#666666"> (</span><span style="color:#CB7676">const </span><span style="color:#BD976A">i</span><span style="color:#CB7676"> of</span><span style="color:#666666"> [])</span><span style="color:#666666"> {</span></span>
+<span class="line"><span class="indent">  </span><span style="color:#4D9375">for</span><span style="color:#666666"> (</span><span class="style.color:#CB7676">const </span><span style="color:#BD976A">i</span><span style="color:#CB7676"> of</span><span style="color:#666666"> [])</span><span style="color:#666666"> {</span></span>
 <span class="line"><span class="indent">  </span><span class="indent">  </span><span style="color:#BD976A">console</span><span style="color:#666666">.</span><span style="color:#80A665">log</span><span style="color:#666666">(</span><span style="color:#4C9A91">2</span><span style="color:#666666">);</span></span>
 <span class="line"><span class="indent">  </span><span style="color:#666666">}</span></span>
 <span class="line"><span style="color:#666666">}</span></span></code></pre></div>
@@ -579,12 +581,12 @@ const html = await codeToHtml(code, {
 
 ````md
 ```js
-// This is a comment
-const x = 1 // Inline comment
-/* Block comment */
+// 这是一个注释
+const x = 1 // 行内注释
+/* 块注释 */
 const y = 2
 
-// Another comment
+// 另一条注释
 ```
 ````
 
