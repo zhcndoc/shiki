@@ -6,7 +6,7 @@ outline: deep
 
 [VitePress](https://vitepress.zhcndoc.com/) 在底层使用了 Shiki，所以你不需要显式地集成。
 
-VitePress 提供了[一些 Shiki 的自定义选项](https://github.com/vuejs/vitepress/blob/main/src/node/markdown/markdown.ts#L66-L112)，在 [VitePress 文档](https://vitepress.zhcndoc.com/zh/reference/site-config#markdown)上查看更多。
+VitePress 提供了[一些 Shiki 的自定义选项](https://github.com/vuejs/vitepress/blob/main/src/node/markdown/markdown.ts#L66-L112)，在 [VitePress 文档](https://vitepress.zhcndoc.com/reference/site-config#markdown)上查看更多。
 
 ## Twoslash
 
