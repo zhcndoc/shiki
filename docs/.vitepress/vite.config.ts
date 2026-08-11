@@ -5,6 +5,12 @@ import { defineConfig } from 'vite'
 import { groupIconVitePlugin as GroupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
 export default defineConfig({
+  define: {
+    __VUE_PROD_DEVTOOLS__: false,
+  },
+  ssr: {
+    noExternal: ['pinia'],
+  },
   resolve: {
     tsconfigPaths: true,
   },
