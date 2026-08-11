@@ -1,38 +1,41 @@
-<!-- DO NOT IGNORE THE TEMPLATE!
+<!-- 请勿忽略此模板！
 
-Thank you for contributing!
-
----
-
-> Please be aware that vibe-coding contributions are **🚫 STRICTLY PROHIBITED**.
-> We are humans behind these open source projects, trying hard to maintain good quality and a healthy community.
-> Not only do vibe-coding contributions pollute the code, but they also drain A LOT of unnecessary energy and time from maintainers and toxify the community and collaboration.
->
-> All vibe-coded, AI-generated PRs will be rejected and closed without further notice. In severe cases, your account might be banned organization-wide and reported to GitHub.
->
-> **PLEASE SHOW SOME RESPECT** and do not do so.
+感谢您的贡献！
 
 ---
 
-Before submitting the PR, please make sure you do the following:
+> 欢迎使用 AI 辅助贡献，但**您需要为提交的所有内容负责**。
+> 我们是这些开源项目背后的人类，努力维护良好的质量和健康的社区。
+> 未经审查的“凭感觉编写”的 PR 会污染代码，并消耗维护者大量不必要的精力和时间。
+>
+> 如果您使用了 AI 工具来协助完成此次贡献：
+> - 提交前，请阅读并理解差异中的每一行。
+> - 请用您自己的话编写 PR 描述和评论，不要直接复制粘贴 AI 的输出。
+> - 确保修改范围明确、经过测试，并符合本项目的约定——不要提交大段未经审查的 AI 生成补丁。
+>
+> 如果 PR 明显是未经审查的 AI 输出（范围未作解释、虚构 API、测试/构建失败，或描述读起来像原始模型输出），我们将直接拒绝并关闭，恕不另行通知。在严重情况下，您的账号可能会被整个组织封禁，并向 GitHub 举报。
 
-- Read the [Contributing Guide](https://github.com/antfu/contribute).
-- Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
-- Provide a description in this PR that addresses **what** the PR is solving and **WHY**, or reference the issue that it solves (e.g. `fixes #123`).
-- Ideally, include relevant tests that fail without this PR but pass with it.
+---
+
+提交 PR 前，请确保完成以下事项：
+
+- 阅读[贡献指南](https://github.com/antfu/contribute)。
+- 检查是否已经存在以相同方式解决该问题的 PR，以避免重复创建。
+- 在此 PR 中提供描述，说明该 PR 解决了**什么问题**以及**为什么**要解决，或者引用它所解决的问题（例如 `fixes #123`）。
+- 理想情况下，请附上相关测试，这些测试在没有此 PR 时失败，加入此 PR 后通过。
 
 -->
 
-- [ ] <- Keep this line and put an `x` between the brackts.
+- [ ] <- 保留此行，并在括号之间填写 `x`。
 
-### Description
+### 描述
 
-<!-- Please insert your description here and provide especially info about the "what" this PR is solving, and "WHY" -->
+<!-- 请在此处填写描述，尤其说明此 PR 解决了“什么问题”以及“为什么”要解决 -->
 
-### Linked Issues
+### 关联问题
 
 fixes #<number>
 
-### Additional context
+### 其他上下文
 
-<!-- e.g. is there anything you'd like reviewers to focus on? -->
+<!-- 例如：是否有任何希望审阅者重点关注的内容？ -->

@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "version": "4.3.1",
+  "version": "4.4.3",
   "private": true,
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@11.20.0",
   "engines": {
     "node": ">=20"
   },
@@ -12,7 +12,7 @@
     "publish:ci": "pnpm -r publish --access public --no-git-checks",
     "test": "FORCE_COLOR=3 && vitest",
     "typecheck": "vue-tsc --noEmit",
-    "build": "pnpm -r run build",
+    "build": "turbo run build",
     "docs": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
     "report-engine-js": "tsx scripts/report-engine-js-compat.ts",
@@ -22,6 +22,9 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@antfu/ni": "catalog:cli",
+    "@iconify-json/carbon": "catalog:icons",
+    "@iconify-json/ph": "catalog:icons",
+    "@iconify-json/svg-spinners": "catalog:icons",
     "@rollup/plugin-alias": "catalog:bundling",
     "@rollup/plugin-commonjs": "catalog:bundling",
     "@rollup/plugin-json": "catalog:bundling",
@@ -51,7 +54,7 @@
     "ansis": "catalog:prod",
     "baseline-browser-mapping": "catalog:bundling",
     "bumpp": "catalog:cli",
-    "diff-match-patch-es": "catalog:testing",
+    "diff-match-patch-es": "catalog:integrations",
     "esbuild": "catalog:bundling",
     "eslint": "catalog:cli",
     "eslint-plugin-format": "catalog:cli",
@@ -84,6 +87,7 @@
     "tm-themes": "catalog:inlined",
     "tsdown": "catalog:bundling",
     "tsx": "catalog:cli",
+    "turbo": "catalog:cli",
     "typescript": "catalog:cli",
     "unist-util-visit": "catalog:integrations",
     "vite": "catalog:bundling",
