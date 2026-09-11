@@ -588,6 +588,8 @@ importers:
         specifier: catalog:cli
         version: 4.120.0
 
+  bench/bundle-test: {}
+
   docs:
     devDependencies:
       '@braintree/sanitize-url':
