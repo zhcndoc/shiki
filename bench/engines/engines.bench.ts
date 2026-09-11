@@ -4,7 +4,7 @@ import type { ReportItem } from '../../scripts/report-engine-js-compat'
 import fs from 'node:fs/promises'
 import { createJavaScriptRawEngine, createJavaScriptRegexEngine } from '@shikijs/engine-javascript'
 import { createHighlighter, createOnigurumaEngine } from 'shiki'
-import { bench, describe } from 'vitest'
+import { it } from 'vitest'
 
 const js = createJavaScriptRegexEngine()
 const jsRaw = createJavaScriptRawEngine()
@@ -39,19 +39,19 @@ const shikiJsPrecompiled = await createHighlighter({
 })
 
 for (const lang of langs) {
-  describe(lang, () => {
+  it(lang, async ({ bench }) => {
     const code = samples[langs.indexOf(lang)]
 
-    bench('js', () => {
-      shikiJs.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
-    })
-
-    bench('js-precompiled', () => {
-      shikiJsPrecompiled.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
-    })
-
-    bench('wasm', () => {
-      shikiWasm.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
-    })
+    await it.compare(
+      bench('js', () => {
+        shikiJs.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
+      }),
+      bench('js-precompiled', () => {
+        shikiJsPrecompiled.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
+      }),
+      bench('wasm', () => {
+        shikiWasm.codeToTokensBase(code, { lang, theme: 'vitesse-dark' })
+      }),
+    )
   })
 }

@@ -1,6 +1,6 @@
 import type { DecorationItem } from 'shiki'
 import { createHighlighter, createOnigurumaEngine } from 'shiki'
-import { afterAll, bench, describe } from 'vitest'
+import { afterAll, it } from 'vitest'
 
 const lineCount = 5_000
 const code = Array.from(
@@ -25,14 +25,14 @@ const highlighter = await createHighlighter({
 
 afterAll(() => highlighter.dispose())
 
-describe(`single file (${lineCount} lines and decorations)`, () => {
-  bench('default decoration rendering', () => {
+it(`single file (${lineCount} lines and decorations)`, async ({ bench }) => {
+  await bench('default decoration rendering', () => {
     highlighter.codeToHast(code, {
       decorations,
       lang: 'typescript',
       theme: 'vitesse-dark',
     })
-  }, {
+  }).run({
     iterations: 3,
     time: 0,
     warmupIterations: 1,

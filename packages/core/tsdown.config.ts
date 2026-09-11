@@ -12,9 +12,11 @@ export default defineConfig({
       paths: {},
     },
   },
-  inlineOnly: [
-    'ansi-sequence-parser',
-  ],
-  external: ['hast', ...Object.keys(pkg.dependencies)],
-  noExternal: [/^(?!hast$|@shikijs\/primitive$)/],
+  deps: {
+    onlyBundle: [
+      'ansi-sequence-parser',
+    ],
+    neverBundle: ['hast', ...Object.keys(pkg.dependencies)],
+    alwaysBundle: [/^(?!hast$|@shikijs\/primitive$)/],
+  },
 })

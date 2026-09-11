@@ -1,7 +1,7 @@
 /* eslint-disable ts/ban-ts-comment */
 /* eslint-disable antfu/no-import-dist */
 
-import { bench, describe } from 'vitest'
+import { it } from 'vitest'
 // @ts-ignore - ignore type error
 import { highlight as highlightA } from './dist/index-lite.min.mjs'
 // @ts-ignore - ignore type error
@@ -23,12 +23,13 @@ function notify() {
 }
 `
 
-describe('bundle', () => {
-  bench('js-precompiled', async () => {
-    await highlightA(code)
-  })
-
-  bench('wasm', async () => {
-    await highlightB(code)
-  })
+it('bundle', async ({ bench }) => {
+  await it.compare(
+    bench('js-precompiled', async () => {
+      await highlightA(code)
+    }),
+    bench('wasm', async () => {
+      await highlightB(code)
+    }),
+  )
 })
